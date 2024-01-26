@@ -1,0 +1,213 @@
+/* -----------------SpeeddBrake--------------- */
+.custom-height-slider {
+  height: 75px;
+}
+
+.dx-field .dx-slider {
+  flex: 1;
+}
+
+.spdOuter-wrapper{
+    display: inline-block;
+    padding: 25px 15px;
+    background: #eee;
+    width: 75px;
+  }
+  
+  .spdColumn-wrapper{
+    height: 200px;
+    width: 20px;
+    background: #CFD8DC;
+    transform: rotate(180deg);
+    margin: 0 auto;
+  }
+  
+  .spdColumn{
+    /*position: relative;
+    display: block;
+    bottom: 0;*/
+    width: 20px;
+    height: 0%;
+    background: #90A4AE;
+    /*transfrom: -moz-translateY(-10px);*/
+  }
+  
+  .spdPercentage, .spdValue{
+    margin-top: 10px;
+    padding: 5px 10px;
+    color: #FFF;
+    background: #263238;
+    position: relative;
+    border-radius: 4px;
+    text-align: center;
+  }
+  
+  .spdValue{
+    background: #7986CB;
+  }
+
+/* -----------------Throttle 1 --------------- */
+.thrL1Outer-wrapper{
+  display: inline-block;
+  padding: 25px 15px;
+  background: #eee;
+  width: 75px;
+}
+
+.thrL1Column-wrapper{
+  height: 200px;
+  width: 20px;
+  background: #CFD8DC;
+  transform: rotate(180deg);
+  margin: 0 auto;
+}
+
+.thrL1Column{
+  /*position: relative;
+  display: block;
+  bottom: 0;*/
+  width: 20px;
+  height: 0%;
+  background: #90A4AE;
+  /*transfrom: -moz-translateY(-10px);*/
+}
+
+.thrL1Percentage, .thrL1Value{
+  margin-top: 10px;
+  padding: 5px 10px;
+  color: #FFF;
+  background: #263238;
+  position: relative;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.thrL1Value{
+  background: #7986CB;
+}
+
+  /* Reverser 1 */
+  .rev1Outer-wrapper{
+    display: inline-block;
+    padding: 25px 15px;
+    background: #eee;
+    width: 75px;
+  }
+
+  .rev1Column-wrapper{
+    height: 110px;
+    width: 20px;
+    background: #CFD8DC;
+    transform: rotate(180deg);
+    margin: 0 auto;
+  }
+
+  .rev1Column{
+    /*position: relative;
+    display: block;
+    bottom: 0;*/
+    width: 20px;
+    height: 0%;
+    background: #90A4AE;
+    /*transfrom: -moz-translateY(-10px);*/
+  }
+  .rev1Percentage{
+    margin-bottom: 10px;
+  }
+  .rev1Percentage, .rev1Value{
+    margin-top: 10px;
+    padding: 5px 10px;
+    color: #FFF;
+    background: #263238;
+    position: relative;
+    border-radius: 4px;
+    text-align: center;
+  }
+
+  .rev1Value{
+    background: #7986CB;
+  }
+
+/* -----------------Throttle 2 --------------- */
+.thrL2Outer-wrapper{
+  display: inline-block;
+  padding: 25px 15px;
+  background: #eee;
+  width: 75px;
+}
+
+.thrL2Column-wrapper{
+  height: 200px;
+  width: 20px;
+  background: #CFD8DC;
+  transform: rotate(180deg);
+  margin: 0 auto;
+}
+
+.thrL2Column{
+  /*position: relative;
+  display: block;
+  bottom: 0;*/
+  width: 20px;
+  height: 0%;
+  background: #90A4AE;
+  /*transfrom: -moz-translateY(-10px);*/
+}
+
+.thrL2Percentage, .thrL2Value{
+  margin-top: 10px;
+  padding: 5px 10px;
+  color: #FFF;
+  background: #263238;
+  position: relative;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.thrL2Value{
+  background: #7986CB;
+}
+
+  /* Reverser 2  */
+  .rev2Outer-wrapper{
+    display: inline-block;
+    padding: 25px 15px;
+    background: #eee;
+    width: 75px;
+  }
+
+  .rev2Column-wrapper{
+    height: 110px;
+    width: 20px;
+    background: #CFD8DC;
+    transform: rotate(180deg);
+    margin: 0 auto;
+  }
+
+  .rev2Column{
+    /*position: relative;
+    display: block;
+    bottom: 0;*/
+    width: 20px;
+    height: 0%;
+    background: #90A4AE;
+    /*transfrom: -moz-translateY(-10px);*/
+  }
+  .rev2Percentage{
+    margin-bottom: 10px;
+  }
+  .rev2Percentage, .rev2Value{
+    margin-top: 10px;
+    padding: 5px 10px;
+    color: #FFF;
+    background: #263238;
+    position: relative;
+    border-radius: 4px;
+    text-align: center;
+  }
+
+  .rev2Value{
+    background: #7986CB;
+  }
+
+/* -----------------Flaps--------------- */
