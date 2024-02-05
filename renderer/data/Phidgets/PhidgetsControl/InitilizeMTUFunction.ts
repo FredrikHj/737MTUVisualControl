@@ -9,6 +9,8 @@ var serviceConnected = false;
 //var isServicesConnected = () => { 
     
 var InitilizeMTUFunction = () => {
+    
+    
     var test = AvailabilityOfFSIPCInstance$;  
     console.log('test :', test);
     //Check services connection

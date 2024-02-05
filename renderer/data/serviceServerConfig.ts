@@ -16,7 +16,7 @@ var serviceServerConfig: {
     },
     phidgets: {
         hostname: "localhost",
-        port:  5661,
+        port:  8989,
     },
 };
 

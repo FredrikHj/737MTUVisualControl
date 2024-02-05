@@ -52,6 +52,7 @@ export var LoadPhidgetsService = async() =>{
         },
         onDisconnect: function() { 
             console.log("Phidgets Networkserver - Disconnected");
+            
             initializeStore.dispatch(setConnected(false));
             initializeStore.dispatch(setLabelConButton(generalTexts.conButton["connect"]));  
             initializeStore.dispatch(setStateName(""));
