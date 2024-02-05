@@ -12,8 +12,9 @@ import {componentRerenderStorageChanges$} from "../data/RerenderComponentOnStora
 import { setServicesStatusContainerVisiable, setServicesStatusButtonName } from "../redux/ThrottleReadySlicer"; 
 
 import generalTexts from '../data/GeneralTexts'; 
-import LoadServiceContainer from "../components/LoadServiceContainer";
+import ServiceConnectionInfo from "../components/ServiceConnectionInfo";
 import ThrottleVisual from "../components/ThrottleVisual";
+import reqMTUControl from "../data/ReqMTUConnection";
 
 var MTUControlLanding = () => { 
     // Begin listening for Storetree changes
@@ -22,15 +23,22 @@ var MTUControlLanding = () => {
     // Get updated Store state and save it 
         const [ currentStoreState, updateCurrrentStoreState ] = useState<any>(null);
         
+        const [ isMTUConnnected, updateIsMTUConnected ] = useState<boolean>(false); 
+
         const [appStarted, updateAppStarted] = useState<boolean>(false);
         const [ servicesVisiable, updateServicesVisiable ] = useState<boolean>(false); 
     useEffect(() => {   
-        // Load if app is not started 
-        if (appStarted === false) { 
-            updateAppStarted(true);
+        // Load if MTU is not connected 
+        if (isMTUConnnected === false) { 
+            //updateIsMTUConnected(
+                reqMTUControl();
+                
+            //);
+            /* updateAppStarted(true);
             // Begin to listen for Store state´s changes and initilize listener
             listenerStoreChange();
             setTimeout(() => {initializeStore.dispatch(setAppUpStarted(true));},500);
+            */
         }
         // Update and rerender when the Store tree has new values
         componentRerenderStorageChanges$.subscribe((getNewStoreValues: any) => {
@@ -38,7 +46,7 @@ var MTUControlLanding = () => {
             getNewStoreValues && updateCurrrentStoreState(getNewStoreValues);
         }); 
     }, [appStarted, servicesVisiable]);
-    var serviceHideShow = (e: any) => {
+    /* var serviceHideShow = (e: any) => {
         var targetButtonId = e.target.id;
         console.log('targetButtonId :', targetButtonId);
         
@@ -52,7 +60,7 @@ var MTUControlLanding = () => {
             initializeStore.dispatch(setServicesStatusContainerVisiable(false));
             initializeStore.dispatch(setServicesStatusButtonName("hidden"));
         }
-    }
+    } */
     return( 
         <>
             {(currentStoreState !== null && Object.keys(currentStoreState).length !== 0) &&
@@ -69,8 +77,8 @@ var MTUControlLanding = () => {
                             flexDirection: "row", 
                             justifyContent: "space-around",
                         }}>
-                            <LoadServiceContainer MTUService={generalTexts.services["fsuipc"]}/>
-                                <Button sx={{ 
+                            <ServiceConnectionInfo MTUService={generalTexts.services["fsuipc"]}/>
+                                {/* <Button sx={{ 
                                     display: currentStoreState.throttleReady["servicesConnected"] === false ? "none" : "block",
                                     borderRadius: "20px",
                                     marginTop: "51px",
@@ -86,8 +94,8 @@ var MTUControlLanding = () => {
                                         <Box id={currentStoreState.throttleReady.servicesStatus["containerButtonName"]}>Services Information</Box>
                                         <Box id={currentStoreState.throttleReady.servicesStatus["containerButtonName"]}>{currentStoreState.throttleReady.servicesStatus.containerButtonName}</Box>
                                     </Box> 
-                                </Button> 
-                            <LoadServiceContainer MTUService={generalTexts.services["phidgets"]}/>
+                                </Button>  */}
+                            <ServiceConnectionInfo MTUService={generalTexts.services["phidgets"]}/>
                         </Box>
 
                         <Box sx={{marginTop: "50px"}}>

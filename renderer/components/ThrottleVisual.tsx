@@ -59,55 +59,53 @@ var ThrottleVisual = () =>{
     console.log('currentStoreState :', currentStoreState);
     return(  
         <>
-            {(currentStoreState !== null && Object.keys(currentStoreState).length !== 0 && currentStoreState.serviceFSUIPC["connected"] === true && currentStoreState.servicePHIDGETS["connected"] === true) &&
-                <Box sx={{border: "1px solid red", width: "1000px", display: "flex", flexDirection: "row", justifyContent: "space-around", alignItems: "center"}}>   
-                    {/* Speedbrake */}                        
-                    <Box className="spdOuter-wrapper" id="spd">
-                        Speedbrake
-                        <Box className="spdPercentage">{currentStoreState.Throttle737SpeedBrake["currentPoss"]}</Box>
-                    </Box>
-                    {/* Throttle 1 / Reverser */}
-                    <Box sx={{display: "flex", flexDirection: "column"}} id="thrl1/rev">
-                        <Box className="thrL1Outer-wrapper">
-                            Throttle 1 
-                            <Box className="thrL1Percentage">{currentStoreState.Throttle737TH1_Rev.th["currentPoss"]}</Box>
-                        </Box>
-                        <Box sx={{marginTop: "10px"}} className="rev1Outer-wrapper">
-                            Reverser 
-                            <Box className="rev1Percentage">{currentStoreState.Throttle737TH1_Rev.rev["currentPoss"]}</Box>
-                        </Box>
-                    </Box>
-
-                    {/* Throttle 2 / Reverser */}
-                    <Box sx={{width: "100px"}} id="thrL2/rev">
-                        <Box className="thrL2Outer-wrapper">
-                            Throttle 2 
-                            <Box className="thrL2Percentage">{currentStoreState.Throttle737TH2_Rev.th["currentPoss"]}</Box>
-                        </Box>
-                        <Box sx={{marginTop: "10px"}} className="rev2Outer-wrapper">
-                            Reverser 
-                            <Box className="rev2Percentage">{currentStoreState.Throttle737TH1_Rev.rev["currentPoss"]}</Box>
-                        </Box>
-                    </Box>
-                    <FormControl>
-                        <FormLabel id="demo-radio-buttons-group-label">Flaps</FormLabel>
-                        <RadioGroup
-                            aria-labelledby="demo-radio-buttons-group-label"
-                            defaultValue="female"
-                            name="radio-buttons-group"
-                        >
-                            <FormControlLabel value="flap1" control={<Radio />} label="1" />
-                            <FormControlLabel value="flap2" control={<Radio />} label="2" />
-                            <FormControlLabel value="flap5" control={<Radio />} label="5" />
-                            <FormControlLabel value="flap10" control={<Radio />} label="10" />
-                            <FormControlLabel value="flap15" control={<Radio />} label="15" />
-                            <FormControlLabel value="flap25" control={<Radio />} label="25" />
-                            <FormControlLabel value="flap30" control={<Radio />} label="30" />
-                            <FormControlLabel value="flap40" control={<Radio />} label="40" />
-                        </RadioGroup>
-                    </FormControl>
+            <Box sx={{border: "1px solid red", width: "1000px", display: "flex", flexDirection: "row", justifyContent: "space-around", alignItems: "center"}}>   
+                {/* Speedbrake */}                        
+                <Box className="spdOuter-wrapper" id="spd">
+                    Speedbrake
+                    <Box className="spdPercentage">{/* {currentStoreState.Throttle737SpeedBrake["currentPoss"]} */}</Box>
                 </Box>
-            }
+                {/* Throttle 1 / Reverser */}
+                <Box sx={{display: "flex", flexDirection: "column"}} id="thrl1/rev">
+                    <Box className="thrL1Outer-wrapper">
+                        Throttle 1 
+                        <Box className="thrL1Percentage">{/* {currentStoreState.Throttle737TH1_Rev.th["currentPoss"]} */}</Box>
+                    </Box>
+                    <Box sx={{marginTop: "10px"}} className="rev1Outer-wrapper">
+                        Reverser 
+                        <Box className="rev1Percentage">{/* {currentStoreState.Throttle737TH1_Rev.rev["currentPoss"]} */}</Box>
+                    </Box>
+                </Box>
+
+                {/* Throttle 2 / Reverser */}
+                <Box sx={{width: "100px"}} id="thrL2/rev">
+                    <Box className="thrL2Outer-wrapper">
+                        Throttle 2 
+                        <Box className="thrL2Percentage">{/* {currentStoreState.Throttle737TH2_Rev.th["currentPoss"]} */}</Box>
+                    </Box>
+                    <Box sx={{marginTop: "10px"}} className="rev2Outer-wrapper">
+                        Reverser 
+                        <Box className="rev2Percentage">{/* {currentStoreState.Throttle737TH1_Rev.rev["currentPoss"]} */}</Box>
+                    </Box>
+                </Box>
+                <FormControl>
+                    <FormLabel id="demo-radio-buttons-group-label">Flaps</FormLabel>
+                    <RadioGroup
+                        aria-labelledby="demo-radio-buttons-group-label"
+                        defaultValue="female"
+                        name="radio-buttons-group"
+                    >
+                        <FormControlLabel value="flap1" control={<Radio />} label="1" />
+                        <FormControlLabel value="flap2" control={<Radio />} label="2" />
+                        <FormControlLabel value="flap5" control={<Radio />} label="5" />
+                        <FormControlLabel value="flap10" control={<Radio />} label="10" />
+                        <FormControlLabel value="flap15" control={<Radio />} label="15" />
+                        <FormControlLabel value="flap25" control={<Radio />} label="25" />
+                        <FormControlLabel value="flap30" control={<Radio />} label="30" />
+                        <FormControlLabel value="flap40" control={<Radio />} label="40" />
+                    </RadioGroup>
+                </FormControl>
+            </Box>
         </>
     );
 }

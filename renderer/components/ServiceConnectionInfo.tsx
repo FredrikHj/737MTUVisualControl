@@ -16,7 +16,7 @@ import LoadFsuipcService from '../data/FSUIPC/LoadFsuipcService';
 import {LoadPhidgetsService} from "../data/Phidgets/LoadPhidgetsService";
 import Throttle737RunningSlicer from '../redux/Throttle737SpeedBrakeSlicer';
 
-var LoadServiceContainer = (props: any) =>{
+var ServiceConnectionInfo = (props: any) =>{
     const { MTUService } = props;
 
     // Get updated Store state and save it 
@@ -67,7 +67,6 @@ var LoadServiceContainer = (props: any) =>{
          
     return(
         <>
-            {(currentStoreState !== null && Object.keys(currentStoreState).length !== 0) &&
                 <Box sx={{
                     display: "flex", 
                     flexDirection: "column", 
@@ -82,7 +81,7 @@ var LoadServiceContainer = (props: any) =>{
                     }}>
                         {MTUService.toUpperCase()}
                     </Box>
-                    <Box sx={{
+                    {/* <Box sx={{
                         marginTop: "20px",
                         display: "flex", 
                         flexDirection: "row", 
@@ -260,7 +259,7 @@ var LoadServiceContainer = (props: any) =>{
                                 }
                             </Box>
                         </Box>
-                    </Box>
+                    </Box> */}
                     
                     <Box
                         sx={
@@ -277,26 +276,24 @@ var LoadServiceContainer = (props: any) =>{
                             sx={{
                                 display: "flex",
                                 flexDirection: "column",
-                        }}>
-                            {[
-                                MTUService === generalTexts.services["fsuipc"] && currentStoreState.throttleReady.servicesStatus["containerVisiable"] === true &&
-                                <TableContainer sx={{width: "500px"}} key={generalTexts.services["fsuipc"]}>
-                                    <FSUIPCInfoContainer
-                                        serviceKey={reduxStoreServiceObjKey}
-                                    />
-                                </TableContainer>,
-                                MTUService === generalTexts.services["phidgets"] && currentStoreState.throttleReady.servicesStatus["containerVisiable"] === true &&
-                                <TableContainer sx={{width: "400px"}} key={generalTexts.services["phidgets"]}>
-                                    <PhidgetsInfoContainer
-                                        serviceKey={reduxStoreServiceObjKey}
-                                    />
-                                </TableContainer>
-                            ]}
+                         }}
+                        >
+                            
+                            <TableContainer sx={{width: "500px"}} key={generalTexts.services["fsuipc"]}>
+                                <FSUIPCInfoContainer
+                                    serviceKey={reduxStoreServiceObjKey}
+                                />
+                            </TableContainer>
+                            <TableContainer sx={{width: "400px"}} key={generalTexts.services["phidgets"]}>
+                                <PhidgetsInfoContainer
+                                    serviceKey={reduxStoreServiceObjKey}
+                                />
+                            </TableContainer>
                         </Box>
                     </Box>
                 </Box> 
-            }
+            
         </>
     );
 }
-export default LoadServiceContainer;
+export default ServiceConnectionInfo;
