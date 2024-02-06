@@ -1,20 +1,26 @@
 /* ================================================== ReqMTUControl ==================================================
 Imports module */
 import axios from 'axios';
+import { initializeStore } from "../store";
+
+import { setIsPhidgetsConnected, setIsFsuipcConnected } from "../redux/appStartSlicer";
 
 // Import inportant components for the specific page
 
 let reqMTUControl = () => {
-    
-    axios.get("http://localhost:3000/InitilizeMTU", /* {params: ""} */).then(response => {
-        setTimeout(() => {console.log('response :', response.data);}, 5000);
+    setInterval(() => {
+        axios.get("http://localhost:3000/InitilizeMTU", /* {params: ""} */).then(response => {
+            if(response.status === 200){
+                console.log('response :', response.data);
+                //Save the incomming MTUAPI into the Redux store created for the visual presentation of MTU values
+                    //Connection States
+                    var conStates = response.data["isServiceConnected"]
+                    console.log('conStates :', conStates);
+                initializeStore.dispatch(setIsPhidgetsConnected(conStates["isPhidgetsConnected"]));
 
-        if(response.status === 200){
-            //Save the incomming MTUAPI into the Redux store created for the visual presentation of MTU values
-            
-
-        }
-    }).
-    catch(error => {});
+            }
+        }).
+        catch(error => {});
+    }, 500);
 }
 export default reqMTUControl;

@@ -77,6 +77,7 @@ var MTUControlLanding = () => {
                             flexDirection: "row", 
                             justifyContent: "space-around",
                         }}>
+                            
                             <ServiceConnectionInfo MTUService={generalTexts.services["fsuipc"]}/>
                                 {/* <Button sx={{ 
                                     display: currentStoreState.throttleReady["servicesConnected"] === false ? "none" : "block",

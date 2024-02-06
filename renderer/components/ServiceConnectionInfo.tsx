@@ -28,11 +28,15 @@ var ServiceConnectionInfo = (props: any) =>{
     const [ isPhidgetsStarted, updateIsPhidgetsStarted ] = useState<boolean>(false); 
     const [ fsuipcServiceLoading, updateFsuipcServiceLoading ] = useState<boolean>(false); 
     const [ isFsuipcStarted, updateIsFsuipcStarted ] = useState<boolean>(false);
+
+    const [ isPhidgetsConnected, updateIsPhidgetsConnected ] = useState<boolean>(false);
+    const [ isFsuipcConnected, updateIsFsuipcConnected ] = useState<boolean>(false);
     
     useEffect(() => {
         // Update and rerender when the Store tree has new values
         componentRerenderStorageChanges$.subscribe((getNewStoreValues: any) => {
             console.log(getNewStoreValues);
+            updateIsPhidgetsConnected(getNewStoreValues.appStart["isPhidgetsConnected"]);
             getNewStoreValues && updateCurrrentStoreState(getNewStoreValues);
         }); 
         
@@ -79,7 +83,7 @@ var ServiceConnectionInfo = (props: any) =>{
                         letterSpacing: "20px", 
                         textDecoration: "underline"
                     }}>
-                        {MTUService.toUpperCase()}
+                        {MTUService.toUpperCase()} <Box sx={{backgroundColor: isPhidgetsConnected === true ? "green" : "red"}}>Connected ?</Box>
                     </Box>
                     {/* <Box sx={{
                         marginTop: "20px",

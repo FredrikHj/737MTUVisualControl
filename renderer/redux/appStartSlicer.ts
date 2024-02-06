@@ -1,23 +1,21 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import generalTexts from "../data/GeneralTexts";
+import FSUIPCInfoContainer from '../data/FSUIPC/FSUIPCInfoContainer';
 
 interface State {
     appUpStarted: boolean,
     appName: string,
     stateName: string,
-    errorInfo: string,
-    appParts: Array<string>,
+    isPhidgetsConnected: boolean,
+    isFsuipcConnected: boolean,
 }
 
 const initialState: State = {
     appUpStarted: false,
     appName: "737Motorized Throttle Unit Control",
     stateName: generalTexts.conStates.fsuipc.webService["notStarted"],
-    errorInfo: "No Errors",
-    appParts: [
-        "FSUIPC Server -",
-        "Phidgets -"
-    ],
+    isPhidgetsConnected: false,
+    isFsuipcConnected: false,
 }
 
 export const AppStartSlicer = createSlice({
@@ -30,10 +28,14 @@ export const AppStartSlicer = createSlice({
         setStateName: (state: State, action: PayloadAction<string>) => {
             state.stateName = action.payload;
         },
-        setErrorInfo: (state: State, action: PayloadAction<string>) => {
-            state.errorInfo = action.payload;
+        setIsPhidgetsConnected: (state: State, action: PayloadAction<boolean>) => {
+            state.isPhidgetsConnected = action.payload;
         },
+        setIsFsuipcConnected: (state: State, action: PayloadAction<boolean>) => {
+            state.isFsuipcConnected = action.payload;
+        },
+        
     },
 });
-export const {setAppUpStarted, setStateName, setErrorInfo } = AppStartSlicer.actions;
+export const {setAppUpStarted, setStateName, setIsPhidgetsConnected, setIsFsuipcConnected } = AppStartSlicer.actions;
 export default AppStartSlicer.reducer;
