@@ -2,12 +2,15 @@
 Import  modules */
 import { initializeStore } from "../store";
 
+// Import MUI modules
+    import Menu, { MenuProps } from "@mui/material/Menu";
+    import { Box, Button, Grid, Paper, styled, alpha, Table, TableHead, TableBody, TableContainer, Typography } from '@mui/material';
+    import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+
 import { useSelector } from 'react-redux';
 import React, { useState, useEffect } from 'react';
 import {componentRerenderStorageChanges$} from "../data/RerenderComponentOnStorageChanges";
 import LoadingIndicator from "../data/LoadingIndicator/LoadingIndicators";
-
-import { Box, Button, Grid, Paper, styled, Table, TableHead, TableBody, TableContainer, Typography } from '@mui/material';
 
 import generalTexts from '../data/GeneralTexts';
 import FSUIPCInfoContainer from "../data/FSUIPC/FSUIPCInfoContainer";
@@ -15,7 +18,7 @@ import PhidgetsInfoContainer from "../data/Phidgets/PhidgetsInfoContainer";
 import LoadFsuipcService from '../data/FSUIPC/LoadFsuipcService';
 import {LoadPhidgetsService} from "../data/Phidgets/LoadPhidgetsService";
 import Throttle737RunningSlicer from '../redux/Throttle737SpeedBrakeSlicer';
-
+  
 var ServiceConnectionInfo = (props: any) =>{
     const { MTUService } = props;
 
@@ -68,14 +71,29 @@ var ServiceConnectionInfo = (props: any) =>{
         console.log(currentStoreState[reduxStoreServiceObjKey]["connected"]);
         console.log(currentStoreState[reduxStoreServiceObjKey].errorOccured["isError"]);
     }
-         
+
+    var customizedMenus = () =>{
+        const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+        const open = Boolean(anchorEl);
+        const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+            setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
     return(
         <>
+            <Box sx={{
+                display: "flex", 
+                flexDirection: "column", 
+                alignItems: "center"
+            }}>
                 <Box sx={{
                     display: "flex", 
-                    flexDirection: "column", 
+                    flexDirection: "row", 
                     alignItems: "center"
                 }}>
+
                     <Box sx={{           
                         marginTop: "10px",
                         fontWeight: "bold",
@@ -83,9 +101,70 @@ var ServiceConnectionInfo = (props: any) =>{
                         letterSpacing: "20px", 
                         textDecoration: "underline"
                     }}>
-                        {MTUService.toUpperCase()} <Box sx={{backgroundColor: isPhidgetsConnected === true ? "green" : "red"}}>Connected ?</Box>
+                        {MTUService.toUpperCase()}
                     </Box>
-                    {/* <Box sx={{
+                    <Box>
+                        <Button
+                            id="demo-customized-button"
+                            aria-controls={open ? 'demo-customized-menu' : undefined}
+                            aria-haspopup="true"
+                            aria-expanded={open ? 'true' : undefined}
+                            variant="contained"
+                            disableElevation
+                            onClick={handleClick}
+                            endIcon={<KeyboardArrowDownIcon />}
+                        >
+                            Options
+                        </Button>
+                        <StyledMenu
+                            id="demo-customized-menu"
+                            MenuListProps={{
+                            'aria-labelledby': 'demo-customized-button',
+                            }}
+                            anchorEl={anchorEl}
+                            open={open}
+                            onClose={handleClose}
+                        >
+                            4r3f4w3f
+                        </StyledMenu>
+                         
+                    </Box>
+                    <Box sx={{backgroundColor: isPhidgetsConnected === true ? "green" : "red"}}>
+                        Connected ?
+                    </Box>                      
+                </Box>
+                   
+                    
+                <Box
+                    sx={
+                        {
+                            marginTop: "15px",
+                            display: "flex",
+                            flexDirection: "row",
+                            justifyContent: "center",
+                            borderRadius: "50px",
+                            backgroundColor: "grey",
+                        }
+                    } key={MTUService}>
+                    <Box
+                        sx={{
+                            display: "flex",
+                            flexDirection: "column",
+                        }}
+                    >
+                        
+                        <TableContainer sx={{width: "500px"}} key={generalTexts.services["fsuipc"]}>
+                            <FSUIPCInfoContainer
+                                serviceKey={reduxStoreServiceObjKey}
+                            />
+                        </TableContainer>
+                        <TableContainer sx={{width: "400px"}} key={generalTexts.services["phidgets"]}>
+                            <PhidgetsInfoContainer
+                                serviceKey={reduxStoreServiceObjKey}
+                            />
+                        </TableContainer>
+
+                        {/* <Box sx={{
                         marginTop: "20px",
                         display: "flex", 
                         flexDirection: "row", 
@@ -264,40 +343,51 @@ var ServiceConnectionInfo = (props: any) =>{
                             </Box>
                         </Box>
                     </Box> */}
-                    
-                    <Box
-                        sx={
-                            {
-                                marginTop: "15px",
-                                display: "flex",
-                                flexDirection: "row",
-                                justifyContent: "center",
-                                borderRadius: "50px",
-                                backgroundColor: "grey",
-                            }
-                        } key={MTUService}>
-                        <Box
-                            sx={{
-                                display: "flex",
-                                flexDirection: "column",
-                         }}
-                        >
-                            
-                            <TableContainer sx={{width: "500px"}} key={generalTexts.services["fsuipc"]}>
-                                <FSUIPCInfoContainer
-                                    serviceKey={reduxStoreServiceObjKey}
-                                />
-                            </TableContainer>
-                            <TableContainer sx={{width: "400px"}} key={generalTexts.services["phidgets"]}>
-                                <PhidgetsInfoContainer
-                                    serviceKey={reduxStoreServiceObjKey}
-                                />
-                            </TableContainer>
-                        </Box>
                     </Box>
-                </Box> 
-            
+                </Box>
+            </Box> 
         </>
     );
 }
 export default ServiceConnectionInfo;
+
+const StyledMenu = styled((props: MenuProps) => (
+    <Menu
+      elevation={0}
+      anchorOrigin={{
+        vertical: 'bottom',
+        horizontal: 'right',
+      }}
+      transformOrigin={{
+        vertical: 'top',
+        horizontal: 'right',
+      }}
+      {...props}
+    />
+  ))(({ theme }) => ({
+    '& .MuiPaper-root': {
+      borderRadius: 6,
+      marginTop: theme.spacing(1),
+      minWidth: 180,
+      color:
+        theme.palette.mode === 'light' ? 'rgb(55, 65, 81)' : theme.palette.grey[300],
+      boxShadow:
+        'rgb(255, 255, 255) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px',
+      '& .MuiMenu-list': {
+        padding: '4px 0',
+      },
+      '& .MuiMenuItem-root': {
+        '& .MuiSvgIcon-root': {
+          fontSize: 18,
+          color: theme.palette.text.secondary,
+          marginRight: theme.spacing(1.5),
+        },
+        '&:active': {
+          backgroundColor: alpha(
+            theme.palette.primary.main,
+            theme.palette.action.selectedOpacity,
+          ),
+        },
+      },
+    },
+  }))};
