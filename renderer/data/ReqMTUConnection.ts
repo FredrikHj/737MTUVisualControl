@@ -21,6 +21,6 @@ let reqMTUControl = () => {
             }
         }).
         catch(error => {});
-    }, 500);
+    }, 1);
 }
 export default reqMTUControl;
