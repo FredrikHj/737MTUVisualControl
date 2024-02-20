@@ -1,12 +1,13 @@
 import generalTexts from '../GeneralTexts'; 
-import { initializeStore } from "../../store";
+import { initializeStore } from "../../store"; 
 import serviceServerConfig from "../serviceServerConfig";
 import { setServicesConnected } from "../../redux/ThrottleReadySlicer";
 import { setConnected, setConBottonShowable, setLabelConButton, setStateName, setErrorOccured, setConnectionInfo  } from '../../redux/PhidgetsSlicer';
+import initilizeThL1 from'./PhidgetsControl/ThrottleFunctions/InitilizeThL1.js';
 
 const phidget22 = require("./libraries/phidget22");
 
-export var LoadPhidgetsService = async() =>{
+var PhidgetsServerConnection = async() =>{
     
     var phidgetsConn = new phidget22.NetworkConnection({
         hostname: serviceServerConfig["phidgets"]["hostname"],
@@ -22,11 +23,12 @@ export var LoadPhidgetsService = async() =>{
                     isError: true, 
                     errorMessegnes: generalTexts.conStates.phidgets["programError"],
                 }
-            ));
+            )); 
         },
         onConnect: function() {
             console.log("Phidgets Networkserver - Connection is established and MTU is ready to work");
-            
+            initilizeThL1(0, 2500, true); 
+
             // Set the staates in Store
                 initializeStore.dispatch(setConBottonShowable(false));
                 initializeStore.dispatch(setConnected(true));
@@ -78,3 +80,5 @@ export var LoadPhidgetsService = async() =>{
     
     await phidgetsConn.connect().then(() => {})
 }
+
+export default PhidgetsServerConnection;

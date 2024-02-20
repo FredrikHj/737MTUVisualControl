@@ -13,7 +13,7 @@ import generalTexts from '../data/GeneralTexts';
 import FSUIPCInfoContainer from "../data/FSUIPC/FSUIPCInfoContainer";
 import PhidgetsInfoContainer from "../data/Phidgets/PhidgetsInfoContainer";
 import LoadFsuipcService from '../data/FSUIPC/LoadFsuipcService';
-import {LoadPhidgetsService} from "../data/Phidgets/LoadPhidgetsService";
+import PhidgetsServerConnection from "../data/Phidgets/PhidgetsServerConnection";
 import Throttle737RunningSlicer from '../redux/Throttle737SpeedBrakeSlicer';
 
 var ServiceConnectionInfo = (props: any) =>{
@@ -50,7 +50,7 @@ var ServiceConnectionInfo = (props: any) =>{
         //Phidgets Boards   
         if(targetButton === generalTexts.services["phidgets"]){
             updatePhidgetsServiceLoading(true);
-            LoadPhidgetsService();
+            PhidgetsServerConnection();
                 
             setTimeout(() => { 
                 updateIsPhidgetsStarted(true);
@@ -296,7 +296,7 @@ var ServiceConnectionInfo = (props: any) =>{
                         </Box>
                     </Box>
                 </Box> 
-            
+    
         </>
     );
 }

@@ -3,6 +3,8 @@ Import  modules */
 import { initializeStore } from "../store";
 import { setAppUpStarted } from "../redux/appStartSlicer";
 
+import PhidgetsServerConnection from "../data/Phidgets/PhidgetsServerConnection";
+
 import { useSelector } from 'react-redux'; 
 import React, { useState, useEffect } from 'react';
 import checkReduxStoreTree from "../data/CheckStoreState";
@@ -31,8 +33,8 @@ var MTUControlLanding = () => {
         // Load if MTU is not connected 
         if (isMTUConnnected === false) { 
             //updateIsMTUConnected(
-                reqMTUControl();
-                
+                //reqMTUControl();
+                PhidgetsServerConnection();
             //);
             /* updateAppStarted(true);
             // Begin to listen for Store state´s changes and initilize listener
@@ -61,9 +63,8 @@ var MTUControlLanding = () => {
             initializeStore.dispatch(setServicesStatusButtonName("hidden"));
         }
     } */
-    return( 
+    return(  
         <>
-            {(currentStoreState !== null && Object.keys(currentStoreState).length !== 0) &&
                 <>
                     <Box sx={{ 
                         display: "flex", 
@@ -78,8 +79,9 @@ var MTUControlLanding = () => {
                             justifyContent: "space-around",
                         }}>
                             
+                                {/*
                             <ServiceConnectionInfo MTUService={generalTexts.services["fsuipc"]}/>
-                                {/* <Button sx={{ 
+                                 <Button sx={{ 
                                     display: currentStoreState.throttleReady["servicesConnected"] === false ? "none" : "block",
                                     borderRadius: "20px",
                                     marginTop: "51px",
@@ -95,16 +97,18 @@ var MTUControlLanding = () => {
                                         <Box id={currentStoreState.throttleReady.servicesStatus["containerButtonName"]}>Services Information</Box>
                                         <Box id={currentStoreState.throttleReady.servicesStatus["containerButtonName"]}>{currentStoreState.throttleReady.servicesStatus.containerButtonName}</Box>
                                     </Box> 
-                                </Button>  */}
+                                </Button>
                             <ServiceConnectionInfo MTUService={generalTexts.services["phidgets"]}/>
                         </Box>
 
                         <Box sx={{marginTop: "50px"}}>
                             <ThrottleVisual/>
                         </Box>
+                        */}
+                        </Box>
                     </Box>
                 </>
-            }
+            
        </>
     );
 }

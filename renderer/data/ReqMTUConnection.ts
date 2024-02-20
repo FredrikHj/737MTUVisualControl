@@ -11,7 +11,7 @@ let reqMTUControl = () => {
     setInterval(() => {
         axios.get("http://localhost:3000/InitilizeMTU", /* {params: ""} */).then(response => {
             if(response.status === 200){
-                console.log('response :', response.data);
+                console.log('response :', response.data["thL1"]);
                 //Save the incomming MTUAPI into the Redux store created for the visual presentation of MTU values
                     //Connection States
                     var conStates = response.data["isServiceConnected"]
@@ -21,6 +21,6 @@ let reqMTUControl = () => {
             }
         }).
         catch(error => {});
-    }, 1);
+    }, 0.000000001);
 }
 export default reqMTUControl;

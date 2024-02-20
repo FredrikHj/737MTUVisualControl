@@ -1,7 +1,7 @@
 import { initializeStore } from "../../../store";
-import BSLControllerTHL1 from "./ThrottleFunctions/BSLControllerTHL1";
 import { setServicesConnected } from "../../../redux/ThrottleReadySlicer";
 import {AvailabilityOfFSIPCInstance$} from "../../FSUIPC/AvailabilityFSUIPCInstance";
+import initilizeThL1 from'./ThrottleFunctions/InitilizeThL1.js';
 
 var serviceConnected = false;
 
@@ -26,7 +26,7 @@ var InitilizeMTUFunction = () => {
 
     if(isPhidgetsConnected === true) {
         console.log("Ready to InitilizeMTUFunctions");
-        BSLControllerTHL1();
+        initilizeThL1(0, 2500, true); 
     }
 }
 export default InitilizeMTUFunction;

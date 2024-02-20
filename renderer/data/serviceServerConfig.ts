@@ -15,9 +15,9 @@ var serviceServerConfig: {
         port:  2048,
     },
     phidgets: {
-        hostname: "localhost",
+        hostname: "hub5000.local",
         port:  8989,
     },
 };
 
-export default serviceServerConfig;
+export default serviceServerConfig; 
