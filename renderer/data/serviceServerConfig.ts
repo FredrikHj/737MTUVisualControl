@@ -16,7 +16,7 @@ var serviceServerConfig: {
     },
     phidgets: {
         hostname: "hub5000.local",
-        port:  8989,
+        port:  5661,
     },
 };
 

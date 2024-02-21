@@ -3,7 +3,7 @@ Import  modules */
 import { initializeStore } from "../store";
 import { setAppUpStarted } from "../redux/appStartSlicer";
 
-import PhidgetsServerConnection from "../data/Phidgets/PhidgetsServerConnection";
+import reqMTUConnection from "../data/reqFetchMTU";
 
 import { useSelector } from 'react-redux'; 
 import React, { useState, useEffect } from 'react';
@@ -16,7 +16,7 @@ import { setServicesStatusContainerVisiable, setServicesStatusButtonName } from 
 import generalTexts from '../data/GeneralTexts'; 
 import ServiceConnectionInfo from "../components/ServiceConnectionInfo";
 import ThrottleVisual from "../components/ThrottleVisual";
-import reqMTUControl from "../data/ReqMTUConnection";
+import reqFetchMTU from "../data/reqFetchMTU";
 
 var MTUControlLanding = () => { 
     // Begin listening for Storetree changes
@@ -34,7 +34,7 @@ var MTUControlLanding = () => {
         if (isMTUConnnected === false) { 
             //updateIsMTUConnected(
                 //reqMTUControl();
-                PhidgetsServerConnection();
+                reqFetchMTU();
             //);
             /* updateAppStarted(true);
             // Begin to listen for Store state´s changes and initilize listener
