@@ -16,7 +16,7 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
-import InitilizedMTUFunction from "../data/Phidgets/PhidgetsControl/InitilizeMTUFunction";
+//import InitilizedMTUFunction from "../data/Phidgets/PhidgetsControl/InitilizeMTUFunction";
 
 //valueSpdBrakeUpdate();
 var ThrottleVisual = () =>{

@@ -10,9 +10,10 @@ import { setIsPhidgetsConnected, setIsFsuipcConnected } from "../redux/appStartS
     var response: any;
     var resData: object;
     var responseStatus: number;
-    var responseData: any;
+    var responseData: any; 
     var responseType: string;
 let reqFetchMTU = () => {
+    console.log("gsredf");
     
     setInterval(async() => {
 

@@ -1,9 +1,9 @@
 // Import FlightSimulator modules 
-    import phidget22, { BLDCMotor }  from 'phidget22';
-    import {mtuValuesApi, readMtuFuncPos} from'../../../../../../737MTUBackendControl/InititlizeMTUApi.js';
+    let phidget22 = require('phidget22');
+    import {mtuValuesApi, readMtuFuncPos} from'../InititlizeMTUApi.js';
 
 var initilizeThL1 = async(positionCurrent, positionTarget, runMotor) => {
-    phidget22.Log.enable(phidget22.LogLevel.INFO);
+    console.log("4fg4rge");
     // Initilize Functions classes from the API
         const bldcPoss0 = new phidget22.MotorPositionController();
 
@@ -27,7 +27,7 @@ var initilizeThL1 = async(positionCurrent, positionTarget, runMotor) => {
         //Open your Phidgets and wait for attachment
             const openPromiseList = [];
             openPromiseList.push(bldcPoss0.open(2000)); 
-            
+          
             try { 
                 await Promise.all(openPromiseList);
             } catch(err) {
@@ -49,7 +49,7 @@ var initilizeThL1 = async(positionCurrent, positionTarget, runMotor) => {
             bldcPoss0.onPositionChange = function(position) {
                 console.log("Position: " + position);
                 readMtuFuncPos.thL1 = position;
-            }
+            } 
 }
 
 let doStuffTryCatch = async(whatToDo, errorMess) => {

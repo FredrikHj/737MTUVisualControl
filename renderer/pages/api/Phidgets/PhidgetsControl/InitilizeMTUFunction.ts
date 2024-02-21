@@ -26,7 +26,7 @@ var InitilizeMTUFunction = () => {
 
     if(isPhidgetsConnected === true) {
         console.log("Ready to InitilizeMTUFunctions");
-        initilizeThL1(0, 2500, true); 
+        //initilizeThL1(0, 2500, true); 
     }
 }
 export default InitilizeMTUFunction;

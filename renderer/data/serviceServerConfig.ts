@@ -20,4 +20,4 @@ var serviceServerConfig: {
     },
 };
 
-export default serviceServerConfig; 
+export default serviceServerConfig;   
