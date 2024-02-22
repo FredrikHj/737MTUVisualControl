@@ -17,7 +17,7 @@ let reqFetchMTU = () => {
     
     setInterval(async() => {
 
-        var request = await fetch("/api/Phidgets/RunServerConnection");
+        var request = await fetch("/api/InitilizeServices");
         response = await request.json();
         responseStatus = response.status;
         console.log(response);
