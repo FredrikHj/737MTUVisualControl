@@ -6,12 +6,12 @@ import { useSelector } from 'react-redux';
 import React, { useState, useEffect } from 'react';
 import checkReduxStoreTree from "../data/CheckStoreState";
 import {componentRerenderStorageChanges$} from "../data/RerenderComponentOnStorageChanges";
-import {FSUIPCInstance$} from "../data/WebsocketInstances";
+import {FSUIPCInstance$} from "../data/FSUIPC/FSUIPCListener";
 
 import { Box, Button, Grid, Paper, styled, Table, TableHead, TableBody, TableContainer, Typography } from '@mui/material';
 import { setServicesConnected } from "../redux/ThrottleReadySlicer";
  
-import Radio from '@mui/material/Radio';
+import Radio from '@mui/material/Radio'; 
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
@@ -33,14 +33,14 @@ var ThrottleVisual = () =>{
             getNewStoreValues && updateCurrrentStoreState(getNewStoreValues);
             //
             console.log('visualStarted :', visualStarted);
-            if(visualStarted === false && getNewStoreValues.serviceFSUIPC["connected"] === true && getNewStoreValues.servicePHIDGETS["connected"] === true){
+            if(visualStarted === false){
                // initializeStore.dispatch(setServicesConnected(true));
                 
                 // Load if app is not started 
                     updateVisualStarted(true);
                 
                 // Initilazed the MTU and wait for the connection for all the included services
-                    InitilizedMTUFunction();
+                    //InitilizedMTUFunction();
             }
         }); 
         FSUIPCInstance$.subscribe((FSUIPCInstanceObj: object) => {

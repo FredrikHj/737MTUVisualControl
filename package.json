@@ -19,6 +19,7 @@
     "@mui/material": "^5.15.7",
     "@reduxjs/toolkit": "^1.9.5",
     "axios": "^1.6.7",
+    "axios-polling": "^1.1.1",
     "devextreme": "^23.2.3",
     "devextreme-react": "^23.2.3",
     "electron-devtools-installer": "^3.2.0",

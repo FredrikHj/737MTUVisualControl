@@ -4,7 +4,6 @@ import React, { useState, useEffect } from 'react';
 import { Box, Button, Grid, Paper, styled, Table, TableHead, TableBody, TableRow, TableCell, TableContainer, Typography, fabClasses } from '@mui/material';
 import { useSelector } from 'react-redux';
 import {componentRerenderStorageChanges$} from "../RerenderComponentOnStorageChanges";
-import generalTexts from '../GeneralTexts';
 import LoadingIndicator from "../LoadingIndicator/LoadingIndicators";
 
 import { log } from 'console';
@@ -27,7 +26,7 @@ var FSUIPCInfoContainer = (props: any) => {
   
     return(  
         <>
-            {(currentStoreState !== null && Object.keys(currentStoreState).length !== 0) &&
+{/*             {(currentStoreState !== null && Object.keys(currentStoreState).length !== 0) &&
                 <TableContainer>
                     <Table>
                         <TableHead>
@@ -147,7 +146,7 @@ var FSUIPCInfoContainer = (props: any) => {
                     </Table>
                 </TableContainer>
             }
-        </>    
+ */}        </>    
     );
 }
 export default FSUIPCInfoContainer;

@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import generalTexts from "../data/GeneralTexts";
 import FSUIPCInfoContainer from '../data/FSUIPC/FSUIPCInfoContainer';
 
 interface State {
@@ -13,7 +12,7 @@ interface State {
 const initialState: State = {
     appUpStarted: false,
     appName: "737Motorized Throttle Unit Control",
-    stateName: generalTexts.conStates.fsuipc.webService["notStarted"],
+    stateName: "notStarted",
     isPhidgetsConnected: false,
     isFsuipcConnected: false,
 }

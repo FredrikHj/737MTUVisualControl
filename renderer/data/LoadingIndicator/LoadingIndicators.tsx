@@ -14,9 +14,9 @@ const LoadingIndicator = (props: any) =>{
                     </Box>
                 ),
                 ((spinnerType === "lds-spinner") &&
-                    <Box key={ keyStr }>
+                    <Box key={ keyStr } sx={extraStyling}>
                         {text}
-                        <div className="lds-spinner" style={extraStyling}><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+                        <div className="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
                     </Box>
                 )
             ]}

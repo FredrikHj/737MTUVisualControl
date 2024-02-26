@@ -1,52 +1,48 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import generalTexts from "../data/GeneralTexts";
 import { CSSOthersObjectForCSSObject } from '@mui/styled-engine';
 
 interface State {
     name: string,
     phidgetsConnectionLoading: boolean,
-    connected: boolean,
-    conBottonShowable: boolean,
-    labelConButton: string,
-    stateName: string,
-    errorOccured: object,
+    phidgetsConnected: boolean,
+    connectionMess: string,
+    phidgetsConLost: boolean,
+    phidgetsConLostMess: string,
+    backendNotFound: boolean,
+    backendNotFoundMess: string,
     connectionInfo: object,
 }
 
 const initialState: State = {
     name: "Phidgets",
     phidgetsConnectionLoading: false,
-    connected: false,
-    conBottonShowable: true,
-    labelConButton: generalTexts.conButton["connect"],
-    stateName: generalTexts.conStates.phidgets.webService["notStarted"],
-    errorOccured: {
-        isError: false,
-    },
+    phidgetsConnected: false,
+    connectionMess: "Connected",
+    phidgetsConLost: false,
+    phidgetsConLostMess: "Connection Lost - Retrying!",
+    backendNotFound: false,
+    backendNotFoundMess: "Backend Not Found - Retrying",
     connectionInfo: {
         dataReceived: false,
         receivedData: {},
-    },
+    },  
 };
 
 export const PhidgetsSlicer = createSlice({
     name: "PhidgetsSlicer",
     initialState,
     reducers: {
-        setConnected: (state: State, action: PayloadAction<boolean>) => {
-            state.connected = action.payload;
+        phidgetsConnectionLoading: (state: State, action: PayloadAction<boolean>) => {
+            state.phidgetsConnectionLoading = action.payload;
+        },     
+        setIsPhidgetsConnected: (state: State, action: PayloadAction<boolean>) => {
+            state.phidgetsConnected = action.payload;
         },
-        setConBottonShowable: (state: State, action: PayloadAction<boolean>) => {
-            state.conBottonShowable = action.payload;
+        setPhidgetsConLost: (state: State, action: PayloadAction<boolean>) => {
+            state.phidgetsConLost = action.payload;
         },
-        setLabelConButton: (state: State, action: PayloadAction<string>) => {
-            state.labelConButton = action.payload;
-        },
-        setStateName: (state: State, action: PayloadAction<string>) => {
-            state.stateName = action.payload;
-        },
-        setErrorOccured: (state: State, action: PayloadAction<object>) => {
-            state.errorOccured = action.payload;
+        setBackendNotFound: (state: State, action: PayloadAction<boolean>) => {
+            state.backendNotFound = action.payload;
         },
         setConnectionInfo: (state: State, action: PayloadAction<object>) => {
             state.connectionInfo = action.payload;
@@ -54,5 +50,5 @@ export const PhidgetsSlicer = createSlice({
     },
 });
 
-export const { setConnected, setConBottonShowable, setLabelConButton, setStateName, setErrorOccured, setConnectionInfo } = PhidgetsSlicer.actions;
+export const { phidgetsConnectionLoading, setIsPhidgetsConnected, setPhidgetsConLost, setBackendNotFound, setConnectionInfo } = PhidgetsSlicer.actions;
 export default PhidgetsSlicer.reducer;

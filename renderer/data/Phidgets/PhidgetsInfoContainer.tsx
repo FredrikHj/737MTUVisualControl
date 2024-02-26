@@ -4,7 +4,6 @@ import React, { useState, useEffect } from 'react';
 import { Box, Button, Grid, Paper, styled, Table, TableHead, TableBody, TableRow, TableCell, TableContainer, Typography } from '@mui/material';
 import { useSelector } from 'react-redux';
 import {componentRerenderStorageChanges$} from "../RerenderComponentOnStorageChanges";
-import generalTexts from '../GeneralTexts';
 import LoadingIndicator from "../LoadingIndicator/LoadingIndicators";
 
 import { log } from 'console';
@@ -24,8 +23,9 @@ var PhidgetsInfoContainer = (props: any) => {
  
     return(  
         <> 
+            {/*
             {(currentStoreState !== null && Object.keys(currentStoreState).length !== 0) &&
-                <Table>
+                 <Table>
                     <TableHead> 
                         <TableRow>
                             <TableCell sx={{ textAlign: "center", fontSize: "15px"}} colSpan={5}>
@@ -73,7 +73,7 @@ var PhidgetsInfoContainer = (props: any) => {
                         </TableRow>
                     </TableBody>
                 </Table>
-            }
+            } */}
         </>    
     );
 }

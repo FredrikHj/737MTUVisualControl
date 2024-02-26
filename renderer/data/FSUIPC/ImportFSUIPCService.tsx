@@ -8,7 +8,6 @@ import checkReduxStoreTree from "../CheckStoreState";
 import FSUIPCInfoContainer from './FSUIPCInfoContainer';
 import { loadFsuipcService } from "./LoadFsuipcService";
 
-import generalTexts from '../GeneralTexts';
 import { log } from 'console';
 
 var ImportFSUIPCService = ()=>{
