@@ -10,7 +10,7 @@ import { Box, Button, Grid, Paper, styled, Table, TableHead, TableBody, TableCon
 
 import FSUIPCInfoContainer from "../data/FSUIPC/FSUIPCInfoContainer";
 import PhidgetsInfoContainer from "../data/Phidgets/PhidgetsInfoContainer";
-import LoadFsuipcService from '../data/FSUIPC/LoadFsuipcService';
+import LoadFsuipcService from '../data/FSUIPC/tryFSUIPCConnection';
 import Throttle737RunningSlicer from '../redux/Throttle737SpeedBrakeSlicer';
 import LoadingIndicator from "../data/LoadingIndicator/LoadingIndicators";
 var ServiceConnectionInfo = (props: any) =>{
@@ -19,7 +19,7 @@ var ServiceConnectionInfo = (props: any) =>{
     // Get updated Store state and save it  
     const [ currentStoreState, updateCurrrentStoreState ] = useState<any>(null);
     
-    const [ reduxStoreServiceObjKey] = useState(`service${MTUService.toUpperCase()}`);
+    const [ reduxStoreServiceObjKey] = useState(`service${MTUService}`);
     const [ currentService, updateCurrentService  ] = useState<string>(""); 
     const [ phidgetsServiceLoading, updatePhidgetsServiceLoading ] = useState<boolean>(false); 
     const [ isPhidgetsStarted, updateIsPhidgetsStarted ] = useState<boolean>(false); 
@@ -34,14 +34,14 @@ var ServiceConnectionInfo = (props: any) =>{
         componentRerenderStorageChanges$.subscribe((getNewStoreValues: any) => {
             console.log(Object.keys(getNewStoreValues).length !== 0);
             if(Object.keys(getNewStoreValues).length !== 0){
-                updateIsPhidgetsConnected(getNewStoreValues.servicePHIDGETS["phidgetsConnected"]);
+                updateIsPhidgetsConnected(getNewStoreValues.servicePHIDGETS["connected"]);
                 getNewStoreValues && updateCurrrentStoreState(getNewStoreValues);
             }
         }); 
         
         currentService === "" && updateCurrentService(MTUService);
     }, [currentStoreState, reduxStoreServiceObjKey, currentService, phidgetsServiceLoading, isPhidgetsStarted, fsuipcServiceLoading ,isFsuipcStarted ]);
-    console.log('MTUService :', MTUService);
+    console.log('currentStoreState :', currentStoreState);
 
     return(
         <>
@@ -81,7 +81,7 @@ var ServiceConnectionInfo = (props: any) =>{
                             flexDirection: "row", 
                         }}>
                             {currentStoreState !== null && [
-                                (MTUService === "phidgets" && 
+                                (MTUService === "PHIDGETS" && 
                                     <Box sx={{
                                         marginLeft: "10px",
                                         borderRadius: "10px",
@@ -111,13 +111,13 @@ var ServiceConnectionInfo = (props: any) =>{
                                         paddingTop: "3px",
                                     }}>
                                         {[
-                                            ( /* Backend is Activ and Phidgets is Connected */
+                                            ( /* Backend is active and Phidgets is Connected */
                                                 currentStoreState.servicePHIDGETS["backendNotFound"] === false &&
                                                 isPhidgetsConnected === true &&
                                                 currentStoreState.servicePHIDGETS["conLost"] === false &&
                                                     currentStoreState.servicePHIDGETS["connectionMess"]
                                                 
-                                            ),( /* Backend is activ and Phidgets is not Connected */
+                                            ),( /* Backend is active and Phidgets is not Connected */
                                                 currentStoreState.servicePHIDGETS["backendNotFound"] === false &&
                                                 isPhidgetsConnected === false &&
                                                 currentStoreState.servicePHIDGETS["conLost"] === true &&
@@ -128,30 +128,30 @@ var ServiceConnectionInfo = (props: any) =>{
                                                 currentStoreState.servicePHIDGETS["conLost"] === false &&
                                                 currentStoreState.servicePHIDGETS["backendNotFoundMess"]
                                             )
-                                    ]}
+                                    ]} 
                                     </Box>
                                 ),
                                 /*------------------------------------------------------------------------------- */
-                                (MTUService === "fsuipc" && 
+                                (MTUService === "FSUIPC" && 
                                     <Box sx={{
                                         marginLeft: "10px",
                                         borderRadius: "10px",
                                         width: "170px",
                                         height: "3vh",
                                         backgroundColor: [
-                                            ( /* Backend is Activ and Phidgets is Connected */
-                                                currentStoreState.setwWebsocketNotFound["backendNotFound"] === false &&
-                                                isPhidgetsConnected === true &&
+                                            ( /* Websocket is active and Connected */
+                                                currentStoreState.serviceFSUIPC["websocketNotFound"] === false &&
+                                                isFsuipcConnected === true &&
                                                 currentStoreState.serviceFSUIPC["conLost"] === false
                                                     ? "green" : ""
-                                            ),( /* Backend is activ and Phidgets is not Connected */
-                                                currentStoreState.serviceFSUIPC["backendNotFound"] === false &&
-                                                isPhidgetsConnected === false &&
+                                            ),( /* Websocket is active and Phidgets is not Connected */
+                                                currentStoreState.serviceFSUIPC["websocketNotFound"] === false &&
+                                                isFsuipcConnected === false &&
                                                 currentStoreState.serviceFSUIPC["conLost"] === true
                                                     ? "red" : ""
-                                            ),( /* Backend is not Connected */
-                                                currentStoreState.serviceFSUIPC["backendNotFound"] === true && 
-                                                isPhidgetsConnected === false && 
+                                            ),( /* Websocket is not Connected */
+                                                currentStoreState.serviceFSUIPC["websocketNotFound"] === true && 
+                                                isFsuipcConnected === false && 
                                                 currentStoreState.serviceFSUIPC["conLost"] === false 
                                                     ? "red" : ""
                                             )    
@@ -162,22 +162,22 @@ var ServiceConnectionInfo = (props: any) =>{
                                         paddingTop: "3px",
                                     }}>
                                         {[
-                                            ( /* Backend is Activ and Phidgets is Connected */
-                                                currentStoreState.serviceFSUIPC["backendNotFound"] === false &&
-                                                isPhidgetsConnected === true &&
+                                            ( /* Websocket is active and Connected */
+                                                currentStoreState.serviceFSUIPC["websocketNotFound"] === false &&
+                                                isFsuipcConnected === true &&
                                                 currentStoreState.serviceFSUIPC["conLost"] === false &&
                                                     currentStoreState.serviceFSUIPC["connectionMess"]
                                                 
-                                            ),( /* Backend is activ and Phidgets is not Connected */
-                                                currentStoreState.serviceFSUIPC["backendNotFound"] === false &&
-                                                isPhidgetsConnected === false &&
+                                            ),( /* Websocket is active and Phidgets is not Connected */
+                                                currentStoreState.serviceFSUIPC["websocketNotFound"] === false &&
+                                                isFsuipcConnected === false &&
                                                 currentStoreState.serviceFSUIPC["conLost"] === true &&
                                                     currentStoreState.serviceFSUIPC["conLostMess"]
-                                            ), ( /* Backend is not Connected */
-                                                currentStoreState.serviceFSUIPC["backendNotFound"] === true && 
-                                                isPhidgetsConnected === false && 
+                                            ), ( /* Websocket is not Connected */
+                                                currentStoreState.serviceFSUIPC["websocketNotFound"] === true && 
+                                                isFsuipcConnected === false && 
                                                 currentStoreState.serviceFSUIPC["conLost"] === false &&
-                                                currentStoreState.serviceFSUIPC["backendNotFoundMess"]
+                                                currentStoreState.serviceFSUIPC["websocketNotFoundMess"]
                                             )
                                     ]}
                                     </Box>
@@ -185,13 +185,13 @@ var ServiceConnectionInfo = (props: any) =>{
                             }
                         </Box>
                     </Box>
-{/*                     <Box>
-                        { /* Show a Loading Spinner if Backend is not Connected
-                            (currentStoreState.servicePHIDGETS["backendNotFound"] === true && 
+                        <Box>
+                        { /* Show a Loading Spinner if Backend is not Connected */
+                            (currentStoreState[reduxStoreServiceObjKey][MTUService === "PHIDGETS" ? "backendNotFound" : "websocketNotFound"] === true && 
                             isPhidgetsConnected === false && 
-                            currentStoreState.servicePHIDGETS["phidgetsConLost"] === false) &&
+                            currentStoreState[reduxStoreServiceObjKey][MTUService === "PHIDGETS" ? "backendNotFound" : "websocketNotFound"] === true) &&
                                 <LoadingIndicator
-                                    keyStr={MTUService}
+                                    keyStr={reduxStoreServiceObjKey}
                                     spinnerType={"lds-spinner"}
                                     extraStyling={{
                                         marginTop: "-100x",
@@ -206,7 +206,6 @@ var ServiceConnectionInfo = (props: any) =>{
                                 />
                         } 
                     </Box>
-                        */}
                 </Box>
                 <Box
                     sx={

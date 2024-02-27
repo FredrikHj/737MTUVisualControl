@@ -1,8 +1,8 @@
 /* ================================================== ReqMTUControl ==================================================
 Imports module */
 import axios from 'axios';
-import {makeFSUIPCInstanceAvailable} from "./AvailabilityFSUIPCInstance";
-import tryFSUIPCConnection from"./LoadFsuipcService";
+import {makeFSUIPCInstanceAvailable} from "./FSUIPC/AvailabilityFSUIPCInstance";
+import tryFSUIPCConnection from"./FSUIPC/tryFSUIPCConnection";
 
 
 var reqFSUIPCConnection = () =>{ 

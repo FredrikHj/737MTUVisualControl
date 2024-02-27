@@ -5,8 +5,8 @@ import serviceServerConfig from "../serviceServerConfig";
 import updateFSUIPCInstance from "./FSUIPCListener";
 import { setServicesConnected } from "../../redux/ThrottleReadySlicer";
 
-import { setConnected, setStateName, setErrorOccured, setConnectionInfo  } from '../../redux/FSUIPCSlicer';
-import reqFSUIPCConnection from"./reqFSUIPCConnection";
+import { setFsuipcConnected, setStateName, setConnectionInfo  } from '../../redux/FSUIPCSlicer';
+import reqFSUIPCConnection from"../reqFSUIPCConnection";
 
 var tryFSUIPCConnection = (fsuipcInstance: any) => {
     fsuipcInstance.onopen = () => {

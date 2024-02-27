@@ -22,7 +22,7 @@ import { log } from 'console';
                         //Connection States
                             var conStates = response.data;
                             initializeStore.dispatch(setIsPhidgetsConnected(conStates["isPhidgetsConnected"]));
-                            initializeStore.dispatch(setPhidgetsConLost(conStates["phidgetServerError"])); 
+                            initializeStore.dispatch(setIsPhidgetsConnected(conStates["phidgetServerError"])); 
                             initializeStore.dispatch(setBackendNotFound(false));    
                 }
             }).
@@ -30,7 +30,7 @@ import { log } from 'console';
                 console.log(`Server unavailable ${error}`);
                 initializeStore.dispatch(setBackendNotFound(true));
                 initializeStore.dispatch(setPhidgetsConLost(false));
-                initializeStore.dispatch(setIsPhidgetsConnected(false));
+                initializeStore.dispatch(setPhidgetsConLost(false));
             }); 
         }, 3000); 
     }

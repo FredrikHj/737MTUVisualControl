@@ -4,7 +4,7 @@ import { initializeStore } from"../store";
 import { setAppUpStarted } from"../redux/appStartSlicer";
 
 import reqPhidgetConnection from"../data/reqPhidgetConnection";
-import reqFSUIPCConnection from"../data/FSUIPC/reqFSUIPCConnection";
+import reqFSUIPCConnection from"../data/reqFSUIPCConnection";
 
 import { useSelector } from 'react-redux'; 
 import React, { useState, useEffect } from'react';
@@ -31,16 +31,8 @@ var MTUControlLanding = () => {
     useEffect(() => {   
         // Load if MTU is not connected 
         if (isMTUConnnected === false) { 
-            //updateIsMTUConnected(
-                //reqMTUControl(); 
                 reqPhidgetConnection();
-                //reqFSUIPCConnection();
-             //);
-            /* updateAppStarted(true);
-            // Begin to listen for Store state´s changes and initilize listener
-            listenerStoreChange();
-            setTimeout(() => {initializeStore.dispatch(setAppUpStarted(true));},500);
-            */
+                reqFSUIPCConnection();
         } 
         // Update and rerender when the Store tree has new values
         componentRerenderStorageChanges$.subscribe((getNewStoreValues: any) => {
@@ -76,8 +68,8 @@ var MTUControlLanding = () => {
                 flexDirection: "row", 
                 justifyContent: "space-around",
             }}>
-                <ServiceConnectionInfo MTUService={"phidgets"}/>
-                <ServiceConnectionInfo MTUService={"fsuipc"}/>
+                <ServiceConnectionInfo MTUService={"PHIDGETS"}/>
+                <ServiceConnectionInfo MTUService={"FSUIPC"}/>
  
             </Box>
 
