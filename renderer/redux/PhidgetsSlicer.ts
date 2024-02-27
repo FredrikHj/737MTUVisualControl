@@ -1,13 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { CSSOthersObjectForCSSObject } from '@mui/styled-engine';
 
 interface State {
     name: string,
-    phidgetsConnectionLoading: boolean,
-    phidgetsConnected: boolean,
+    connectionLoading: boolean,
+    connected: boolean,
     connectionMess: string,
-    phidgetsConLost: boolean,
-    phidgetsConLostMess: string,
+    conLost: boolean,
+    conLostMess: string,
     backendNotFound: boolean,
     backendNotFoundMess: string,
     connectionInfo: object,
@@ -15,11 +14,11 @@ interface State {
 
 const initialState: State = {
     name: "Phidgets",
-    phidgetsConnectionLoading: false,
-    phidgetsConnected: false,
+    connectionLoading: false,
+    connected: false,
     connectionMess: "Connected",
-    phidgetsConLost: false,
-    phidgetsConLostMess: "Connection Lost - Retrying!",
+    conLost: false,
+    conLostMess: "Connection Lost - Retrying!",
     backendNotFound: false,
     backendNotFoundMess: "Backend Not Found - Retrying",
     connectionInfo: {
@@ -33,13 +32,13 @@ export const PhidgetsSlicer = createSlice({
     initialState,
     reducers: {
         phidgetsConnectionLoading: (state: State, action: PayloadAction<boolean>) => {
-            state.phidgetsConnectionLoading = action.payload;
+            state.connectionLoading = action.payload;
         },     
         setIsPhidgetsConnected: (state: State, action: PayloadAction<boolean>) => {
-            state.phidgetsConnected = action.payload;
+            state.connected = action.payload;
         },
         setPhidgetsConLost: (state: State, action: PayloadAction<boolean>) => {
-            state.phidgetsConLost = action.payload;
+            state.conLost = action.payload;
         },
         setBackendNotFound: (state: State, action: PayloadAction<boolean>) => {
             state.backendNotFound = action.payload;
