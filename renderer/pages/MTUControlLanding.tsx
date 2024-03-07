@@ -14,7 +14,8 @@ import { Box, Button, Grid, Paper, styled, Table, TableHead, TableBody, TableCon
 import {componentRerenderStorageChanges$} from"../data/RerenderComponentOnStorageChanges";
 import { setServicesStatusContainerVisiable, setServicesStatusButtonName } from "../redux/ThrottleReadySlicer"; 
 
-import ServiceConnectionInfo from"../components/ServiceConnectionInfo";
+import PhidgetsServiceConnectionInfo from"../components/PhidgetsServiceConnectionInfo";
+import FsuipcServiceConnectionInfo from"../components/FsuipcServiceConnectionInfo";
 import ThrottleVisual from"../components/ThrottleVisual";
 
 var MTUControlLanding = () => { 
@@ -40,21 +41,6 @@ var MTUControlLanding = () => {
             getNewStoreValues && updateCurrrentStoreState(getNewStoreValues);
         }); 
     }, [appStarted, servicesVisiable]);
-    /* var serviceHideShow = (e: any) => {
-        var targetButtonId = e.target.id;
-        console.log('targetButtonId :', targetButtonId);
-        
-        if(targetButtonId === "hidden"){
-            updateServicesVisiable(true);
-            initializeStore.dispatch(setServicesStatusContainerVisiable(true));
-            initializeStore.dispatch(setServicesStatusButtonName("visible"));
-        }
-        if(targetButtonId === "visible"){
-            updateServicesVisiable(false);
-            initializeStore.dispatch(setServicesStatusContainerVisiable(false));
-            initializeStore.dispatch(setServicesStatusButtonName("hidden"));
-        }
-    } */
     return(  
         <Box sx={{ 
             display: "flex", 
@@ -68,9 +54,12 @@ var MTUControlLanding = () => {
                 flexDirection: "row", 
                 justifyContent: "space-around",
             }}>
-                <ServiceConnectionInfo MTUService={"PHIDGETS"}/>
-                <ServiceConnectionInfo MTUService={"FSUIPC"}/>
- 
+                <PhidgetsServiceConnectionInfo
+                    MTUService={"phidgets"}
+                />
+                <FsuipcServiceConnectionInfo
+                    MTUService={"fsuipc"}
+                />
             </Box>
 
             <Box sx={{marginTop: "50px"}}>
@@ -80,23 +69,3 @@ var MTUControlLanding = () => {
     );
 }
 export default MTUControlLanding;
-
-
-
-                {/* <Button sx={{ 
-                        display: currentStoreState.throttleReady["servicesConnected"] === false ? "none" : "block",
-                        borderRadius: "20px",
-                        marginTop: "51px",
-                        height: "60px",
-                    }} id={currentStoreState.throttleReady.servicesStatus["containerButtonName"]} key={"serviceHideShow"}
-                        onClick={(e) => serviceHideShow(e)} variant="contained"> 
-                        <Box 
-                            sx={{
-                                display: "flex",
-                                flexDirection: "column",
-                                justifyContent: "center",
-                            }}>
-                            <Box id={currentStoreState.throttleReady.servicesStatus["containerButtonName"]}>Services Information</Box>
-                            <Box id={currentStoreState.throttleReady.servicesStatus["containerButtonName"]}>{currentStoreState.throttleReady.servicesStatus.containerButtonName}</Box>
-                        </Box> 
-                    </Button> */}

@@ -5,19 +5,15 @@ import serviceServerConfig from "../serviceServerConfig";
 import updateFSUIPCInstance from "./FSUIPCListener";
 import { setServicesConnected } from "../../redux/ThrottleReadySlicer";
 
-import { setFsuipcConnected, setStateName, setConnectionInfo  } from '../../redux/FSUIPCSlicer';
+import { setIsfsuipcConnected, setfsuipcConLost, setwWebsocketNotFound } from '../../redux/FSUIPCSlicer';
 import reqFSUIPCConnection from"../reqFSUIPCConnection";
 
 var tryFSUIPCConnection = (fsuipcInstance: any) => {
     fsuipcInstance.onopen = () => {
         console.log("FSUIPC Websocket - Connected");
         
-        initializeStore.dispatch(setConnected(true));
-        initializeStore.dispatch(setStateName("Connected"));
-        initializeStore.dispatch(setErrorOccured({
-                isError: false,
-            }
-        ));
+        initializeStore.dispatch(setIsfsuipcConnected(true));
+        //initializeStore.dispatch(setStateName("Connected"));
         loadFSUIPCConInfo(fsuipcInstance);
         
         //Share the instance with the Store so it will be easier to call it
@@ -26,16 +22,9 @@ var tryFSUIPCConnection = (fsuipcInstance: any) => {
     fsuipcInstance.onclose = () => {
         console.log("FSUIPC Websocket - Disconnected");
 
-        initializeStore.dispatch(setConnected(false));
-        initializeStore.dispatch(setStateName(""));
+        initializeStore.dispatch(setIsfsuipcConnected(false));
+        //initializeStore.dispatch(setStateName(""));
 
-        setTimeout(() => {
-            initializeStore.dispatch(setConnectionInfo({
-                dataReceived: false,
-                receivedData: {}
-            }
-        ));
-        }, 1000);
 
        /*  initializeStore.dispatch(setErrorOccured(
             {
@@ -51,16 +40,10 @@ var tryFSUIPCConnection = (fsuipcInstance: any) => {
 
     };
     fsuipcInstance.onerror  = () => {
-        console.log("FSUIPC Websocket - Connection Error:");
-        
-        setTimeout(() => {
-           /*  initializeStore.dispatch(setErrorOccured(
-                {
-                    isError: true, 
-                    errorMessegnes: generalTexts.conStates.fsuipc["programError"],
-                } 
-            )); */
-        }, 1000);
+        console.log("FSUIPC Websocket unavailable");
+        initializeStore.dispatch(setwWebsocketNotFound(true));
+        initializeStore.dispatch(setIsfsuipcConnected(false));
+        initializeStore.dispatch(setfsuipcConLost(false));
         reqFSUIPCConnection();
     };
 }
