@@ -4,7 +4,7 @@ import { initializeStore } from "../../store";
 
 import checkReduxStoreTree, {
 } from "../CheckStoreState";
-import {loadFsuipcService} from './tryFSUIPCConnection';
+import {loadFsuipcService} from './';
 
 
 //initializeStore.subscribe(handleStateChange)

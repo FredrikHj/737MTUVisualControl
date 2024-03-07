@@ -6,9 +6,12 @@ import updateFSUIPCInstance from "./FSUIPCListener";
 import { setServicesConnected } from "../../redux/ThrottleReadySlicer";
 
 import { setIsfsuipcConnected, setfsuipcConLost, setwWebsocketNotFound } from '../../redux/FSUIPCSlicer';
-import reqFSUIPCConnection from"../reqFSUIPCConnection";
 
-var tryFSUIPCConnection = (fsuipcInstance: any) => {
+var reqFSUIPCConnection = () => {
+    var fsuipcInstance: any = null;
+
+    fsuipcInstance = new WebSocket(`ws://localhost:2048/fsuipc/`, "fsuipc");
+    
     fsuipcInstance.onopen = () => {
         console.log("FSUIPC Websocket - Connected");
         
@@ -23,6 +26,7 @@ var tryFSUIPCConnection = (fsuipcInstance: any) => {
         console.log("FSUIPC Websocket - Disconnected");
 
         initializeStore.dispatch(setIsfsuipcConnected(false));
+        fsuipcInstance = null;
         //initializeStore.dispatch(setStateName(""));
 
 
@@ -47,4 +51,4 @@ var tryFSUIPCConnection = (fsuipcInstance: any) => {
         reqFSUIPCConnection();
     };
 }
-export default tryFSUIPCConnection;
+export default reqFSUIPCConnection;

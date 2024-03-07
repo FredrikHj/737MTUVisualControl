@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 
 import checkReduxStoreTree from "../CheckStoreState";
 import FSUIPCInfoContainer from './FSUIPCInfoContainer';
-import { loadFsuipcService } from "./tryFSUIPCConnection";
+import { loadFsuipcService } from "./";
 
 import { log } from 'console';
 
