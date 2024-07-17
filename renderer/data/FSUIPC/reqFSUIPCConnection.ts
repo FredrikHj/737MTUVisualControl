@@ -11,7 +11,7 @@ var reqFSUIPCConnection = () => {
     var fsuipcInstance: any = null;
 
     fsuipcInstance = new WebSocket(`ws://localhost:2048/fsuipc/`, "fsuipc");
-    
+    console.log("fsuipcInstance", fsuipcInstance);
     fsuipcInstance.onopen = () => {
         console.log("FSUIPC Websocket - Connected");
         

@@ -3,6 +3,9 @@ Imports module */
 import axios from 'axios';
 import { initializeStore } from "../store";
 
+//Initilize Socket.IO
+import { io } from "socket.io-client";
+
 import { setIsPhidgetsConnected, setPhidgetsConLost, setBackendNotFound} from "../redux/PhidgetsSlicer";
 import { log } from 'console';
 
@@ -11,9 +14,20 @@ import { log } from 'console';
 
 // Request and check for Phidgets Connection every 2 seconds
     let reqPhidgetConnection = () => {
+
         console.log("fews");
+        const socket = io('http://localhost:3000' , {
+            withCredentials: false,
+            extraHeaders: {
+              "my-custom-header": "abcd"
+            } 
+        });
+
         
-        setInterval(() => {
+        socket.on("connect", () => {
+            console.log("Socketconnection ID:", socket.id); // x8WIv7-mJelg7on_ALbx
+          });
+       /*  setInterval(() => {
             axios.get("http://localhost:3000/RequestsPhidgetsConnect").then(response => {
                 nodeServerActive = true;
                 console.log('response : ', response.data);
@@ -32,7 +46,7 @@ import { log } from 'console';
                 initializeStore.dispatch(setPhidgetsConLost(false));
                 initializeStore.dispatch(setPhidgetsConLost(false));
             }); 
-        }, 3000); 
+        }, 3000);  */
     }
   
 export default reqPhidgetConnection; 

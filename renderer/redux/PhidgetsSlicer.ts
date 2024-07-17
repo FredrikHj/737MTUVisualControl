@@ -7,7 +7,7 @@ interface State {
     connectionMess: string,
     conLost: boolean,
     conLostMess: string,
-    backendNotFound: boolean,
+    backendFound: boolean,
     backendNotFoundMess: string,
     connectionInfo: object,
 }
@@ -16,10 +16,10 @@ const initialState: State = {
     name: "Phidgets",
     connectionLoading: false,
     connected: false,
-    connectionMess: "Connected",
+    connectionMess: "",
     conLost: false,
     conLostMess: "Connection Lost - Retrying!",
-    backendNotFound: false,
+    backendFound: false,
     backendNotFoundMess: "Backend Not Found - Retrying",
     connectionInfo: {
         dataReceived: false,
@@ -40,8 +40,8 @@ export const PhidgetsSlicer = createSlice({
         setPhidgetsConLost: (state: State, action: PayloadAction<boolean>) => {
             state.conLost = action.payload;
         },
-        setBackendNotFound: (state: State, action: PayloadAction<boolean>) => {
-            state.backendNotFound = action.payload;
+        setConnectionMess: (state: State, action: PayloadAction<string>) => {
+            state.connectionMess = action.payload;
         },
         setConnectionInfo: (state: State, action: PayloadAction<object>) => {
             state.connectionInfo = action.payload;
@@ -49,5 +49,5 @@ export const PhidgetsSlicer = createSlice({
     },
 });
 
-export const { phidgetsConnectionLoading, setIsPhidgetsConnected, setPhidgetsConLost, setBackendNotFound, setConnectionInfo } = PhidgetsSlicer.actions;
+export const { phidgetsConnectionLoading, setIsPhidgetsConnected, setPhidgetsConLost, setConnectionMess, setConnectionInfo } = PhidgetsSlicer.actions;
 export default PhidgetsSlicer.reducer;
