@@ -3,10 +3,8 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 interface State {
     name: string,
     connectionLoading: boolean,
-    connected: boolean,
-    connectionMess: string,
-    conLost: boolean,
-    conLostMess: string,
+    isFsuipcConnected: boolean,
+    fsuipcConnectionMess: string,
     websocketNotFound: boolean,
     websocketNotFoundMess: string,
     connectionInfo: object,
@@ -15,10 +13,8 @@ interface State {
 const initialState: State = {
     name: "FSUIPC",
     connectionLoading: false,
-    connected: false,
-    connectionMess: "Connected",
-    conLost: false,
-    conLostMess: "Connection Lost - Retrying!",
+    isFsuipcConnected: false,
+    fsuipcConnectionMess: "",
     websocketNotFound: false,
     websocketNotFoundMess: "Websocket Not Found - Retrying",
     connectionInfo: {
@@ -35,10 +31,10 @@ export const FSUIPCSlicer = createSlice({
             state.connectionLoading = action.payload;
         },     
         setIsfsuipcConnected: (state: State, action: PayloadAction<boolean>) => {
-            state.connected = action.payload;
+            state.isFsuipcConnected = action.payload;
         },
-        setfsuipcConLost: (state: State, action: PayloadAction<boolean>) => {
-            state.conLost = action.payload;
+        setFsuipcConnectionMess: (state: State, action: PayloadAction<string>) => {
+            state.fsuipcConnectionMess = action.payload;
         },
         setwWebsocketNotFound: (state: State, action: PayloadAction<boolean>) => {
             state.websocketNotFound = action.payload;
@@ -49,5 +45,5 @@ export const FSUIPCSlicer = createSlice({
     },
 });
 
-export const { fsuipcConnectionLoading, setIsfsuipcConnected, setfsuipcConLost, setwWebsocketNotFound, setConnectionInfo } = FSUIPCSlicer.actions;
+export const { fsuipcConnectionLoading, setIsfsuipcConnected, setFsuipcConnectionMess, setfsuipcConLost, setwWebsocketNotFound, setConnectionInfo } = FSUIPCSlicer.actions;
 export default FSUIPCSlicer.reducer;

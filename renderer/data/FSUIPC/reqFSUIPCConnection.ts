@@ -1,7 +1,7 @@
 import { initializeStore } from "../../store";
 
 import loadFSUIPCConInfo from "./LoadFSUIPCConInfo";
-import serviceServerConfig from "../serviceServerConfig";
+import serviceServerConfig from "../ServerConfig";
 import updateFSUIPCInstance from "./FSUIPCListener";
 import { setServicesConnected } from "../../redux/ThrottleReadySlicer";
 

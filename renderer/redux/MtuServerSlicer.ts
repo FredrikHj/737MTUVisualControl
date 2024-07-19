@@ -1,45 +1,63 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import serverConfig from "../data/serverConfig";
 
 interface State {
     name: string,
-    connectionLoading: boolean,
-    connected: boolean,
+    isMtuServerConnected: boolean,
     mtuServerConnectionMess: string,
-    conLost: boolean,
-    conLostMess: string,
-    backendFound: boolean,
-    backendNotFoundMess: string,
+    mtuServerError: boolean,
+    mtuServerErrorMess: string,
+    errorMessCreatedByServer: string,
+    serverHost: string,
+    serverPort: number,
 }
 
 const initialState: State = {
     name: "MTUServer",
-    connectionLoading: false,
-    connected: false,
+    isMtuServerConnected: false,
     mtuServerConnectionMess: "",
-    conLost: false,
-    conLostMess: "Connection Lost - Retrying!",
-    backendFound: false,
-    backendNotFoundMess: "Backend Not Found - Retrying",
-};
+    mtuServerError: false,
+    mtuServerErrorMess: "",
+    errorMessCreatedByServer: "",
+    serverHost: serverConfig.hostname,
+    serverPort: serverConfig.port,
+}
 
 export const mtuServerSlicer = createSlice({
     name: "MTUServerSlicer",
     initialState,
     reducers: {
-        setMtuServerConnectionLoading: (state: State, action: PayloadAction<boolean>) => {
-            state.connectionLoading = action.payload;
-        },     
         setIsMtuServerConnected: (state: State, action: PayloadAction<boolean>) => {
-            state.connected = action.payload;
-        },
-        setMtuServerConLost: (state: State, action: PayloadAction<boolean>) => {
-            state.conLost = action.payload;
+            state.isMtuServerConnected = action.payload;
         },
         setMtuServerConnectionMess: (state: State, action: PayloadAction<string>) => {
             state.mtuServerConnectionMess = action.payload;
         },
+        setServerHost : (state: State, action: PayloadAction<string>) => {
+            state.serverHost = action.payload;
+        },
+        setServerPort: (state: State, action: PayloadAction<number>) => {
+            state.serverPort = action.payload;
+        },
+        setIsMtuServerError: (state: State, action: PayloadAction<boolean>) => {
+            state.mtuServerError = action.payload;
+        },
+        setMtuServerErrorMess: (state: State, action: PayloadAction<string>) => {
+            state.mtuServerErrorMess = action.payload;
+        },
+        setErrorMessCreatedByServer: (state: State, action: PayloadAction<string>) => {
+            state.errorMessCreatedByServer = action.payload;
+        },
     }
 });
 
-export const { setMtuServerConnectionLoading, setIsMtuServerConnected, setMtuServerConLost, setMtuServerConnectionMess } = mtuServerSlicer.actions;
+export const { 
+                setIsMtuServerConnected,
+                setMtuServerConnectionMess, 
+                setIsMtuServerError, 
+                setMtuServerErrorMess,
+                setErrorMessCreatedByServer, 
+                setServerHost, setServerPort
+            } = mtuServerSlicer.actions;
+
 export default mtuServerSlicer.reducer;

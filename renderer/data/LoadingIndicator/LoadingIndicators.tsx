@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Box, styled } from '@mui/material';
 
 const LoadingIndicator = (props: any) =>{
-    const { keyStr, spinnerType, extraStyling, text} = props;
+    const { keyStr, spinnerType, extraStyling, textStyling, text} = props;
 
     return(
         <>
@@ -15,7 +15,7 @@ const LoadingIndicator = (props: any) =>{
                 ),
                 ((spinnerType === "lds-spinner") &&
                     <Box key={ keyStr } sx={extraStyling}>
-                        {text}
+                        <Box sx={textStyling}>{text}</Box>
                         <div className="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
                     </Box>
                 )

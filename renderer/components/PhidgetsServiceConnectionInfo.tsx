@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import React, { useState, useEffect } from 'react';
 import {componentRerenderStorageChanges$} from "../data/RerenderComponentOnStorageChanges";
 
-import { Box, Button, Grid, Paper, styled, Table, TableHead, TableBody, TableContainer, Typography } from '@mui/material';
+import { Box, TableContainer } from '@mui/material';
 
 import FSUIPCInfoContainer from "../data/FSUIPC/FSUIPCInfoContainer";
 import PhidgetsInfoContainer from "../data/Phidgets/PhidgetsInfoContainer";
@@ -17,22 +17,23 @@ var PhidgetsServiceConnectionInfo = (props: any) =>{
 
     // Get updated Store state and save it  
     const [ currentStoreState, updateCurrrentStoreState ] = useState<any>(null);
-    
+    const [ isMtuServerConnected, updateIsMtuServerConnected ] = useState<boolean>(false);
+
     const [ phidgetsServiceLoading, updatePhidgetsServiceLoading ] = useState<boolean>(false); 
     const [ isPhidgetsStarted, updateIsPhidgetsStarted ] = useState<boolean>(false); 
     const [ isPhidgetsConnected, updateIsPhidgetsConnected ] = useState<boolean>(false);
-    const [ isFsuipcConnected, updateIsFsuipcConnected ] = useState<boolean>(false);
     
     useEffect(() => {
         // Update and rerender when the Store tree has new values
         componentRerenderStorageChanges$.subscribe((getNewStoreValues: any) => {
-            console.log(Object.keys(getNewStoreValues).length !== 0);
             if(Object.keys(getNewStoreValues).length !== 0){
-                updateIsPhidgetsConnected(getNewStoreValues.servicePHIDGETS["connected"]);
+                console.log(Object.keys(getNewStoreValues).length !== 0);
+                updateIsMtuServerConnected(getNewStoreValues.mtuServer["isMtuServerConnected"]);
+                updateIsPhidgetsConnected(getNewStoreValues.servicePHIDGETS["isPhidgetsConnected"]);
                 getNewStoreValues && updateCurrrentStoreState(getNewStoreValues);
             }
         });
-    }, [currentStoreState, phidgetsServiceLoading, isPhidgetsStarted ]);
+    }, [currentStoreState, phidgetsServiceLoading, isMtuServerConnected, isPhidgetsConnected ]);
 
     return(
         <>
@@ -43,14 +44,11 @@ var PhidgetsServiceConnectionInfo = (props: any) =>{
                     alignItems: "center"
                 }}>
                     <Box sx={{
-                        marginTop: "10px",
-                        width: "450px",
                         display: "flex", 
                         flexDirection: "row",
-                        justifyContent: "space-around", 
+                        justifyContent: "center", 
                     }}>
                     <Box sx={{
-                        marginTop: "36px",
                         display: "flex", 
                         flexDirection: "row",
                         justifyContent: "space-around", 
@@ -75,50 +73,41 @@ var PhidgetsServiceConnectionInfo = (props: any) =>{
                                 {/* Show a Loading Spinner if currentStoreState is null */
                                 currentStoreState !== null ?
                                     <Box sx={{
-                                        marginLeft: "10px",
-                                        borderRadius: "10px",
-                                        width: "180px",
-                                        height: "2.5vh",
+                                        marginTop: "-2px",
+                                        marginLeft: "10px", 
+                                        borderRadius: "20px",
+                                        width: "150px",
+                                        height: "4vh",
+                                        color: "black",
                                         backgroundColor: [
-                                            ( /* Backend is Activ and Phidgets is Connected */
-                                                currentStoreState.servicePHIDGETS["backendFound"] === false &&
-                                                isPhidgetsConnected === true &&
-                                                currentStoreState.servicePHIDGETS["conLost"] === false
+                                            ( /* Both MTU server and Phidgets are Connected */
+                                                isMtuServerConnected === true && isPhidgetsConnected === true
                                                     ? "green" : ""
-                                            ),( /* Backend is activ and Phidgets is not Connected */
-                                                currentStoreState.servicePHIDGETS["backendFound"] === false &&
-                                                isPhidgetsConnected === false &&
-                                                currentStoreState.servicePHIDGETS["conLost"] === true
+                                            ),( /* None of MTU server or Phidgets are Connected */
+                                                isMtuServerConnected === false && isPhidgetsConnected === false
                                                     ? "red" : ""
-                                            ),( /* Backend is not Connected */
-                                                currentStoreState.servicePHIDGETS["backendFound"] === true && 
-                                                isPhidgetsConnected === false && 
-                                                currentStoreState.servicePHIDGETS["conLost"] === false 
+                                            ),(/* MTU server is connected but Phidgets is not */
+                                                isMtuServerConnected === true && isPhidgetsConnected === false
                                                     ? "red" : ""
-                                            )    
+                                            )
                                         ],
                                         textAlign: "center", 
-                                        fontSize: "12px", 
+                                        fontSize: "20px", 
                                         letterSpacing: "2,5px",
                                         paddingTop: "3px",
                                     }}>
                                         {[
-                                            ( /* Backend is active and Phidgets is Connected */
-                                               /*  currentStoreState.servicePHIDGETS["backendFound"] === true && */
-                                                isPhidgetsConnected === true &&
-                                                currentStoreState.servicePHIDGETS["conLost"] === false &&
-                                                currentStoreState.servicePHIDGETS["connectionMess"]
+                                            ( /* Both MTU server and Phidgets are Connected */
+                                                isMtuServerConnected === true && isPhidgetsConnected === true &&
+                                                currentStoreState.servicePHIDGETS["phidgetsConnectionMess"]
                                                 
-                                            ),( /* Backend is active and Phidgets is not Connected */
-                                                /* currentStoreState.servicePHIDGETS["backendFound"] === true && */
-                                                isPhidgetsConnected === false &&
-                                                currentStoreState.servicePHIDGETS["conLost"] === true &&
-                                                currentStoreState.servicePHIDGETS["connectionMess"]
-                                            ), ( /* Backend is not Connected */
-                                                /* currentStoreState.servicePHIDGETS["backendFound"] === false &&  */
-                                                isPhidgetsConnected === false && 
-                                                currentStoreState.servicePHIDGETS["conLost"] === false
-                                               /*  currentStoreState.servicePHIDGETS["backendFoundMess"] */
+                                            ),( /* None of MTU server or Phidgets are Connected */
+                                                isMtuServerConnected === false && isPhidgetsConnected === false &&
+                                                currentStoreState.servicePHIDGETS["phidgetsConnectionMess"]
+
+                                            ), (/* MTU server is connected but Phidgets is not */
+                                                isMtuServerConnected === true && isPhidgetsConnected === false &&
+                                                    currentStoreState.servicePHIDGETS["phidgetsConnectionMess"]
                                             )
                                         ]} 
                                     </Box>

@@ -6,7 +6,7 @@ import { initializeStore } from "../store";
 //Initilize Socket.IO
 import { io } from "socket.io-client";
 
-import { setIsPhidgetsConnected, setPhidgetsConLost, setBackendNotFound} from "../redux/PhidgetsSlicer";
+import { setIsPhidgetsConnected, setPhidgetsConLost, } from "../redux/PhidgetsSlicer";
 import { log } from 'console';
 
 // Sett type of data

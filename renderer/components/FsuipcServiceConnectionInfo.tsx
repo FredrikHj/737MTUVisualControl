@@ -18,7 +18,8 @@ var FsuipcServiceConnectionInfo = (props: any) =>{
 
     // Get updated Store state and save it  
     const [ currentStoreState, updateCurrrentStoreState ] = useState<any>(null);
-    
+    const [ isMtuServerConnected, updateIsMtuServerConnected ] = useState<boolean>(false);
+
     const [ fsuipcServiceLoading, updateFsuipcServiceLoading ] = useState<boolean>(false); 
     const [ isFsuipcStarted, updateIsFsuipcStarted ] = useState<boolean>(false);
     const [ isFsuipcConnected, updateIsFsuipcConnected ] = useState<boolean>(false);
@@ -28,6 +29,7 @@ var FsuipcServiceConnectionInfo = (props: any) =>{
         componentRerenderStorageChanges$.subscribe((getNewStoreValues: any) => {
             console.log(Object.keys(getNewStoreValues).length !== 0);
             if(Object.keys(getNewStoreValues).length !== 0){
+                updateIsMtuServerConnected(getNewStoreValues.mtuServer["isMtuServerConnected"]);
                 updateIsFsuipcStarted(getNewStoreValues.serviceFSUIPC["connected"]);
                 getNewStoreValues && updateCurrrentStoreState(getNewStoreValues);
             }
@@ -43,14 +45,11 @@ var FsuipcServiceConnectionInfo = (props: any) =>{
                     alignItems: "center"
                 }}>
                     <Box sx={{
-                        marginTop: "10px",
-                        width: "450px",
                         display: "flex", 
                         flexDirection: "row",
-                        justifyContent: "space-around", 
+                        justifyContent: "center", 
                     }}>
                         <Box sx={{
-                            marginTop: "36px",
                             display: "flex", 
                             flexDirection: "row",
                             justifyContent: "space-around", 
@@ -75,50 +74,41 @@ var FsuipcServiceConnectionInfo = (props: any) =>{
                                 {/* Show a Loading Spinner if currentStoreState is null */
                                 currentStoreState !== null ?
                                     <Box sx={{
-                                        marginLeft: "10px",
-                                        borderRadius: "10px",
-                                        width: "190px",
-                                        height: "2.5vh",
+                                        marginTop: "-2px",
+                                        marginLeft: "10px", 
+                                        borderRadius: "20px",
+                                        width: "150px",
+                                        height: "4vh",
+                                        color: "black",
                                         backgroundColor: [
-                                            ( /* Websocket is active and Connected */
-                                                currentStoreState.serviceFSUIPC["websocketNotFound"] === false &&
-                                                isFsuipcConnected === true &&
-                                                currentStoreState.serviceFSUIPC["conLost"] === false
+                                            ( /* Both MTU server and Phidgets are Connected */
+                                                isMtuServerConnected === true && isFsuipcConnected === true
                                                     ? "green" : ""
-                                            ),( /* Websocket is active and Phidgets is not Connected */
-                                                currentStoreState.serviceFSUIPC["websocketNotFound"] === false &&
-                                                isFsuipcConnected === false &&
-                                                currentStoreState.serviceFSUIPC["conLost"] === true
+                                            ),( /* None of MTU server or Phidgets are Connected */
+                                                isMtuServerConnected === false && isFsuipcConnected === false
                                                     ? "red" : ""
-                                            ),( /* Websocket is not Connected */
-                                                currentStoreState.serviceFSUIPC["websocketNotFound"] === true && 
-                                                isFsuipcConnected === false && 
-                                                currentStoreState.serviceFSUIPC["conLost"] === false 
+                                            ),(/* MTU server is connected but Phidgets is not */
+                                                isMtuServerConnected === true && isFsuipcConnected === false
                                                     ? "red" : ""
-                                            )    
+                                            )
                                         ],
                                         textAlign: "center", 
-                                        fontSize: "12px", 
+                                        fontSize: "20px", 
                                         letterSpacing: "2,5px",
-                                        paddingTop: "3px",
+                                        paddingTop: "3px", 
                                     }}>
                                         {[
-                                            ( /* Websocket is active and Connected */
-                                                currentStoreState.serviceFSUIPC["websocketNotFound"] === false &&
-                                                isFsuipcConnected === true &&
-                                                currentStoreState.serviceFSUIPC["conLost"] === false &&
-                                                    currentStoreState.serviceFSUIPC["connectionMess"]
+                                            ( /* Both MTU server and Phidgets are Connected */
+                                                isMtuServerConnected === true && isFsuipcConnected === true &&
+                                                currentStoreState.serviceFSUIPC["fsuipcConnectionMess"]
                                                 
-                                            ),( /* Websocket is active and Phidgets is not Connected */
-                                                currentStoreState.serviceFSUIPC["websocketNotFound"] === false &&
-                                                isFsuipcConnected === false &&
-                                                currentStoreState.serviceFSUIPC["conLost"] === true &&
-                                                    currentStoreState.serviceFSUIPC["conLostMess"]
-                                            ), ( /* Websocket is not Connected */
-                                                currentStoreState.serviceFSUIPC["websocketNotFound"] === true && 
-                                                isFsuipcConnected === false && 
-                                                currentStoreState.serviceFSUIPC["conLost"] === false &&
-                                                currentStoreState.serviceFSUIPC["websocketNotFoundMess"]
+                                            ),( /* None of MTU server or Phidgets are Connected */
+                                                isMtuServerConnected === false && isFsuipcConnected === false &&
+                                                currentStoreState.serviceFSUIPC["fsuipcConnectionMess"]
+
+                                            ), (/* MTU server is connected but Phidgets is not */
+                                                isMtuServerConnected === true && isFsuipcConnected === false &&
+                                                    currentStoreState.serviceFSUIPC["fsuipcConnectionMess"]
                                             )
                                         ]}
                                     </Box>

@@ -4,7 +4,6 @@ import { initializeStore } from"../store";
 import { useSelector } from 'react-redux'; 
 import React, { useState, useEffect } from'react';
 import ThrottleVisual from"../components/ThrottleVisual";
-import checkReduxStoreTree from"../data/CheckStoreState";
 import mtuViewerInitiation from"../data/MtuViewerInitiation";
 //import reqPhidgetConnection from"../data/reqPhidgetConnection";
 import LoadingIndicator from "../data/LoadingIndicator/LoadingIndicators";
@@ -12,14 +11,14 @@ import MTUServerConnectionInfo from"../components/MTUServerConnectionInfo";
 import FsuipcServiceConnectionInfo from"../components/FsuipcServiceConnectionInfo";
 import PhidgetsServiceConnectionInfo from"../components/PhidgetsServiceConnectionInfo";
 import {componentRerenderStorageChanges$} from"../data/RerenderComponentOnStorageChanges";
-import { Box, Button, Grid, Paper, styled, Table, TableHead, TableBody, TableContainer, Typography } from '@mui/material';
+import { Box, Divider } from '@mui/material';
 import { BorderClear } from "@mui/icons-material";
 import { flattenDiagnosticMessageText } from "typescript";
-mtuViewerInitiation();
+mtuViewerInitiation(); 
 
 var MTUControlLanding = () => { 
     // Begin listening for Storetree changes
-        const listenerStoreChange = initializeStore.subscribe(checkReduxStoreTree);  
+
 
     // Services
     const [ MTUServer ] = useState<string>("MTU Server");
@@ -53,7 +52,7 @@ var MTUControlLanding = () => {
             //updateAppStarted(true);
         }
     return(  
-        <Box sx={{ 
+        <Box sx={{
             display: "flex", 
             flexDirection: "column", 
             justifyContent: "center",
@@ -65,10 +64,10 @@ var MTUControlLanding = () => {
                 />
             </Box>
             <Box sx={{
+                marginTop: "30px",
                 display: "flex", 
                 flexDirection: "row", 
-                justifyContent: "space-between",
-                alignItems: "center",
+                justifyContents: "space-around",
                 padding: "5px",
                 size: "1000rem"
             }}>

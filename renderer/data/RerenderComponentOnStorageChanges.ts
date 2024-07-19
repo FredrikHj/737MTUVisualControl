@@ -7,7 +7,7 @@ const componentRerenderStorageChanges: any = {};
 export const componentRerenderStorageChanges$ = new BehaviorSubject(componentRerenderStorageChanges);
 
 export const updateStoreValuesToComponent = (componentRerenderStorageChanges: any) =>{
-console.log('componentRerenderStorageChanges :', componentRerenderStorageChanges);
+    console.log('componentRerenderStorageChanges :', componentRerenderStorageChanges);
     if(componentRerenderStorageChanges) componentRerenderStorageChanges$.next(componentRerenderStorageChanges);
 }
 //===============================================
