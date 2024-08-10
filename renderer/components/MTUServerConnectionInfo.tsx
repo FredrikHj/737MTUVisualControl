@@ -10,14 +10,13 @@ import { Box, Table, TableHead, TableBody, TableContainer, TableCell, TableRow }
 
 import FSUIPCInfoContainer from "../data/FSUIPC/FSUIPCInfoContainer";
 import PhidgetsInfoContainer from "../data/Phidgets/PhidgetsInfoContainer";
-import Throttle737RunningSlicer from '../redux/Throttle737SpeedBrakeSlicer';
 import LoadingIndicator from "../data/LoadingIndicator/LoadingIndicators";
 import serverConfig from "../data/ServerConfig";
+import ServerErrorRetrying from "../data/ServerErrorRetrying";
 
 //import mtuViewerInitiation from"../data/MtuViewerInitiation";
 
-import { isJsxFragment } from "typescript";
-import { Border } from "devextreme-react/cjs/bar-gauge";
+
 var MTUServerConnectionInfo = (props: any) =>{
     const { MTUService } = props;
   
@@ -26,6 +25,7 @@ var MTUServerConnectionInfo = (props: any) =>{
     
     const [ isMtuServerConnected, updateIsMtuServerConnected ] = useState<boolean>(false);
     const [ isMtuServerError, updateIsMtuServerError ] = useState<boolean>(false); 
+
     
     useEffect(() => {
         // Update and rerender when the Store tree has new values
@@ -112,34 +112,19 @@ var MTUServerConnectionInfo = (props: any) =>{
                     }
                 } key={MTUService.split().length !== 0 && MTUService}
             >
-                <Box>
-                    {isMtuServerConnected === false && isMtuServerError === true 
-                        &&
-                            <LoadingIndicator
-                                keyStr={MTUService}
-                                spinnerType={"lds-spinner"}
-                                extraStyling={{
-                                    marginLeft: "-100px",
-                                    display: "flex", 
-                                    flexDirection: "row", 
-                                    justifyContent: "center",
-                                    alignItems: "center",
-                                    width: "480px",
-                                }}
-                                textStyling={{
-                                    width: "60%",
-                                }}
-                                text={"Server Error - Retrying!"}
-                            />
-                    }
-                </Box>
+                <ServerErrorRetrying
+                    showingConditions={isMtuServerConnected === false && isMtuServerError === true }
+                    serviceName={MTUService}
+                    textMess={currentStoreState !== null && currentStoreState.mtuServer["mtuServerErrorMess"]}
+                />
             </Box>
+
             <TableContainer>
                 <Table>
                     <TableHead>
                         <TableRow>
                             <TableCell></TableCell>
-                            <TableCell sx={{textAlign: "", fontSize: "30px"}} colSpan={3}>Server Connection Info</TableCell>
+                            <TableCell sx={{textAlign: "", fontSize: "30px"}} colSpan={3}>Connection Info</TableCell>
                             <TableCell></TableCell>
                         </TableRow>     
                     </TableHead>
@@ -149,14 +134,14 @@ var MTUServerConnectionInfo = (props: any) =>{
                             <TableCell sx={{
                                 borderBottom: "none",
                             }}> 
-                                Connected to Host    
+                                Connected to:    
                             </TableCell>
 
                             <TableCell sx={{
                                 borderBottom: "none",
                             }}>
                                {/* iF mtuServern is connected show the correct values */
-                                    isMtuServerConnected === true ? serverConfig.hostname : "No"}
+                                    isMtuServerConnected === true ? serverConfig.hostname : "None server"}
                             </TableCell> 
 
                             <TableCell sx={{
@@ -167,7 +152,7 @@ var MTUServerConnectionInfo = (props: any) =>{
                             <TableCell sx={{
                                 borderBottom: "none",
                             }}>
-                                Port Number
+                                Port Number:
                             </TableCell>
                             <TableCell sx={{
                                 borderBottom: "none",

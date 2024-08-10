@@ -5,7 +5,12 @@ interface State {
     connectionLoading: boolean,
     isPhidgetsConnected: boolean,
     phidgetsConnectionMess: string,
-    connectionInfo: object,
+    phidgetsServerError: boolean,
+    phidgetsServerErrorMess: string,
+    phidgetsConLost: boolean,
+    phidgetsConLostMess: string,
+    phidgetsServerHost: string,
+    phidgetsServerPort: number,
 }
 
 const initialState: State = {
@@ -13,10 +18,12 @@ const initialState: State = {
     connectionLoading: false,
     isPhidgetsConnected: false,
     phidgetsConnectionMess: "",
-    connectionInfo: {
-        dataReceived: false,
-        receivedData: {},
-    },  
+    phidgetsServerError: false,
+    phidgetsServerErrorMess: "",
+    phidgetsConLost: false,
+    phidgetsConLostMess: "",
+    phidgetsServerHost: "",
+    phidgetsServerPort: 0,
 };
 
 export const PhidgetsSlicer = createSlice({
@@ -32,11 +39,37 @@ export const PhidgetsSlicer = createSlice({
         setPhidgetsConnectionMess: (state: State, action: PayloadAction<string>) => {
             state.phidgetsConnectionMess = action.payload;
         },
-        setConnectionInfo: (state: State, action: PayloadAction<object>) => {
-            state.connectionInfo = action.payload;
-        },        
+        setIsPhidgetsServerError: (state: State, action: PayloadAction<boolean>) => {
+            state.phidgetsServerError = action.payload;
+        },
+        setPhidgetsServerErrorMess: (state: State, action: PayloadAction<string>) => {
+            state.phidgetsServerErrorMess = action.payload;
+        },
+        setPhidgetsConLost: (state: State, action: PayloadAction<boolean>) => {
+            state.phidgetsConLost = action.payload;
+        },
+        setPhidgetsConLostMess: (state: State, action: PayloadAction<string>) => {
+            state.phidgetsConLostMess = action.payload;
+        },
+        setPhidgetsServerHost: (state: State, action: PayloadAction<string>) => {
+            state.phidgetsServerHost = action.payload;
+        },
+        setPhidgetsServerPort: (state: State, action: PayloadAction<number>) => {
+            state.phidgetsServerPort = action.payload;
+        },
     },
 });
 
-export const { phidgetsConnectionLoading, setIsPhidgetsConnected, setPhidgetsConLost, setPhidgetsConnectionMess, setConnectionInfo } = PhidgetsSlicer.actions;
+export const { 
+    phidgetsConnectionLoading, 
+    setIsPhidgetsConnected, 
+    setPhidgetsConnectionMess, 
+    setIsPhidgetsServerError, 
+    setPhidgetsServerErrorMess, 
+    setPhidgetsConLost, 
+    setPhidgetsServerHost,
+    setPhidgetsServerPort,
+    setPhidgetsConLostMess
+} = PhidgetsSlicer.actions;
+
 export default PhidgetsSlicer.reducer;

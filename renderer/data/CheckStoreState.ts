@@ -9,8 +9,11 @@ export var currentValueStateTree: object = {};
 var checkReduxStoreTree = () => {
     let previousValueStateTree = currentValueStateTree
     currentValueStateTree = initializeStore.getState();
+
     console.log('currentValueStateTree :', currentValueStateTree);
-    // If ther are some diff it will trigger the store change to go to the components listener for store chang  
+    // If there are some diff it will trigger the store change to go to the components listener for store changes
+
+
     previousValueStateTree !== currentValueStateTree && updateStoreValuesToComponent(currentValueStateTree);  
 } 
 export default checkReduxStoreTree;

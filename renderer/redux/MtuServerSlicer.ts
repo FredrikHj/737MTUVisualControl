@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import serverConfig from "../data/serverConfig";
+import serverConfig from "../data/ServerConfig";
 
 interface State {
     name: string,

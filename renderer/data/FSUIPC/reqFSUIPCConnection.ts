@@ -3,7 +3,6 @@ import { initializeStore } from "../../store";
 import loadFSUIPCConInfo from "./LoadFSUIPCConInfo";
 import serviceServerConfig from "../ServerConfig";
 import updateFSUIPCInstance from "./FSUIPCListener";
-import { setServicesConnected } from "../../redux/ThrottleReadySlicer";
 
 import { setIsfsuipcConnected, setfsuipcConLost, setwWebsocketNotFound } from '../../redux/FSUIPCSlicer';
 

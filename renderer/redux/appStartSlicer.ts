@@ -5,16 +5,15 @@ interface State {
     appUpStarted: boolean,
     appName: string,
     stateName: string,
-    isPhidgetsConnected: boolean,
-    isFsuipcConnected: boolean,
+    choosenTabNr: number,
+
 }
 
 const initialState: State = {
     appUpStarted: false,
     appName: "737Motorized Throttle Unit Control",
     stateName: "notStarted",
-    isPhidgetsConnected: false,
-    isFsuipcConnected: false,
+    choosenTabNr: 1,
 }
 
 export const AppStartSlicer = createSlice({
@@ -27,14 +26,10 @@ export const AppStartSlicer = createSlice({
         setStateName: (state: State, action: PayloadAction<string>) => {
             state.stateName = action.payload;
         },
-        setIsPhidgetsConnected: (state: State, action: PayloadAction<boolean>) => {
-            state.isPhidgetsConnected = action.payload;
+        setChoosenTabNr: (state: State, action: PayloadAction<number>) => {
+            state.choosenTabNr = action.payload;
         },
-        setIsFsuipcConnected: (state: State, action: PayloadAction<boolean>) => {
-            state.isFsuipcConnected = action.payload;
-        },
-        
     },
 });
-export const {setAppUpStarted, setStateName, setIsPhidgetsConnected, setIsFsuipcConnected } = AppStartSlicer.actions;
+export const {setAppUpStarted, setStateName, setChoosenTabNr } = AppStartSlicer.actions;
 export default AppStartSlicer.reducer;

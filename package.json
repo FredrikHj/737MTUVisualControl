@@ -1,4 +1,3 @@
-
 {
   "private": true,
   "name": "737mtufscontrol",
@@ -17,6 +16,7 @@
     "@emotion/server": "^11.11.0",
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.15.8",
+    "@mui/lab": "^5.0.0-alpha.173",
     "@mui/material": "^5.15.7",
     "@nodegui/nodegui": "^0.66.0",
     "@reduxjs/toolkit": "^1.9.5",
