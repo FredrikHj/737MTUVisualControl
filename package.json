@@ -1,44 +1,33 @@
 {
+  "name": "visualcontrol",
+  "version": "0.1.0",
   "private": true,
-  "name": "737mtufscontrol",
-  "description": "My application description",
-  "version": "1.0.0",
-  "author": "Yoshihide Shiono <shiono.yoshihide@gmail.com>",
-  "main": "app/background.js",
   "scripts": {
-    "dev": "nextron",
-    "build": "nextron build",
-    "postinstall": "electron-builder install-app-deps"
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
-    "@emotion/cache": "^11.11.0",
-    "@emotion/react": "^11.11.1",
-    "@emotion/server": "^11.11.0",
-    "@emotion/styled": "^11.11.0",
-    "@mui/icons-material": "^5.15.8",
-    "@mui/lab": "^5.0.0-alpha.173",
-    "@mui/material": "^5.15.7",
-    "@nodegui/nodegui": "^0.66.0",
-    "@reduxjs/toolkit": "^1.9.5",
-    "axios": "^1.6.7",
-    "axios-polling": "^1.1.1",
-    "devextreme": "^23.2.3",
-    "devextreme-react": "^23.2.3",
-    "electron-devtools-installer": "^3.2.0",
-    "electron-serve": "^1.1.0",
-    "electron-store": "^8.1.0",
-    "react-redux": "^8.1.2",
-    "redux": "^4.2.1",
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "@mui/lab": "^6.0.0-beta.15",
+    "@mui/material": "^6.1.7",
+    "@reduxjs/toolkit": "^2.3.0",
+    "next": "15.0.3",
+    "react": "19.0.0-rc-66855b96-20241106",
+    "react-dom": "19.0.0-rc-66855b96-20241106",
+    "react-redux": "^9.1.2",
+    "redux": "^5.0.1",
     "rxjs": "^7.8.1",
-    "socket.io-client": "^4.7.5",
-    "typescript": "^5.2.2"
+    "socket.io-client": "^4.8.1"
   },
   "devDependencies": {
-    "electron": "^21.3.3",
-    "electron-builder": "^23.6.0",
-    "next": "^12.3.4",
-    "nextron": "^8.6.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "15.0.3",
+    "typescript": "^5"
   }
 }
