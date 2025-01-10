@@ -26,7 +26,7 @@ var ServerErrorRetrying = (props: any) => {
                     keyStr={serviceName}
                     spinnerType={"conLoader"}
                     boxStyling={{ 
-                        width: "250px",
+                        width: "275px",
                         marginLeft: "10px",
                         marginRight: "10px",
                         display: "flex", 
@@ -34,7 +34,7 @@ var ServerErrorRetrying = (props: any) => {
                         justifyContent: "space-between",  
                         alignItems: "center",
                     }}
-                    itemStyling={{ width: "25px" }}
+                    itemStyling={{ width: "50px" }}
                     text={textMess}
                 />
              }

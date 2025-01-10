@@ -5,27 +5,13 @@ Import  modules */
 //import { initializeStore } from"../_reduxStore/CommonStore";
 //import { useSelector } from 'react-redux'; 
 import { Box, Divider } from '@mui/material';
-import { styled } from '@mui/material/styles';
 import React, { useState, useEffect } from'react';
 import TabsChoose from"./_components/TabsChoosenPages";
 import MtuViewerInitiation from"./_data/MtuViewerInitiation";
 import MtuValueUpdateInitiation from"./_data/MtuValueUpdateInitiation";
-import LoadingIndicator from "./_data/LoadingIndicator/LoadingIndicators";
-import FsuipcServiceConnectionInfo from"./_components/FsuipcServiceConnection"
-import PhidgetsServiceConnectionInfo from"./_components/PhidgetsServiceConnection";
 
 import {componentRerenderStorageChanges$} from"./_data/RerenderComponentOnStorageChanges";
 import AppHeader from"./_components/AppHeader";
-import {MTUServerConnectionInfo} from"./_components/MTUServerConnection";
-
-const Root = styled('div')(({ theme }) => ({
-  width: '100%',
-  ...theme.typography.body2,
-  color: theme.palette.text.secondary,
-  '& > :not(style) ~ :not(style)': {
-    marginTop: theme.spacing(2),
-  },
-}));
 
 export default function Home() {
     // Get updated Store state and save it 
@@ -64,63 +50,21 @@ export default function Home() {
 
     return(
         <Box sx={{
+            width: "100%",
             display: "flex", 
-            flexDirection: "column", 
+            flexDirection: "row", 
             justifyContent: "center",
-            alignItems: "center"
-        }}>
-            <AppHeader
-
-            />
-{/*             <Box sx={{
-                width: "100%",
+        }}> 
+            <Box sx={{
+                width: "75%",
                 display: "flex", 
-                flexDirection: "row", 
-                padding: "5px",
+                flexDirection: "column", 
+                justifyContent: "center",
+                alignItems: "center",
             }}>
-                <Box sx={{width: "33%"}}>
-                    <MTUServerConnectionInfo
-                        MTUService={MTUServer}
-                    />
-                </Box>
-                <Box sx={{width: "20%"}}>
-                    Loading inidcator?
-                </Box>
-                <Box sx={{
-                    width: "46%",
-                    display: "flex", 
-                    flexDirection: "column", 
-                    justifyContents: "center",
-                    alignItems: "center",
-                    padding: "5px",
-                }}>
-                <Box>
-                    Services
-                </Box>
-                <Box sx={{
-                    display: "flex", 
-                    flexDirection: "row", 
-                    justifyContents: "center",
-                    alignItems: "center",
-                    padding: "5px",
-                }}>
-                    <PhidgetsServiceConnectionInfo
-                        MTUService={servicePhidgets}
-                    />
-                    <FsuipcServiceConnectionInfo
-                        MTUService={serviceFsuipc}
-                    />
-                </Box>
+                <AppHeader/>
+                <TabsChoose/>
             </Box>
-                <Box>
-                </Box>
-            </Box>
-
-           
-            <Root>
-                <Divider textAlign="center"></Divider>
-            </Root>
-            <TabsChoose/>
- */}        </Box>
+        </Box>
     );
 }

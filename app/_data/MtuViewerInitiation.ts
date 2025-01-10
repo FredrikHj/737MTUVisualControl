@@ -83,9 +83,10 @@ import RequestSocketIOServer from '../RequestSocketIOServer';
     // If server unenspectively lost the connection
       socket.on("disconnect", (reason: any) => { 
         console.log('Server unenspectively disconnected: ', reason);
-       initializeStore.dispatch(setIsMtuServerConnected(false));
-       initializeStore.dispatch(setIsMtuServerError(true));
-         initializeStore.dispatch(setMtuServerErrorMess("Server Error - Retrying!"));
+        initializeStore.dispatch(setIsMtuServerConnected(false));
+        initializeStore.dispatch(setIsMtuServerError(true));
+        initializeStore.dispatch(setMtuServerErrorMess("Server Error - Retrying!"));
+        /* 
 
        initializeStore.dispatch(setIsPhidgetsConnected(false));
        initializeStore.dispatch(setIsPhidgetsServerError(true));
@@ -96,10 +97,9 @@ import RequestSocketIOServer from '../RequestSocketIOServer';
        initializeStore.dispatch(setPhidgetsConnectionMess("Not Connected"));
        initializeStore.dispatch(setFsuipcConnectionMess("Not Connected"));
 
-
        initializeStore.dispatch(setErrorMessCreatedByServer(reason));
-        socket.emit("mtuInitiation", "Client disconnected");
-      });     
+        socket.emit("mtuInitiation", "Client disconnected"); */
+      });
   }
     
   export default mtuViewerInitiation;

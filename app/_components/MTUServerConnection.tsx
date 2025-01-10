@@ -4,15 +4,16 @@ import { initializeStore } from "../_reduxStore/CommonStore";
 
 import { useSelector } from 'react-redux';
 import React, { useState, useEffect } from 'react';
+import LinkOffRoundedIcon from '@mui/icons-material/LinkOffRounded';
+import LinkRoundedIcon from '@mui/icons-material/LinkRounded';
 import {componentRerenderStorageChanges$} from "../_data/RerenderComponentOnStorageChanges";
-
 import { Box, Table, TableHead, TableBody, TableContainer, TableCell, TableRow } from '@mui/material';
 
+import serverConfig from "../_data/ServerConfig";
+import ServerErrorRetrying from "../_data/ServerErrorRetrying";
 import FSUIPCInfoContainer from "../_data/FSUIPC/FSUIPCInfoContainer";
 import PhidgetsInfoContainer from "../_data/Phidgets/PhidgetsInfoContainer";
 import LoadingIndicator from "../_data/LoadingIndicator/LoadingIndicators";
-import serverConfig from "../_data/ServerConfig";
-import ServerErrorRetrying from "../_data/ServerErrorRetrying";
 
 //import mtuViewerInitiation from"../data/MtuViewerInitiation";
 //Get store States
@@ -20,7 +21,8 @@ var storeStates: any = initializeStore.getState();
 var currentPageData = storeStates["mtuServer"];
 console.log('currentPageData :', currentPageData);
 
-export var MTUServerConnectionStatus = (props: any) =>{
+// MTUServerConnectionStatus ---------------------------------------------------------------------------------------
+export var MTUServerConnectionStatus = () =>{
     // Get updated Store state and save it  
     const [ currentStoreState, updateCurrrentStoreState ] = useState<any>(currentPageData);
     const [ MTUService, updateMTUService] = useState<string>("")
@@ -38,6 +40,7 @@ export var MTUServerConnectionStatus = (props: any) =>{
         componentRerenderStorageChanges$.subscribe((getNewStoreValues: any) => {
             console.log(Object.keys(getNewStoreValues).length !== 0);
             if(Object.keys(getNewStoreValues).length !== 0){
+                updateCurrrentStoreState(getNewStoreValues["mtuServer"]);
                 updateIsMtuServerConnected(getNewStoreValues.mtuServer["isMtuServerConnected"]);
                 updateIsMtuServerError(getNewStoreValues.mtuServer["mtuServerError"]);
 
@@ -54,13 +57,12 @@ export var MTUServerConnectionStatus = (props: any) =>{
     console.log('currentStoreState :', currentStoreState);
     return(
         <Box sx={{
-            border: "1px solid red",
-            paddingTop: "10px", 
+            width: "600px",
+            marginTop: "7px",
             display: "flex", 
             flexDirection: "row",
         }}>  
             <Box sx={{
-                width: "700px",
                 height: "30px",
                 fontWeight: "bold",
                 fontSize: "18px", 
@@ -71,20 +73,20 @@ export var MTUServerConnectionStatus = (props: any) =>{
             </Box>
             <Box>{ " - "}</Box>
             <Box sx={{
-                    fontWeight: "bold",
-                    fontSize: "18px", 
-                    display: "flex",
-                    color: "white",
-                    flexDirection: "row", 
+                fontWeight: "bold",
+                fontSize: "18px", 
+                display: "flex",
+                color: "white",
+                flexDirection: "row", 
             }}>
                 {/*  Show a Loading Spinner if currentStoreState is null  */}
                 <Box sx={{
                     marginLeft: "10px", 
                     marginTop: "-4px",
                     borderRadius: "20px",
-                    width: "150px",
+                    width: isMtuServerConnected === true ? "140px" : "190px",
                     height: "2.6vh",
-                    color: "black",
+                    color: "white",
                     backgroundColor: 
                    /*  iF mtuServern is active make the background in green or if not in red */
                         isMtuServerConnected === true ? "green" : "red",                                        
@@ -93,38 +95,35 @@ export var MTUServerConnectionStatus = (props: any) =>{
                     letterSpacing: "2,5px",
                     paddingTop: "3px",
                 }}>
-                    {(currentStoreState !== null) 
-                        ?
-                            currentStoreState["mtuServerConnectionMess"]
-                        :
-                            <LoadingIndicator
-                                keyStr={"conLoader"}
-                                spinnerType={"conLoader"}
-                                boxStyling={{ 
-                                    marginLeft: "-10px",
-                                    marginRight: "10px",
-                                    display: "flex", 
-                                    flexDirection: "row",
-                                    justifyContent: "space-between",  
-                                    alignItems: "center",
-                                }}
-                                itemStyling={{ width: "25px" }}
-                                text={"Connecting "}
-                            />
-                    }     
+                    <Box sx={{
+                        marginLeft: "10px",
+                        marginRight: "10px",
+                        width: isMtuServerConnected === true ? "120px": "170px",
+                        display: "flex", 
+                        flexDirection: "row",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                    }}>
+                        {currentStoreState["mtuServerConnectionMess"]}
+                        
+                        {(isMtuServerConnected === false)
+                            ?   <LinkOffRoundedIcon fontSize="small" color="primary"/>
+                            :   <LinkRoundedIcon fontSize="small" color="white"/>
+                            
+                        }
+                    </Box>
                 </Box> 
             </Box>
             <Box sx={{
-                width: "50%",
-                marginTop: "-15px",
-                marginBottom: "15px",
+                marginLeft: "-400px",
+                marginTop: "20px",
                 fontSize: "20px",
                 fontWeight: "bold",
                 color: "red",
-            }} key={MTUService.split().length !== 0 && MTUService}>
+            }} key={currentStoreState["name"]}>
                 <ServerErrorRetrying
                     showingConditions={isMtuServerConnected === false && isMtuServerError === true }
-                    serviceName={MTUService}
+                    serviceName={currentStoreState["name"]}
                     textMess={
                         currentStoreState !== null && currentStoreState["mtuServerErrorMess"]
                     }
@@ -134,11 +133,10 @@ export var MTUServerConnectionStatus = (props: any) =>{
     );
 }
 
-export var MTUServerConnectionInfo = (props: any) =>{
-    const { MTUService } = props;
-  
+// MTUServerConnectionInfo ----------------------------------------------------------------------------------------
+export var MTUServerConnectionInfo = () =>{ 
     // Get updated Store state and save it  
-    const [ currentStoreState, updateCurrrentStoreState ] = useState<any>(null);
+    const [ currentStoreState, updateCurrrentStoreState ] = useState<any>(currentPageData);
     
     const [ isMtuServerConnected, updateIsMtuServerConnected ] = useState<boolean>(false);
     const [ isMtuServerError, updateIsMtuServerError ] = useState<boolean>(false); 
@@ -152,7 +150,7 @@ export var MTUServerConnectionInfo = (props: any) =>{
             if(Object.keys(getNewStoreValues).length !== 0){
                 updateIsMtuServerConnected(getNewStoreValues.mtuServer["isMtuServerConnected"]);
                 updateIsMtuServerError(getNewStoreValues.mtuServer["mtuServerError"]);
-                getNewStoreValues && updateCurrrentStoreState(getNewStoreValues);
+                getNewStoreValues && updateCurrrentStoreState(getNewStoreValues["mtuServer"]);
             }
         });
     }, [currentStoreState, isMtuServerConnected, isMtuServerError ]);
@@ -165,19 +163,12 @@ export var MTUServerConnectionInfo = (props: any) =>{
             flexDirection: "column", 
             alignItems: "center"
         }}>
-            {/* <Box sx={{
-                display: "flex", 
-                flexDirection: "row",
-                justifyContent: "center", 
-            }}>
-            
-
             <TableContainer>
                 <Table>
                     <TableHead>
                         <TableRow>
                             <TableCell></TableCell>
-                            <TableCell sx={{textAlign: "", fontSize: "30px"}} colSpan={3}>Connection Info</TableCell>
+                            <TableCell sx={{textAlign: "", fontSize: "30px"}} colSpan={3}>{currentStoreState["name"]}</TableCell>
                             <TableCell></TableCell>
                         </TableRow>     
                     </TableHead>
@@ -193,8 +184,8 @@ export var MTUServerConnectionInfo = (props: any) =>{
                             <TableCell sx={{
                                 borderBottom: "none",
                             }}>
-                              iF mtuServern is connected show the correct values
-                                    isMtuServerConnected === true ? `${currentStoreState.mtuServer["serverHost"]} - ID: ${currentStoreState.mtuServer["serverConId"]}`  : "None Server"}
+                                {/* iF mtuServern is connected show the correct values */}
+                                    {isMtuServerConnected === true ? `${currentStoreState["serverHost"]} - ID: ${currentStoreState["serverConId"]}`  : "None Server"}
                             </TableCell> 
 
                             <TableCell sx={{
@@ -210,13 +201,14 @@ export var MTUServerConnectionInfo = (props: any) =>{
                             <TableCell sx={{
                                 borderBottom: "none",
                             }}>
-                              iF mtuServern is connected show the correct values
-                                    isMtuServerConnected === true ? currentStoreState.mtuServer["serverPort"] : "Port is Missing"}
+                                {/* iF mtuServern is connected show the correct values */}
+                                    {isMtuServerConnected === true ? currentStoreState["serverPort"] : "Port is Missing"}
                             </TableCell>
                         </TableRow>
                     </TableBody>
                 </Table>
-            </TableContainer> */}
+            </TableContainer>
+            
         </Box>
     );
 }

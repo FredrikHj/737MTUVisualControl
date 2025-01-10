@@ -8,9 +8,9 @@ import {componentRerenderStorageChanges$} from "../_data/RerenderComponentOnStor
 
 import { Box, Table, TableHead, TableBody, TableContainer, TableCell, TableRow } from '@mui/material';
 import {MTUServerConnectionStatus} from"./MTUServerConnection";
+import {ServicePhidgetsConStatus} from"./ServicePhidgetsConStatus";
 
-var AppHeader = (props: any) =>{
-    const { MTUService } = props;
+var AppHeader = () =>{
   
     // Get updated Store state and save it  
     const [ currentStoreState, updateCurrrentStoreState ] = useState<any>(null);
@@ -27,29 +27,65 @@ var AppHeader = (props: any) =>{
         <Box sx={{
             width: "100%",
             display: "flex", 
-            flexDirection: "row", 
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
         }}>
             <Box sx={{
-                border: "1px solid red",
-                width: "30%",
-     
-            }}>
-                Logga
-            </Box>
-            <Box sx={{
-                border: "1px solid red",
-                width: "40%",
+                width: "100%",
                 display: "flex", 
-                flexDirection: "row",
-                justifyContent: "center",
+                flexDirection: "row", 
             }}>
-                <MTUServerConnectionStatus/>
+                <Box sx={{
+                    border: "1px solid red",
+                    width: "20%",
+                }}>
+                    Logga
+                </Box>
+                <Box sx={{
+                    border: "1px solid red",
+                    width: "60%",
+                    textAlign: "center",
+                }}>
+                     <Box sx={{fontSize: "40px", letterSpacing: "20px"}}>
+                        FS MTU Overview
+                    </Box>
+                </Box>
+                <Box sx={{
+                    border: "1px solid red",
+                    width: "20%",
+                }}>
+                </Box>
             </Box>
             <Box sx={{
-                border: "1px solid red",
-                width: "30%",
+                marginTop: "10px",
+                width: "100%",
+                display: "flex", 
+                flexDirection: "row", 
             }}>
-                
+                <Box sx={{
+                    border: "1px solid red",
+                    width: "50%",
+                    display: "flex", 
+                    flexDirection: "row",
+                    justifyContent: "center",
+                }}>
+                    <MTUServerConnectionStatus/>
+                </Box>
+                <Box sx={{
+                    border: "1px solid red",
+                    width: "60%",
+                    display: "flex", 
+                    flexDirection: "row",
+                    justifyContent: "space-around",
+                }}>
+                    <Box>
+                        <ServicePhidgetsConStatus/>
+                    </Box>
+                    <Box>
+                        csad
+                    </Box>
+                </Box>
             </Box>
         </Box>
     );
