@@ -2,24 +2,22 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import serverConfig from "../../_data/ServerConfig";
 
 interface State {
-    name: string,
+    headlineName: string,
     isMtuServerConnected: boolean,
-    mtuServerConnectionMess: string,
     mtuServerError: boolean,
+    mtuServerMess: string,
     mtuServerErrorMess: string,
-    errorMessCreatedByServer: string,
     serverConId: string,
     serverHost: string,
     serverPort: number,
 }
 
 const initialState: State = {
-    name: "FSMTU Server",
+    headlineName: "MTU Server",
     isMtuServerConnected: false,
-    mtuServerConnectionMess: "",
     mtuServerError: false,
+    mtuServerMess: "",
     mtuServerErrorMess: "",
-    errorMessCreatedByServer: "",
     serverConId: "",
     serverHost: serverConfig.hostname,
     serverPort: serverConfig.port,
@@ -32,8 +30,8 @@ export const mtuServerSlicer = createSlice({
         setIsMtuServerConnected: (state: State, action: PayloadAction<boolean>) => {
             state.isMtuServerConnected = action.payload;
         },
-        setMtuServerConnectionMess: (state: State, action: PayloadAction<string>) => {
-            state.mtuServerConnectionMess = action.payload;
+        setMtuServerMess: (state: State, action: PayloadAction<string>) => {
+            state.mtuServerMess = action.payload;
         },
         setServerHost : (state: State, action: PayloadAction<string>) => {
             state.serverHost = action.payload;
@@ -50,21 +48,17 @@ export const mtuServerSlicer = createSlice({
         setMtuServerErrorMess: (state: State, action: PayloadAction<string>) => {
             state.mtuServerErrorMess = action.payload;
         },
-        setErrorMessCreatedByServer: (state: State, action: PayloadAction<string>) => {
-            state.errorMessCreatedByServer = action.payload;
-        },
     }
 });
 
 export const { 
-                setIsMtuServerConnected,
-                setMtuServerConnectionMess, 
-                setIsMtuServerError, 
-                setMtuServerErrorMess,
-                setErrorMessCreatedByServer, 
-                setServerHost, 
-                setServerPort,
-                setServerConId,
-            } = mtuServerSlicer.actions;
+    setIsMtuServerConnected,
+    setMtuServerMess, 
+    setIsMtuServerError, 
+    setMtuServerErrorMess, 
+    setServerHost, 
+    setServerPort,
+    setServerConId,
+} = mtuServerSlicer.actions;
 
 export default mtuServerSlicer.reducer;

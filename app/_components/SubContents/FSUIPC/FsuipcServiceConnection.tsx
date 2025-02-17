@@ -1,17 +1,17 @@
 /* ================================================== Service Container ==================================================
 Import  modules */
-import { initializeStore } from "../_reduxStore/CommonStore";
+import { initializeStore } from "../../../_reduxStore/CommonStore";
 
 import { useSelector } from 'react-redux';
 import React, { useState, useEffect } from 'react';
-import {componentRerenderStorageChanges$} from "../_data/RerenderComponentOnStorageChanges";
+import {componentRerenderStorageChanges$} from "../../../_data/RerenderComponentOnStorageChanges";
 
 import { Box, Button, Grid, Paper, styled, Table, TableHead, TableBody, TableContainer, Typography } from '@mui/material';
 
-import FSUIPCInfoContainer from "../_data/FSUIPC/FSUIPCInfoContainer";
-import PhidgetsInfoContainer from "../_data/Phidgets/PhidgetsInfoContainer";
-import LoadFsuipcService from '../_data/FSUIPC/LoadFSUIPCConInfo';
-import LoadingIndicator from "../_data/LoadingIndicator/LoadingIndicators";
+import FSUIPCInfoContainer from "../../../_data/FSUIPC/FSUIPCInfoContainer";
+import PhidgetsInfoContainer from "../../../_data/Phidgets/PhidgetsInfoContainer";
+import LoadFsuipcService from '../../../_data/FSUIPC/LoadFSUIPCConInfo';
+import LoadingIndicator from "../../../_data/LoadingIndicator/ServerErrorRetrying";
 
 var FsuipcServiceConnectionInfo = (props: any) =>{
     const { MTUService } = props;
@@ -29,8 +29,8 @@ var FsuipcServiceConnectionInfo = (props: any) =>{
         componentRerenderStorageChanges$.subscribe((getNewStoreValues: any) => {
             console.log(getNewStoreValues);
             if(Object.keys(getNewStoreValues).length !== 0){
-                updateIsMtuServerConnected(getNewStoreValues.mtuServer["isMtuServerConnectedc"]);
-                updateIsFsuipcStarted(getNewStoreValues.serviceFSUIPC["connected"]);
+                updateIsMtuServerConnected(getNewStoreValues.conStatusMTUServer["isMtuServerConnectedc"]);
+                updateIsFsuipcStarted(getNewStoreValues.conStatusServiceFSUIPC["connected"]);
                 getNewStoreValues && updateCurrrentStoreState(getNewStoreValues);
             }
         }); 
@@ -100,20 +100,20 @@ var FsuipcServiceConnectionInfo = (props: any) =>{
                                         {[
                                             ( /* Both MTU server and Phidgets are Connected */
                                                 isMtuServerConnected === true && isFsuipcConnected === true &&
-                                                currentStoreState.serviceFSUIPC["fsuipcConnectionMess"]
+                                                currentStoreState.conStatusServiceFSUIPC["fsuipcConnectionMess"]
                                                 
                                             ),( /* None of MTU server or Phidgets are Connected */
                                                 isMtuServerConnected === false && isFsuipcConnected === false &&
-                                                currentStoreState.serviceFSUIPC["fsuipcConnectionMess"]
+                                                currentStoreState.conStatusServiceFSUIPC["fsuipcConnectionMess"]
 
                                             ), (/* MTU server is connected but Phidgets is not */
                                                 isMtuServerConnected === true && isFsuipcConnected === false &&
-                                                    currentStoreState.serviceFSUIPC["fsuipcConnectionMess"]
+                                                    currentStoreState.conStatusServiceFSUIPC["fsuipcConnectionMess"]
                                             )
                                         ]}
                                     </Box>
                                     :   
-                                        currentStoreState.serviceFSUIPC["websocketNotFound"] === true && isFsuipcStarted === false && 
+                                        currentStoreState.conStatusServiceFSUIPC["websocketNotFound"] === true && isFsuipcStarted === false && 
                                             <LoadingIndicator
                                                 keyStr={MTUService}
                                                 spinnerType={"lds-spinner"}
@@ -133,7 +133,7 @@ var FsuipcServiceConnectionInfo = (props: any) =>{
                         </Box>
                         < Box>
                         { /* Show a Loading Spinner if Backend is not Connected */
-                        currentStoreState.serviceFSUIPC["websocketNotFound"] === true && isFsuipcStarted === false && 
+                        currentStoreState.conStatusServiceFSUIPC["websocketNotFound"] === true && isFsuipcStarted === false && 
                                 <LoadingIndicator
                                     keyStr={MTUService}
                                     spinnerType={"lds-spinner"}

@@ -1,7 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface State {
-    name: string,
+    headlineStatus: string,
+    headlineInfoContaioner: string,
     connectionLoading: boolean,
     isFsuipcConnected: boolean,
     fsuipcConnectionMess: string,
@@ -11,7 +12,8 @@ interface State {
 }
 
 const initialState: State = {
-    name: "FSUIPC",
+    headlineStatus: "FSUIPC",
+    headlineInfoContaioner: "FSUIPC Websocket",
     connectionLoading: false,
     isFsuipcConnected: false,
     fsuipcConnectionMess: "",

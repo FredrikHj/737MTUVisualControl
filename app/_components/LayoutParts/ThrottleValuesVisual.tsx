@@ -1,15 +1,15 @@
 /* ================================================== Service Container ==================================================
 Import  modules */
-import { initializeStore } from "../_reduxStore/CommonStore";
+import { initializeStore } from "../../_reduxStore/CommonStore";
 
 import { useSelector } from 'react-redux';
 import React, { useState, useEffect } from 'react';
-import checkReduxStoreTree from "../_data/CheckStoreState";
+import checkReduxStoreTree from "../../_data/CheckStoreState";
 import {
     componentRerenderStorageChanges$,
     updateSpeedBrakeLeverPossValue$
-} from "../_data/RerenderComponentOnStorageChanges";
-import {FSUIPCInstance$} from "../_data/FSUIPC/FSUIPCListener";
+} from "../../_data/RerenderComponentOnStorageChanges";
+import {FSUIPCInstance$} from "../../_data/FSUIPC/FSUIPCListener";
 
 import { Box, Button, Grid, Paper, styled, Table, TableHead, TableBody, TableContainer, Typography } from '@mui/material';
  
@@ -18,7 +18,7 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
-import {mtuValueUpdateFunction} from"../_data/MtuValueUpdateInitiation";
+import {mtuValueUpdateFunction} from"../../_data/MtuValueUpdateInitiation";
 import { Sd } from "@mui/icons-material";
 
 var ThrottleVisual = () =>{   

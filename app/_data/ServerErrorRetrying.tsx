@@ -7,7 +7,7 @@ import React, { useState, useEffect } from 'react';
 import {componentRerenderStorageChanges$} from "./RerenderComponentOnStorageChanges";
 
 import { Box, TableBody, TableContainer, TableCell, TableRow} from '@mui/material';
-import LoadingIndicator from "./LoadingIndicator/LoadingIndicators";
+import LoadingIndicator from "./LoadingIndicator/ServerErrorRetrying";
 
 import serverConfig from "./ServerConfig";
 

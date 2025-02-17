@@ -1,26 +1,28 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface State {
-    name: string,
-    connectionLoading: boolean,
+    headlineName: string,
     isPhidgetsConnected: boolean,
-    phidgetsConnectionMess: string,
     phidgetsServerError: boolean,
+    phidgetsServerMess: string,
+
     phidgetsServerErrorMess: string,
     phidgetsConLost: boolean,
+
     phidgetsConLostMess: string,
     phidgetsServerHost: string,
     phidgetsServerPort: number,
 }
 
 const initialState: State = {
-    name: "Phidgets",
-    connectionLoading: false,
+    headlineName: "Phidgets Server",
     isPhidgetsConnected: false,
-    phidgetsConnectionMess: "",
     phidgetsServerError: false,
-    phidgetsServerErrorMess: "",
+    phidgetsServerMess: "",
+
+    phidgetsServerErrorMess: "Server Error - Retrying!",
     phidgetsConLost: false,
+
     phidgetsConLostMess: "",
     phidgetsServerHost: "",
     phidgetsServerPort: 0,
@@ -30,14 +32,11 @@ export const PhidgetsSlicer = createSlice({
     name: "PhidgetsSlicer",
     initialState,
     reducers: {
-        phidgetsConnectionLoading: (state: State, action: PayloadAction<boolean>) => {
-            state.connectionLoading = action.payload;
-        },     
         setIsPhidgetsConnected: (state: State, action: PayloadAction<boolean>) => {
             state.isPhidgetsConnected = action.payload;
         },
-        setPhidgetsConnectionMess: (state: State, action: PayloadAction<string>) => {
-            state.phidgetsConnectionMess = action.payload;
+        setPhidgetsServerMess: (state: State, action: PayloadAction<string>) => {
+            state.phidgetsServerMess = action.payload;
         },
         setIsPhidgetsServerError: (state: State, action: PayloadAction<boolean>) => {
             state.phidgetsServerError = action.payload;
@@ -61,9 +60,8 @@ export const PhidgetsSlicer = createSlice({
 });
 
 export const { 
-    phidgetsConnectionLoading, 
     setIsPhidgetsConnected, 
-    setPhidgetsConnectionMess, 
+    setPhidgetsServerMess, 
     setIsPhidgetsServerError, 
     setPhidgetsServerErrorMess, 
     setPhidgetsConLost, 

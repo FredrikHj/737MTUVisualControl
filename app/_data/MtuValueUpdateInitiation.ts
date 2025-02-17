@@ -20,7 +20,7 @@ import {updateSpeedBrakeLeverPossValue} from"./RerenderComponentOnStorageChanges
 
 import serverConfig from "./ServerConfig";
 
-import RequestSocketIOServer from '../RequestSocketIOServer';
+import RequestMTUServer from '../RequestMTUServer';
 // var mtuValueUpdateObj: any = {};
 
 // Sett type of data
@@ -32,7 +32,7 @@ import RequestSocketIOServer from '../RequestSocketIOServer';
 
     initializeStore.subscribe(checkReduxStoreTree);  
     console.log("fews");
-    const socket: any = RequestSocketIOServer();
+    const socket: any = RequestMTUServer();
 
     socket.on("connect", () => {
       //Begin listening for MTU Sever connection

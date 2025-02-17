@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { Box, Button, Grid, Paper, styled, Table, TableHead, TableBody, TableRow, TableCell, TableContainer, Typography, fabClasses } from '@mui/material';
 import { useSelector } from 'react-redux';
 import {componentRerenderStorageChanges$} from "../RerenderComponentOnStorageChanges";
-import LoadingIndicator from "../LoadingIndicator/LoadingIndicators";
+import LoadingIndicator from "../LoadingIndicator/ServerErrorRetrying";
 
 import { log } from 'console';
 

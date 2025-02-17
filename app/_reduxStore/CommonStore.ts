@@ -8,9 +8,10 @@ import { ThrottleUpdatingValues } from './reducers/ThrottleUpdatingValuesSlicer'
 export const initializeStore = configureStore({
   reducer: {
       appStart: AppStartSlicer.reducer,
-      mtuServer: mtuServerSlicer.reducer,
-      serviceFSUIPC: FSUIPCSlicer.reducer,    
-      servicePHIDGETS: PhidgetsSlicer.reducer,
+      conStatusMTUServer: mtuServerSlicer.reducer,
+      conStatusServiceFSUIPC: FSUIPCSlicer.reducer,    
+      conStatusServicePHIDGETS: PhidgetsSlicer.reducer,
+      /* valueSharesServerViwer: */
       throttleUpdatingValues: ThrottleUpdatingValues.reducer,
   }
 })

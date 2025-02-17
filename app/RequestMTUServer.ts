@@ -1,7 +1,7 @@
 import { io } from "socket.io-client";
 import serverConfig from "./_data/ServerConfig";
 
-const RequestSocketIOServer = () => {
+const RequestMTUServer = () => {
     return io(`http://${serverConfig.hostname}:${serverConfig.port}` , {
         withCredentials: false,
         extraHeaders: {
@@ -10,4 +10,4 @@ const RequestSocketIOServer = () => {
       });
 }
 
-export default RequestSocketIOServer;
+export default RequestMTUServer;

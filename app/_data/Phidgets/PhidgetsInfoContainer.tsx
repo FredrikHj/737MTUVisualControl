@@ -4,10 +4,9 @@ import React, { useState, useEffect } from 'react';
 import { Box, Button, Grid, Paper, styled, Table, TableHead, TableBody, TableRow, TableCell, TableContainer, Typography } from '@mui/material';
 import { useSelector } from 'react-redux';
 import {componentRerenderStorageChanges$} from "../RerenderComponentOnStorageChanges";
-import LoadingIndicator from "../LoadingIndicator/LoadingIndicators";
+import LoadingIndicator from "../LoadingIndicator/ServerErrorRetrying";
 
-const PhidgetsInfoContainer = (props: any) => {
-    const {serviceKey} = props;
+const PhidgetsInfoContainer = () => {
     const [ currentStoreState, updateCurrrentStoreState ] = useState<any>(null);
 
     useEffect(() => {
@@ -17,7 +16,7 @@ const PhidgetsInfoContainer = (props: any) => {
             if(getNewStoreValues)updateCurrrentStoreState(getNewStoreValues);
        });
     }, [currentStoreState]);
-    console.log('currentStoreState :', currentStoreState, serviceKey);
+    console.log('currentStoreState :', currentStoreState);
  
     return(  
         <> 
@@ -37,8 +36,8 @@ const PhidgetsInfoContainer = (props: any) => {
                             </TableCell>
                             <TableCell sx={{ textAlign: "center"}} colSpan={3}>
                                 { 
-                                    currentStoreState[serviceKey]["connected"] === true && currentStoreState[serviceKey].connectionInfo["dataReceived"] === true
-                                        ?   currentStoreState[serviceKey].connectionInfo.receivedData["messegnes"]
+                                    currentStoreState["connected"] === true && currentStoreState.connectionInfo["dataReceived"] === true
+                                        ?   currentStoreState.connectionInfo.receivedData["messegnes"]
                                         :   "No Connection!"
                                 }
                             </TableCell>
@@ -52,9 +51,9 @@ const PhidgetsInfoContainer = (props: any) => {
                             </TableCell> 
                             <TableCell>
                                 {                                        
-                                    currentStoreState[serviceKey]["connected"] === true && currentStoreState[serviceKey].connectionInfo["dataReceived"] === true
-                                        ?   currentStoreState[serviceKey].connectionInfo.receivedData["serverLocation"]
-                                        :   generalTexts.mixedTexts["noData"]
+                                    currentStoreState["connected"] === true && currentStoreState.connectionInfo["dataReceived"] === true
+                                        ?   currentStoreState.connectionInfo.receivedData["serverLocation"]
+                                        :   "efwf"    //generalTexts.mixedTexts["noData"]
                                 }
                             </TableCell>
                             <TableCell>
@@ -62,9 +61,9 @@ const PhidgetsInfoContainer = (props: any) => {
                             </TableCell>
                             <TableCell>
                                 {                                        
-                                    currentStoreState[serviceKey]["connected"] === true && currentStoreState[serviceKey].connectionInfo["dataReceived"] === true
-                                        ?   currentStoreState[serviceKey].connectionInfo.receivedData["port"]
-                                        :   generalTexts.mixedTexts["noData"]
+                                    currentStoreState["connected"] === true && currentStoreState.connectionInfo["dataReceived"] === true
+                                        ?   currentStoreState.connectionInfo.receivedData["port"]
+                                        :   "few"   //neralTexts.mixedTexts["noData"]
                                 }   
                             </TableCell>
                         </TableRow>

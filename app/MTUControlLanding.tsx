@@ -47,9 +47,9 @@ var MTUControlLanding = () => {
             getNewStoreValues && updateCurrrentStoreState(getNewStoreValues);
             //
             if(Object.keys(getNewStoreValues).length !== 0){
-                updateIsMtuServerConnected(getNewStoreValues.mtuServer["isMtuServerConnected"]);
-                updateIsPhidgetsServerConnected(getNewStoreValues.servicePHIDGETS["isPhidgetsConnected"]);
-                updateIsFsuipcServerConnected(getNewStoreValues.serviceFSUIPC["isFsuipcConnected"]);
+                updateIsMtuServerConnected(getNewStoreValues.conStatusMTUServer["isMtuServerConnected"]);
+                updateIsPhidgetsServerConnected(getNewStoreValues.conStatusServicePHIDGETS["isPhidgetsConnected"]);
+                updateIsFsuipcServerConnected(getNewStoreValues.conStatusServiceFSUIPC["isFsuipcConnected"]);
                 updateChoosenTabNr(getNewStoreValues.appStart["setChoosenTabNr"]);
 
                 getNewStoreValues && updateCurrrentStoreState(getNewStoreValues);
