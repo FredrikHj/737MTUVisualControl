@@ -8,7 +8,7 @@ import {componentRerenderStorageChanges$} from "../../_data/RerenderComponentOnS
 
 import { Box, Table, TableHead, TableBody, TableContainer, TableCell, TableRow } from '@mui/material';
 import MTUServerConStatus from"../SubContents/MTUServer/MTUServerConStatus";
-import ServicePhidgetsConStatus from"../SubContents/Phidgets/ServicePhidgetsConStatus";
+import PhidgetsConStatus from"../SubContents/Phidgets/PhidgetsConStatus";
 import ServerErrorRetrying from "../../_data/ServerErrorRetrying";
 
 var AppHeader = () =>{
@@ -87,7 +87,7 @@ var AppHeader = () =>{
                         justifyContent: "center",
                         alignItems:  "center",  
                     }}>
-                        <ServicePhidgetsConStatus/>
+                        <PhidgetsConStatus/>
                     </Box>
                     <Box sx={{
                         border: "1px solid red",

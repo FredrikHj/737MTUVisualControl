@@ -16,7 +16,7 @@ import PhidgetsInfoContainer from "../../../_data/Phidgets/PhidgetsInfoContainer
 import ServerErrorRetrying from "../../../_data/ServerErrorRetrying";
 import LoadingIndicator from "../../../_data/LoadingIndicator/ServerErrorRetrying";
 
-var ServicePhidgetsConStatus = () =>{
+var PhidgetsConStatus = () =>{
     //Get store States
         var reduxStorePlaceMTUServer = "conStatusMTUServer";
         var reduxStorePlaceService = "conStatusServicePHIDGETS";
@@ -144,7 +144,7 @@ var ServicePhidgetsConStatus = () =>{
     );
 }
 
-export default ServicePhidgetsConStatus;
+export default PhidgetsConStatus;
 
 /*
                 <Box sx={{

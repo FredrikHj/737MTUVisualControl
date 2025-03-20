@@ -12,12 +12,13 @@ import { styled } from '@mui/material/styles';
 
 import { Box, Divider } from '@mui/material';
 import MTUServerConInfo from"../../SubContents/MTUServer/MTUServerConInfo";
-import ServicePhidgetsConInfo from"../../SubContents/Phidgets/ServicePhidgetsConInfo";
+import PhidgetsConInfo_Main from"../../SubContents/Phidgets/PhidgetsConInfo_MainComponent";
 
 import {componentRerenderStorageChanges$} from"../../../_data/RerenderComponentOnStorageChanges";
 
 import MTUServerConStatus from"../../SubContents/MTUServer/MTUServerConStatus";
 import FsuipcServiceConnectionInfo from"../../SubContents/FSUIPC/FsuipcServiceConnection"
+import { BARREL_OPTIMIZATION_PREFIX } from 'next/dist/shared/lib/constants';
 
 const Root = styled('div')(({ theme }) => ({
     width: '100%',
@@ -30,23 +31,37 @@ const Root = styled('div')(({ theme }) => ({
 
 var TabView1 = () =>{  
     return(
-        <>
-            <Box sx={{
-                width: "33%",
-            }}>   
-                <MTUServerConInfo/>               
+        <Box sx={{
+            width: "100%",
+            display: "flex", 
+            flexDirection: "column",
+            alignItems: "center",
+        }}>
+            <Box>
+                <MTUServerConInfo/>   
             </Box>
             <Box sx={{
-                width: "33%",
-            }}>   
-                <ServicePhidgetsConInfo/>               
+                marginTop: "50px",
+            }}>
+                <Box sx={{
+                    width: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    fontSize: "30px", 
+                    fontWeight: "bold", 
+                    letterSpacing: "35px"
+                }}>
+                    <Box>   
+                        <PhidgetsConInfo_Main/>      
+                    </Box>
+                    <Box sx={{
+                        width: "33%",
+                    }}>   
+                        FSUIPC           
+                    </Box>
+                </Box>
             </Box>
-            <Box sx={{
-                width: "33%",
-            }}>   
-                FSUIPC           
-            </Box>
-        </>
+        </Box>
     );
 }
 export default TabView1;

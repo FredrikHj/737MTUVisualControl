@@ -65,7 +65,7 @@ var TabsViewsHeadPage = () =>{
                     indicatorColor="secondary"
                     centered
                 >
-                    <Tab label="Connection Information" value="1" />
+                    <Tab label="Service connection information" value="1" />
                     <Tab label="FlightSimulator <---> Phidgets" value="2" />
                     <Tab label="Values Possitions" value="3" />
                 </TabList>

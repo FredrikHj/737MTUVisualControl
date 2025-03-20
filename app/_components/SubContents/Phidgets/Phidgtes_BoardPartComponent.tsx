@@ -13,7 +13,7 @@ import PhidgetsInfoContainer from "../../../_data/Phidgets/PhidgetsInfoContainer
 import ServerErrorRetrying from "../../../_data/ServerErrorRetrying";
 import LoadingIndicator from "../../../_data/LoadingIndicator/ServerErrorRetrying";
 
-var ServicePhidgetsConInfo = () =>{
+var Phidgets_BoardPart = () =>{
     //Get store States
         var reduxStorePlaceMTUServer = "conStatusMTUServer";
         var reduxStorePlaceService = "conStatusServicePHIDGETS";
@@ -56,48 +56,31 @@ var ServicePhidgetsConInfo = () =>{
 
     return(
         <Box sx={{
-            borderBottom: "3px solid grey", 
             width: "100%",
-            fontSize: "25px", 
-            display: "flex", 
             flexDirection: "column", 
-            alignItems: "center",
             fontWeight: "bold",
-            letterSpacing: "10px"
         }}>
             <TableContainer>
                 <Table>
-                    <TableHead>
-                        <TableRow>
-                            <TableCell sx={{
-                                borderBottom: "3px solid grey", 
-                                textAlign: "center", 
-                                fontSize: "30px", 
-                                fontWeight: "bold", 
-                                letterSpacing: "35px"
-                            }} colSpan={10}>
-                                {currentStoreState["headlineName"].split(' ')[0].toUpperCase()}
-                            </TableCell>
-                        </TableRow>     
-                    </TableHead>
                     <TableBody>
                         <TableRow>
                             <TableCell sx={{
                                 borderLeft: "3px solid grey", 
                                 borderRight: "1px solid grey",
-                                borderBottom: "3px solid grey",
-                                textAlign: "center", 
-                                fontSize: "25px"
+                                borderBottom: "1px solid grey",
+                                textAlign: "center",
+                                fontSize: "20px"
                             }}> 
-                                Connected to:    
+                                Name    
                             </TableCell>
                             <TableCell sx={{
-                                borderRight: "3px solid grey", 
-                                borderBottom: "3px solid grey", 
+                                borderLeft: "3px solid grey", 
+                                borderRight: "1px solid grey",
+                                borderBottom: "1px solid grey",
                                 textAlign: "center", 
-                                fontSize: "25px"
-                            }}>
-                                Port Number:
+                                fontSize: "20px"
+                            }}> 
+                                State    
                             </TableCell>
                         </TableRow>
                         <TableRow>
@@ -107,27 +90,37 @@ var ServicePhidgetsConInfo = () =>{
                                 borderBottom: "1px solid grey",
                                 textAlign: "center", 
                                 fontSize: "20px"
-                            }}> 
-                                {/* iF mtuServern is connected show the correct values */
-                               `Host: ${isPhidgetsConnected === true ? currentStoreState["phidgetsServerHost"].toUpperCase() : "None server"}`}
+                            }}>
+                                Name    
                             </TableCell>
                             <TableCell sx={{
-                                borderRight: "3px solid grey",
+                                borderLeft: "3px solid grey", 
+                                borderRight: "1px solid grey",
+                                borderBottom: "1px solid grey",
                                 textAlign: "center", 
                                 fontSize: "20px"
-                            }} rowSpan={2}>
-                            {/* iF mtuServern is connected show the correct values */
-                                isPhidgetsConnected === true ? currentStoreState["phidgetsServerPort"] : "No Value" }
+                            }}> 
+                                State    
                             </TableCell>
                         </TableRow>
                         <TableRow>
                             <TableCell sx={{
-                                borderLeft: "3px solid grey",
-                                borderRight: "1px solid grey", 
+                                borderLeft: "3px solid grey", 
+                                borderRight: "1px solid grey",
+                                borderBottom: "3px solid grey",
                                 textAlign: "center", 
                                 fontSize: "20px"
-                            }}>
-                                ID: {isPhidgetsConnected === true ? "0": "No Value" }
+                            }}> 
+                                Name    
+                            </TableCell>
+                            <TableCell sx={{
+                                borderLeft: "3px solid grey", 
+                                borderRight: "1px solid grey",
+                                borderBottom: "3px solid grey",
+                                textAlign: "center", 
+                                fontSize: "20px"
+                            }}> 
+                                State    
                             </TableCell>
                         </TableRow>
                     </TableBody>
@@ -137,4 +130,4 @@ var ServicePhidgetsConInfo = () =>{
     );
 }
 
-export default ServicePhidgetsConInfo;
+export default Phidgets_BoardPart;
