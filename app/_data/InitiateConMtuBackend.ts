@@ -24,10 +24,11 @@ import {
   setPhidgetsConLost,
   setPhidgetsConLostMess,
   setPhidgetsServerHost,
-  setPhidgetsServerPort
+  setPhidgetsServerPort,
+  setPhidgetsControllerBoardsObj,
 } from "../_reduxStore/reducers/PhidgetsSlicer";
 import { setIsfsuipcConnected, setFsuipcConnectionMess } from "../_reduxStore/reducers/FSUIPCSlicer";
-import serverConfig from "./ServerConfig";
+import serverConfig from './ServerConfig';
 
 import RequestMTUServer from '../RequestMTUServer';
 
@@ -56,31 +57,34 @@ import RequestMTUServer from '../RequestMTUServer';
       socket.on("connect", () => {
 
         socket.on("mtuInitiation", (data: any, acknowledgements: any) => {
-          
+          var pathToMtuConParts = data.MTUConParts;
+          var pathToServicePhidgets = data.servicesConParts;
           console.log('Incomming data from MTUServer: ', data);
-          console.log('Is MTUServer conneted? ', data.backend["isConnected"]);
-          console.log('Is PhidgetsServer conneted? ', data.phidgets["isConnected"]);
+          console.log('Is MTUServer conneted? ', pathToMtuConParts.backend["isConnected"]);
+          console.log('Is PhidgetsServer conneted? ', pathToMtuConParts.phidgets["isConnected"]);
 
           console.log('Connection to PhidgetsServer :');
-          console.log('Is connected :', data.phidgets["isConnected"]);
+          console.log('Is connected :', pathToMtuConParts.phidgets["isConnected"]);
                     
-          if(data.backend["serverAcknowledgements"] === 200){
-              //Save the incomming connection objects´ values into the Redux store created for the visual presentation of MTU states
-              //Connection States for the MTU Server
-            initializeStore.dispatch(setIsMtuServerConnected(data.backend["isConnected"]));
-            initializeStore.dispatch(setMtuServerMess(data.backend["serverMess"]));
-            initializeStore.dispatch(setServerConId(data.backend["serverClientConId"]));
+          if(pathToMtuConParts.backend["serverAcknowledgements"] === 200){
+            //Save the incomming connection objects´ values into the Redux store created for the visual presentation of MTU states
+            //Connection States for the MTU Server
+              initializeStore.dispatch(setIsMtuServerConnected(pathToMtuConParts.backend["isConnected"]));
+              initializeStore.dispatch(setMtuServerMess(pathToMtuConParts.backend["serverMess"]));
+              initializeStore.dispatch(setServerConId(pathToMtuConParts.backend["serverClientConId"]));
 
-              //Connection States for Phidgets
-              initializeStore.dispatch(setIsPhidgetsConnected(data.phidgets["isConnected"]));
-              initializeStore.dispatch(setPhidgetsServerMess(data.phidgets["serverMess"]));
-              initializeStore.dispatch(setIsPhidgetsServerError(data.phidgets["isError"]));
+            //Connection States for Phidgets
+              initializeStore.dispatch(setIsPhidgetsConnected(pathToMtuConParts.phidgets["isConnected"]));
+              initializeStore.dispatch(setPhidgetsServerMess(pathToMtuConParts.phidgets["serverMess"]));
+              initializeStore.dispatch(setIsPhidgetsServerError(pathToMtuConParts.phidgets["isError"]));
 
-              initializeStore.dispatch(setPhidgetsConLost(data.phidgets["conLost"]));
-              initializeStore.dispatch(setPhidgetsConLostMess(data.phidgets["conLostMess"]));
-              initializeStore.dispatch(setPhidgetsServerHost(data.phidgets["serverHostname"]));
-              initializeStore.dispatch(setPhidgetsServerPort(data.phidgets["serverPort"]));
+              initializeStore.dispatch(setPhidgetsConLost(pathToMtuConParts.phidgets["conLost"]));
+              initializeStore.dispatch(setPhidgetsConLostMess(pathToMtuConParts.phidgets["conLostMess"]));
+              initializeStore.dispatch(setPhidgetsServerHost(pathToMtuConParts.phidgets["serverHostname"]));
+              initializeStore.dispatch(setPhidgetsServerPort(pathToMtuConParts.phidgets["serverPort"]));
 
+              // Set con info for Controllerboards
+              initializeStore.dispatch(setPhidgetsControllerBoardsObj(pathToServicePhidgets));
           }
           // To be sent to server as a response
             acknowledgements({

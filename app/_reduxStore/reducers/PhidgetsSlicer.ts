@@ -12,6 +12,7 @@ interface State {
     phidgetsConLostMess: string,
     phidgetsServerHost: string,
     phidgetsServerPort: number,
+    controllerBoard: object,
 }
 
 const initialState: State = {
@@ -26,6 +27,7 @@ const initialState: State = {
     phidgetsConLostMess: "",
     phidgetsServerHost: "",
     phidgetsServerPort: 0,
+    controllerBoard: {},
 };
 
 export const PhidgetsSlicer = createSlice({
@@ -56,6 +58,9 @@ export const PhidgetsSlicer = createSlice({
         setPhidgetsServerPort: (state: State, action: PayloadAction<number>) => {
             state.phidgetsServerPort = action.payload;
         },
+        setPhidgetsControllerBoardsObj: (state: State, action: PayloadAction<object>) => {
+            state.controllerBoard = action.payload;
+        },
     },
 });
 
@@ -67,7 +72,8 @@ export const {
     setPhidgetsConLost, 
     setPhidgetsServerHost,
     setPhidgetsServerPort,
-    setPhidgetsConLostMess
+    setPhidgetsConLostMess,
+    setPhidgetsControllerBoardsObj,
 } = PhidgetsSlicer.actions;
 
 export default PhidgetsSlicer.reducer;

@@ -1,18 +1,15 @@
 /* ================================================== Landing Page ==================================================
 Import  modules */
-import { initializeStore } from"../_reduxStore/CommonStore";
-import { useSelector } from 'react-redux'; 
 import { Box, Divider } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import React, { useState, useEffect } from'react';
-import TabsChoose from"../components/TabsChoosenPages";
-import MtuViewerInitiation from"../data/MtuViewerInitiation";
-import MtuValueUpdateInitiation from"../data/MtuValueUpdateInitiation";
-import LoadingIndicator from "../data/LoadingIndicator/LoadingIndicators";
-import MTUServerConnectionInfo from"../components/MTUServerConnectionInfo";
-import FsuipcServiceConnectionInfo from"../components/FsuipcServiceConnectionInfo";
-import PhidgetsServiceConnectionInfo from"../components/PhidgetsServiceConnectionInfo";
-import {componentRerenderStorageChanges$} from"../data/RerenderComponentOnStorageChanges";
+import TabsChoose from"./_components/LayoutParts/TabsViewsHeadPage";
+import MtuViewerInitiation from"./_data/InitiateConMtuBackend";
+import MtuValueUpdateInitiation from"./_data/MtuValueUpdateInitiation";
+import MTUServerConnectionInfo from"./_components/SubContents/MTUServer/MTUServerConInfo";
+import FsuipcServiceConnectionInfo from"./_components/SubContents/FSUIPC/FsuipcServiceConnection";
+import PhidgetsServiceConnectionInfo from"./_components/SubContents/Phidgets/Phidgets_ServicePartComponent";
+import {componentRerenderStorageChanges$} from"./_data/RerenderComponentOnStorageChanges";
  
 const Root = styled('div')(({ theme }) => ({
     width: '100%',

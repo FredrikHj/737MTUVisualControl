@@ -7,8 +7,8 @@ import React, { useState, useEffect } from 'react';
 import {componentRerenderStorageChanges$} from "../../../_data/RerenderComponentOnStorageChanges";
 
 import { Box, Table, TableHead, TableBody, TableContainer, TableCell, TableRow } from '@mui/material';
-import Phidgets_ServicePart from "./Phidgtes_ServicePartComponent";
-import Phidgets_BoardPart from "./Phidgtes_BoardPartComponent";
+import Phidgets_ServicePart from "./Phidgets_ServicePartComponent";
+import Phidgets_BoardPart from "./Phidgets_BoardPartComponent";
 import { CacheProvider } from '@emotion/react';
 
 var PhidgetsConInfo_Main = () =>{   
@@ -26,24 +26,26 @@ var PhidgetsConInfo_Main = () =>{
                 {serviceName}
             </Box>
             <Table>
-                <TableRow>
-                    <TableCell sx={{
-                        width: "2.02%",
-                        textAlign: "center", 
-                        fontSize: "25px",
-                        borderBottom: "none",
-                    }}> 
-                        Server Info    
-                    </TableCell>
-                    <TableCell sx={{
-                        width: "1.99%",
-                        textAlign: "center", 
-                        fontSize: "25px",
-                        borderBottom: "none",
-                    }}> 
-                        Controllerboard Info      
-                    </TableCell>
-                </TableRow>
+                <TableBody>
+                    <TableRow>
+                        <TableCell sx={{
+                            width: "2.02%",
+                            textAlign: "center", 
+                            fontSize: "25px",
+                            borderBottom: "none",
+                        }}> 
+                            Server Info    
+                        </TableCell>
+                        <TableCell sx={{
+                            width: "1.99%",
+                            textAlign: "center", 
+                            fontSize: "25px",
+                            borderBottom: "none",
+                        }}> 
+                            Controllerboard Info      
+                        </TableCell>
+                    </TableRow>
+                 </TableBody>
             </Table>
             <Box sx={{
                 borderTop: "3px solid grey", 
