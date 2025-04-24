@@ -23,6 +23,8 @@ var PhidgetsModalRow = (props: any) =>{
         isBoardConnected === false &&
            updateIsBoardConnected(currentRowObj["isConnected"]);
     }, [isBoardConnected])
+    console.log('currentRowObj["ki"]', currentRowObj);
+    
     return(
         <>
             <TableRow>
@@ -51,7 +53,10 @@ var PhidgetsModalRow = (props: any) =>{
                 </TableCell>
                 {/* Cell 3*/} 
                 <TableCell sx={{
-                    border: "1px solid grey",
+                    borderLeft: "1px solid grey", 
+                    borderTop: "1px solid grey", 
+                    borderRight: "3px solid grey", 
+                    borderBottom: "1px solid grey",
                     textAlign: "center", 
                     fontSize: "20px"
             }}> 
@@ -90,6 +95,82 @@ var PhidgetsModalRow = (props: any) =>{
                 }}> 
                     {isBoardConnected === true 
                         ? currentRowObj["deviceChannel"]
+                        : 'N / V'
+                    }    
+                </TableCell>
+                {/* Cell 7*/} 
+                <TableCell sx={{
+                    borderLeft: "3px solid grey", 
+                    borderTop: "1px solid grey", 
+                    borderRight: "1px solid grey", 
+                    borderBottom: "1px solid grey",
+                    textAlign: "center",
+                    fontSize: "20px"
+                }}> 
+                    {isBoardConnected === true 
+                        ? currentRowObj["kp"]
+                        : 'N / V'
+                    }    
+                </TableCell>
+                {/* Cell 8*/} 
+                <TableCell sx={{
+                    borderLeft: "3px solid grey", 
+                    borderTop: "1px solid grey", 
+                    borderRight: "1px solid grey", 
+                    borderBottom: "1px solid grey",
+                    textAlign: "center", 
+                    fontSize: "20px",
+                    color: "white",
+                }}>
+                    {isBoardConnected === true 
+                        ? currentRowObj["ki"]
+                        : 'N / V'
+                    }  
+                </TableCell>
+                {/* Cell 9*/} 
+                <TableCell sx={{
+                    borderLeft: "1px solid grey", 
+                    borderTop: "1px solid grey", 
+                    borderRight: "3px solid grey", 
+                    borderBottom: "1px solid grey",
+                    textAlign: "center", 
+                    fontSize: "20px"
+                }}> 
+                    {isBoardConnected === true 
+                        ? currentRowObj["kd"]
+                        : 'N / V'
+                    }     
+                </TableCell>
+                {/* Cell 10*/} 
+                <TableCell sx={{
+                    border: "1px solid grey",
+                    textAlign: "center", 
+                    fontSize: "20px"
+               }}> 
+                    {isBoardConnected === true 
+                        ? currentRowObj["deadBand"]
+                        : 'N / V'
+                    }      
+                </TableCell>
+                {/* Cell 11*/} 
+                <TableCell sx={{
+                    border: "1px solid grey",
+                    textAlign: "center", 
+                    fontSize: "20px"
+                }}> 
+                    {isBoardConnected === true 
+                        ? currentRowObj["acceleration"]
+                        : 'N / V'
+                    }    
+                </TableCell>
+                {/* Cell 12*/} 
+                <TableCell sx={{
+                    border: "1px solid grey",
+                    textAlign: "center", 
+                    fontSize: "20px"
+                }}> 
+                    {isBoardConnected === true 
+                        ? currentRowObj["velocityLimit"]
                         : 'N / V'
                     }    
                 </TableCell>

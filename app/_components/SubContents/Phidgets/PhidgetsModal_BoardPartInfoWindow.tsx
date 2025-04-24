@@ -18,15 +18,16 @@ import { styled } from '@mui/material/styles';
 var PhidgetsModal = (props: any) =>{
     var { currentBoardObj, closeModal } = props;
     console.log('props', props);
+    console.log('currentBoardObj :', currentBoardObj);
     
     return(
         <Box sx={{
             width: "80%",
-
             fontWeight: "bold",
             textAlign: "center",
             backgroundColor:' #fefefe',
-            margin: '15% auto', /* 15% from the top and centered */
+            marginLeft: '9%', /* 15% from the top and centered */
+            marginTop: '5%', /* 15% from the top and centered */
             padding: '20px',
         }}>
             <Box sx={{
@@ -39,7 +40,7 @@ var PhidgetsModal = (props: any) =>{
                     marginBottom: "20px",
                     marginLeft: "330px",
                 }}>
-                    Boards Informations
+                    Board Information
                 </Box>
                 <button style={{
                     border: "none",
@@ -56,7 +57,7 @@ var PhidgetsModal = (props: any) =>{
                 </button>
             </Box>
             <Box sx={{
-                height: "50vh",
+                height: "65vh",
                 overflowY: "scroll"
             }}>
                 <TableContainer>
@@ -69,8 +70,8 @@ var PhidgetsModal = (props: any) =>{
                                         textAlign:"center", 
                                         fontSize: "30px", 
                                         fontWeight: "bold", 
-                                        letterSpacing: "35px"
-                                    }} colSpan={2}>
+                                        letterSpacing: "10px"
+                                    }} colSpan={3}>
                                         {currentBoardObj.rowHeadLines[0]} 
                                     </TableCell>
                                     <TableCell sx={{
@@ -78,19 +79,27 @@ var PhidgetsModal = (props: any) =>{
                                         textAlign:"center", 
                                         fontSize: "30px", 
                                         fontWeight: "bold", 
-                                        letterSpacing: "35px"
-                                    }} colSpan={5}>
+                                        letterSpacing: "5px"
+                                    }} colSpan={3}>
                                         {currentBoardObj.rowHeadLines[1]}
                                     </TableCell>
-
+                                    <TableCell sx={{
+                                        border: "3px solid grey",
+                                        textAlign:"center", 
+                                        fontSize: "30px", 
+                                        fontWeight: "bold", 
+                                        letterSpacing: "5px"
+                                    }} colSpan={6}>
+                                        {currentBoardObj.rowHeadLines[2]}
+                                    </TableCell>
                                 </TableRow>
                                 <TableRow>
-                                    { [
-                                        currentBoardObj.rowHeadLines[2]["boardInfo"].map((item: any, index: any) => {
+                                    {[
+                                        currentBoardObj.rowHeadLines[3]["boardInfo"].map((item: any, index: any) => {
+                                        console.log('item :', item);
                                             return(
                                                 <TableCell sx={{
                                                     borderLeft: "3px solid grey", 
-                                                    borderTop: "2px solid grey", 
                                                     borderRight: "3px solid grey", 
                                                     borderBottom: "2px solid grey", 
                                                     textAlign: "center", 
@@ -100,11 +109,10 @@ var PhidgetsModal = (props: any) =>{
                                                 </TableCell>
                                             )
                                         }),    
-                                        currentBoardObj.rowHeadLines[2]["deviceSpec"].map((item: any, index: any) => {
+                                        currentBoardObj.rowHeadLines[3]["genDeviceSpec"].map((item: any, index: any) => {
+                                        console.log('item :', item);
                                             return(
                                                 <TableCell sx={{
-                                                    borderLeft: "3px solid grey", 
-                                                    borderTop: "2px solid grey", 
                                                     borderRight: "3px solid grey", 
                                                     borderBottom: "2px solid grey",
                                                     textAlign: "center", 
@@ -113,8 +121,22 @@ var PhidgetsModal = (props: any) =>{
                                                     {item}
                                                 </TableCell>
                                             )
-                                        })]
-                                    }
+                                        }),
+                                        currentBoardObj.rowHeadLines[3]["conDeviceSettings"].map((item: any, index: any) => {
+                                        console.log('item :', item);
+                                            return(
+                                                <TableCell sx={{
+                                                    borderLeft: "3px solid grey", 
+                                                    borderRight: "3px solid grey", 
+                                                    borderBottom: "2px solid grey",
+                                                    textAlign: "center", 
+                                                    fontSize: "20px"
+                                                }} key={item}>
+                                                    {item}
+                                                </TableCell>
+                                            )
+                                        })
+                                    ]}
                                 </TableRow>
                             </TableHead>
                             <TableBody>
