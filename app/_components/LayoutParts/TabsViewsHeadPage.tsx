@@ -14,6 +14,8 @@ import { Box, Divider } from '@mui/material';
 
 import {componentRerenderStorageChanges$} from"../../_data/RerenderComponentOnStorageChanges";
 import TabView1 from"./TabsViewsPages/TabView1"; 
+import TabView2 from"./TabsViewsPages/TabView2"; 
+
 import ThrottleVisual from"./ThrottleValuesVisual";
 
 
@@ -30,7 +32,7 @@ var TabsViewsHeadPage = () =>{
     // Get updated Store state and save it 
         const [ currentStoreState, updateCurrrentStoreState ] = useState<any>(null);
 
-    const [tabNr, setTabNBr] = React.useState('1');
+    const [tabNr, setTabNBr] = React.useState('2');
 
     // Services
         const [ MTUServer ] = useState<string>("MTU Server");
@@ -81,7 +83,7 @@ var TabsViewsHeadPage = () =>{
                 
             {/* TabPanel 2 --------------------------------------------------- */}
                 <TabPanel value="2">
-                    cesdc
+                    <TabView2/>
                 </TabPanel>
         
             {/* TabPanel 3 --------------------------------------------------- */}

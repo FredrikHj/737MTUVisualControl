@@ -36,7 +36,7 @@ var Phidgets_BoardPart = () =>{
 
     const [ isPhidgetsServerError, updateIsPhidgetsServerError ] = useState<boolean>(false); 
     const [ isPhidgetsConLost, updateIsPhidgetsConLost ] = useState<boolean>(false); 
-    const [ isIsPhidgetsModalOpen, updateIsPhidgetsModalOpen ] = useState<boolean>(true); 
+    const [ isIsPhidgetsModalOpen, updateIsPhidgetsModalOpen ] = useState<boolean>(false); 
     
     useEffect(() => {
         // Update and rerender when the Store tree has new values

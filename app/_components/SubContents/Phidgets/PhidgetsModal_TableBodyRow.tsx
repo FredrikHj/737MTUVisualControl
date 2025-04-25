@@ -120,7 +120,6 @@ var PhidgetsModalRow = (props: any) =>{
                     borderBottom: "1px solid grey",
                     textAlign: "center", 
                     fontSize: "20px",
-                    color: "white",
                 }}>
                     {isBoardConnected === true 
                         ? currentRowObj["ki"]
