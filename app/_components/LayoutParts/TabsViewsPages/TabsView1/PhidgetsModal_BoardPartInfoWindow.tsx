@@ -1,17 +1,17 @@
 /* ================================================== Service Container ==================================================
 Import  modules */
-import { initializeStore } from "../../../_reduxStore/CommonStore";
+import { initializeStore } from "../../../../_reduxStore/CommonStore";
 
 import { useSelector } from 'react-redux';
 import React, { useState, useEffect } from 'react';
-import {componentRerenderStorageChanges$} from "../../../_data/RerenderComponentOnStorageChanges";
+import {componentRerenderStorageChanges$} from "../../../../_data/RerenderComponentOnStorageChanges";
 import PhidgetsModalRow from './PhidgetsModal_TableBodyRow';
 import { Box, Table, TableHead, TableBody, TableContainer, TableCell, TableRow, Button } from '@mui/material';
 
-import FSUIPCInfoContainer from "../../../_data/FSUIPC/FSUIPCInfoContainer";
-import PhidgetsInfoContainer from "../../../_data/Phidgets/PhidgetsInfoContainer";
-import ServerErrorRetrying from "../../../_data/ServerErrorRetrying";
-import LoadingIndicator from "../../../_data/LoadingIndicator/ServerErrorRetrying";
+import FSUIPCInfoContainer from "../../../../_data/FSUIPC/FSUIPCInfoContainer";
+import PhidgetsInfoContainer from "../../../../_data/Phidgets/PhidgetsInfoContainer";
+import ServerErrorRetrying from "../../../../_data/ServerErrorRetrying";
+import LoadingIndicator from "../../../../_data/LoadingIndicator/ServerErrorRetrying";
 import { log } from 'console';
 import { styled } from '@mui/material/styles';
 
@@ -22,7 +22,7 @@ var PhidgetsModal = (props: any) =>{
     
     return(
         <Box sx={{
-            width: "80%",
+            width: "85%",
             fontWeight: "bold",
             textAlign: "center",
             backgroundColor:' #fefefe',
@@ -61,7 +61,7 @@ var PhidgetsModal = (props: any) =>{
                 overflowY: "scroll"
             }}>
                 <TableContainer>
-                    {Object.keys(currentBoardObj).length !== 0 &&
+                    {Object.keys(currentBoardObj.conInfo).length !== 0 &&
                         <Table>
                             <TableHead>
                                 <TableRow>
@@ -72,7 +72,7 @@ var PhidgetsModal = (props: any) =>{
                                         fontWeight: "bold", 
                                         letterSpacing: "10px"
                                     }} colSpan={3}>
-                                        {currentBoardObj.rowHeadLines[0]} 
+                                        {currentBoardObj.rowHeadLines.conInfo[0]} 
                                     </TableCell>
                                     <TableCell sx={{
                                         border: "3px solid grey",
@@ -81,7 +81,7 @@ var PhidgetsModal = (props: any) =>{
                                         fontWeight: "bold", 
                                         letterSpacing: "5px"
                                     }} colSpan={3}>
-                                        {currentBoardObj.rowHeadLines[1]}
+                                        {currentBoardObj.rowHeadLines.conInfo[1]}
                                     </TableCell>
                                     <TableCell sx={{
                                         border: "3px solid grey",
@@ -90,12 +90,12 @@ var PhidgetsModal = (props: any) =>{
                                         fontWeight: "bold", 
                                         letterSpacing: "5px"
                                     }} colSpan={6}>
-                                        {currentBoardObj.rowHeadLines[2]}
+                                        {currentBoardObj.rowHeadLines.conInfo[2]}
                                     </TableCell>
                                 </TableRow>
                                 <TableRow>
                                     {[
-                                        currentBoardObj.rowHeadLines[3]["boardInfo"].map((item: any, index: any) => {
+                                        currentBoardObj.rowHeadLines.conInfo[3]["boardInfo"].map((item: any, index: any) => {
                                         console.log('item :', item);
                                             return(
                                                 <TableCell sx={{
@@ -109,7 +109,7 @@ var PhidgetsModal = (props: any) =>{
                                                 </TableCell>
                                             )
                                         }),    
-                                        currentBoardObj.rowHeadLines[3]["genDeviceSpec"].map((item: any, index: any) => {
+                                        currentBoardObj.rowHeadLines.conInfo[3]["genDeviceSpec"].map((item: any, index: any) => {
                                         console.log('item :', item);
                                             return(
                                                 <TableCell sx={{
@@ -122,7 +122,7 @@ var PhidgetsModal = (props: any) =>{
                                                 </TableCell>
                                             )
                                         }),
-                                        currentBoardObj.rowHeadLines[3]["conDeviceSettings"].map((item: any, index: any) => {
+                                        currentBoardObj.rowHeadLines.conInfo[3]["conDeviceSettings"].map((item: any, index: any) => {
                                         console.log('item :', item);
                                             return(
                                                 <TableCell sx={{
@@ -141,34 +141,34 @@ var PhidgetsModal = (props: any) =>{
                             </TableHead>
                             <TableBody>
                                 <PhidgetsModalRow
-                                    currentRowObj={currentBoardObj["pBController"]}
+                                    currentRowObj={currentBoardObj.conInfo["pBController"]}
                                 />
                                 <PhidgetsModalRow
-                                    currentRowObj={currentBoardObj["sBController"]}
+                                    currentRowObj={currentBoardObj.conInfo["sBController"]}
                                 />
                                 <PhidgetsModalRow
-                                    currentRowObj={currentBoardObj.centerLevers["tH1Controller"]}
+                                    currentRowObj={currentBoardObj.conInfo.centerLevers["tH1Controller"]}
                                 />
                                 <PhidgetsModalRow
-                                    currentRowObj={currentBoardObj.centerLevers["rev1Controller"]}
+                                    currentRowObj={currentBoardObj.conInfo.centerLevers["rev1Controller"]}
                                 />
                                 <PhidgetsModalRow
-                                    currentRowObj={currentBoardObj.centerLevers["eng1Controller"]}
+                                    currentRowObj={currentBoardObj.conInfo.centerLevers["eng1Controller"]}
                                 />
                                 <PhidgetsModalRow
-                                    currentRowObj={currentBoardObj.centerLevers["tH2Controller"]}
+                                    currentRowObj={currentBoardObj.conInfo.centerLevers["tH2Controller"]}
                                 />
                                 <PhidgetsModalRow
-                                    currentRowObj={currentBoardObj.centerLevers["rev2Controller"]}
+                                    currentRowObj={currentBoardObj.conInfo.centerLevers["rev2Controller"]}
                                 />
                                 <PhidgetsModalRow
-                                    currentRowObj={currentBoardObj.centerLevers["eng2Controller"]}
+                                    currentRowObj={currentBoardObj.conInfo.centerLevers["eng2Controller"]}
                                 />
                                 <PhidgetsModalRow
-                                    currentRowObj={currentBoardObj["flapsController"]}
+                                    currentRowObj={currentBoardObj.conInfo["flapsController"]}
                                 />
                                 <PhidgetsModalRow
-                                    currentRowObj={currentBoardObj["digitalInputController"]}
+                                    currentRowObj={currentBoardObj.conInfo["digitalInputController"]}
                                 />
 
                              </TableBody>

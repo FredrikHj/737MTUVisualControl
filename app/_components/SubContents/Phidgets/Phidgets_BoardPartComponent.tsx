@@ -5,8 +5,8 @@ import { initializeStore } from "../../../_reduxStore/CommonStore";
 import { useSelector } from 'react-redux';
 import React, { useState, useEffect } from 'react';
 import {componentRerenderStorageChanges$} from "../../../_data/RerenderComponentOnStorageChanges";
-import PhidgetsModal from "./PhidgetsModal_BoardPartInfoWindow";
-import './CssPhidgetsModal_BoardPartInfoWindow.css'; 
+import PhidgetsModal from "../../LayoutParts/TabsViewsPages/TabsView1/PhidgetsModal_BoardPartInfoWindow";
+import '../../LayoutParts/TabsViewsPages/TabsView1/CssPhidgetsModal_BoardPartInfoWindow.css'; 
 
 import { Box, Table, TableHead, TableBody, TableContainer, TableCell, TableRow, Button } from '@mui/material';
 
