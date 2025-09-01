@@ -28,8 +28,8 @@ var TabView2 = () =>{
 
     useEffect(() => {
 
-    }, [currentStoreState])
-
+    }, [currentStoreState]);
+    console.log("currentStoreState", currentStoreState);
     return(
         <Box sx={{
             width: "100%",
@@ -65,7 +65,7 @@ var TabView2 = () =>{
                                         fontWeight: "bold", 
                                         letterSpacing: "10px"
                                     }} colSpan={3}>
-                                        {currentControllerBoardStates.rowHeadLines.boardsValues[0]} 
+                                        {currentControllerBoardStates.boardsHeadlinesApi.boardsValues[0]} 
                                     </TableCell>
                                     <TableCell sx={{
                                         border: "3px solid grey",
@@ -74,7 +74,7 @@ var TabView2 = () =>{
                                         fontWeight: "bold", 
                                         letterSpacing: "5px"
                                     }} colSpan={2}>
-                                        {currentControllerBoardStates.rowHeadLines.boardsValues[1]}
+                                        {currentControllerBoardStates.boardsHeadlinesApi.boardsValues[1]}
                                     </TableCell>
                                     <TableCell sx={{
                                         border: "3px solid grey",
@@ -83,12 +83,12 @@ var TabView2 = () =>{
                                         fontWeight: "bold", 
                                         letterSpacing: "5px"
                                     }} colSpan={3}>
-                                        {currentControllerBoardStates.rowHeadLines.boardsValues[2]}
+                                        {currentControllerBoardStates.boardsHeadlinesApi.boardsValues[2]}
                                     </TableCell>
                                 </TableRow>
                                 <TableRow>
                                     {[
-                                        currentControllerBoardStates.rowHeadLines.boardsValues[3]["boardInfo"].map((item: any, index: any) => {
+                                        currentControllerBoardStates.boardsHeadlinesApi.boardsValues[3]["boardInfo"].map((item: any, index: any) => {
                                         console.log('item :', item);
                                             return(
                                                 <TableCell sx={{
@@ -102,7 +102,7 @@ var TabView2 = () =>{
                                                 </TableCell>
                                             )
                                         }),    
-                                        currentControllerBoardStates.rowHeadLines.boardsValues[3]["channelState"].map((item: any, index: any) => {
+                                        currentControllerBoardStates.boardsHeadlinesApi.boardsValues[3]["channelState"].map((item: any, index: any) => {
                                         console.log('item :', item);
                                             return(
                                                 <TableCell sx={{
@@ -115,7 +115,7 @@ var TabView2 = () =>{
                                                 </TableCell>
                                             )
                                         }),
-                                        currentControllerBoardStates.rowHeadLines.boardsValues[3]["flightSimulatorValues"].map((item: any, index: any) => {
+                                        currentControllerBoardStates.boardsHeadlinesApi.boardsValues[3]["flightSimulatorValues"].map((item: any, index: any) => {
                                             console.log('item :', item);
                                             return(
                                                 <TableCell sx={{

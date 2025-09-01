@@ -37,7 +37,7 @@ var PhidgetsModalRow = (props: any) =>{
                     textAlign: "center",
                     fontSize: "20px"
                 }}> 
-                    {currentRowObj["boardName"]}
+                    {currentRowObj["componentName"]}
                 </TableCell>
                 {/* Cell 2*/} 
                 <TableCell sx={{

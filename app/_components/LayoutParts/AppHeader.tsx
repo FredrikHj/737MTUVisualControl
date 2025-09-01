@@ -51,12 +51,12 @@ var AppHeader = () =>{
                 flexDirection: "row", 
             }}>
                 <Box sx={{
-                    width: "15%",
+                    width: "10%",
                 }}>
                     Logga
                 </Box>
                 <Box sx={{
-                    width: "60%",
+                    width: "55%",
                     textAlign: "center",
                 }}>
                      <Box sx={{fontSize: "40px", letterSpacing: "20px"}}>
@@ -64,7 +64,7 @@ var AppHeader = () =>{
                     </Box>
                 </Box>
                 <Box sx={{
-                    width: "30%",
+                    width: "10%",
                     display: "flex",
                     flexDirection: "row",
                     justifyContent: "center",

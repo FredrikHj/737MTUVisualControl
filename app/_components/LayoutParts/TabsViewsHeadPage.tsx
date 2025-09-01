@@ -32,7 +32,7 @@ var TabsViewsHeadPage = () =>{
     // Get updated Store state and save it 
         const [ currentStoreState, updateCurrrentStoreState ] = useState<any>(null);
 
-    const [tabNr, setTabNBr] = React.useState('2');
+    const [tabNr, setTabNBr] = React.useState('1');
 
     // Services
         const [ MTUServer ] = useState<string>("MTU Server");

@@ -1,0 +1,5 @@
+{
+  "scripts": {
+    "build": "nextron build --config ./configs/electron-builder.prod.yml"
+  }
+}

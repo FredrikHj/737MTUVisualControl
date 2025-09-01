@@ -40,7 +40,7 @@ var PhidgetsModal = (props: any) =>{
                     marginBottom: "20px",
                     marginLeft: "330px",
                 }}>
-                    Board Information
+                    Device Informations
                 </Box>
                 <button style={{
                     border: "none",
@@ -61,7 +61,7 @@ var PhidgetsModal = (props: any) =>{
                 overflowY: "scroll"
             }}>
                 <TableContainer>
-                    {Object.keys(currentBoardObj.conInfo).length !== 0 &&
+                    {Object.keys(currentBoardObj).length !== 0 &&
                         <Table>
                             <TableHead>
                                 <TableRow>
@@ -72,7 +72,7 @@ var PhidgetsModal = (props: any) =>{
                                         fontWeight: "bold", 
                                         letterSpacing: "10px"
                                     }} colSpan={3}>
-                                        {currentBoardObj.rowHeadLines.conInfo[0]} 
+                                        {currentBoardObj.boardsHeadlinesApi.conInfo[0]} 
                                     </TableCell>
                                     <TableCell sx={{
                                         border: "3px solid grey",
@@ -81,7 +81,7 @@ var PhidgetsModal = (props: any) =>{
                                         fontWeight: "bold", 
                                         letterSpacing: "5px"
                                     }} colSpan={3}>
-                                        {currentBoardObj.rowHeadLines.conInfo[1]}
+                                        {currentBoardObj.boardsHeadlinesApi.conInfo[1]}
                                     </TableCell>
                                     <TableCell sx={{
                                         border: "3px solid grey",
@@ -90,12 +90,12 @@ var PhidgetsModal = (props: any) =>{
                                         fontWeight: "bold", 
                                         letterSpacing: "5px"
                                     }} colSpan={6}>
-                                        {currentBoardObj.rowHeadLines.conInfo[2]}
+                                        {currentBoardObj.boardsHeadlinesApi.conInfo[2]}
                                     </TableCell>
                                 </TableRow>
                                 <TableRow>
                                     {[
-                                        currentBoardObj.rowHeadLines.conInfo[3]["boardInfo"].map((item: any, index: any) => {
+                                        currentBoardObj.boardsHeadlinesApi.conInfo[3]["boardInfo"].map((item: any, index: any) => {
                                         console.log('item :', item);
                                             return(
                                                 <TableCell sx={{
@@ -109,7 +109,7 @@ var PhidgetsModal = (props: any) =>{
                                                 </TableCell>
                                             )
                                         }),    
-                                        currentBoardObj.rowHeadLines.conInfo[3]["genDeviceSpec"].map((item: any, index: any) => {
+                                        currentBoardObj.boardsHeadlinesApi.conInfo[3]["genDeviceSpec"].map((item: any, index: any) => {
                                         console.log('item :', item);
                                             return(
                                                 <TableCell sx={{
@@ -122,7 +122,7 @@ var PhidgetsModal = (props: any) =>{
                                                 </TableCell>
                                             )
                                         }),
-                                        currentBoardObj.rowHeadLines.conInfo[3]["conDeviceSettings"].map((item: any, index: any) => {
+                                        currentBoardObj.boardsHeadlinesApi.conInfo[3]["conDeviceSettings"].map((item: any, index: any) => {
                                         console.log('item :', item);
                                             return(
                                                 <TableCell sx={{
@@ -141,37 +141,42 @@ var PhidgetsModal = (props: any) =>{
                             </TableHead>
                             <TableBody>
                                 <PhidgetsModalRow
-                                    currentRowObj={currentBoardObj.conInfo["pBController"]}
+                                    currentRowObj={currentBoardObj.pBApi["conInfo"]}
                                 />
                                 <PhidgetsModalRow
-                                    currentRowObj={currentBoardObj.conInfo["sBController"]}
+                                    currentRowObj={currentBoardObj.sBApi["conInfo"]}
                                 />
                                 <PhidgetsModalRow
-                                    currentRowObj={currentBoardObj.conInfo.centerLevers["tH1Controller"]}
+                                    currentRowObj={currentBoardObj.centerLeversApi.tH1Controller["conInfo"]}
                                 />
                                 <PhidgetsModalRow
-                                    currentRowObj={currentBoardObj.conInfo.centerLevers["rev1Controller"]}
+                                    currentRowObj={currentBoardObj.centerLeversApi.rev1Controller["conInfo"]}
                                 />
                                 <PhidgetsModalRow
-                                    currentRowObj={currentBoardObj.conInfo.centerLevers["eng1Controller"]}
+                                    currentRowObj={currentBoardObj.centerLeversApi.eng1Controller["conInfo"]}
                                 />
                                 <PhidgetsModalRow
-                                    currentRowObj={currentBoardObj.conInfo.centerLevers["tH2Controller"]}
+                                    currentRowObj={currentBoardObj.centerLeversApi.tH2Controller["conInfo"]}
                                 />
                                 <PhidgetsModalRow
-                                    currentRowObj={currentBoardObj.conInfo.centerLevers["rev2Controller"]}
+                                    currentRowObj={currentBoardObj.centerLeversApi.rev2Controller["conInfo"]}
                                 />
                                 <PhidgetsModalRow
-                                    currentRowObj={currentBoardObj.conInfo.centerLevers["eng2Controller"]}
+                                    currentRowObj={currentBoardObj.centerLeversApi.eng2Controller["conInfo"]}
                                 />
                                 <PhidgetsModalRow
-                                    currentRowObj={currentBoardObj.conInfo["flapsController"]}
+                                    currentRowObj={currentBoardObj.digitalInputsApi.digitalSwLeft["conInfo"]}
                                 />
                                 <PhidgetsModalRow
-                                    currentRowObj={currentBoardObj.conInfo["digitalInputController"]}
+                                    currentRowObj={currentBoardObj.digitalInputsApi.digitalSwRight["conInfo"]}
                                 />
-
-                             </TableBody>
+                                <PhidgetsModalRow
+                                    currentRowObj={currentBoardObj.flapsApi["conInfo"]}
+                                />
+                                <PhidgetsModalRow
+                                    currentRowObj={currentBoardObj.trimWheelsApi["conInfo"]}
+                                />
+                            </TableBody>
                         </Table>
                     }
                 </TableContainer>

@@ -31,6 +31,7 @@ import { setIsfsuipcConnected, setFsuipcConnectionMess } from "../_reduxStore/re
 import serverConfig from './ServerConfig';
 
 import RequestMTUServer from '../RequestMTUServer';
+import { Console } from 'console';
 
 // Sett type of data
   const nodeServerActive: boolean = false;
@@ -57,7 +58,7 @@ import RequestMTUServer from '../RequestMTUServer';
       socket.on("connect", () => {
 
         socket.on("mtuInitiation", (data: any, acknowledgements: any) => {
-          var pathToMtuConParts = data.MTUConParts;
+          var pathToMtuConParts = data.MtuConApi;
           var pathToServicePhidgets = data.servicesConParts;
           console.log('Incomming data from MTUServer: ', data);
           console.log('Is MTUServer conneted? ', pathToMtuConParts.backend["isConnected"]);

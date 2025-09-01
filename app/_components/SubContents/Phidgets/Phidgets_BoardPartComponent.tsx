@@ -36,7 +36,7 @@ var Phidgets_BoardPart = () =>{
 
     const [ isPhidgetsServerError, updateIsPhidgetsServerError ] = useState<boolean>(false); 
     const [ isPhidgetsConLost, updateIsPhidgetsConLost ] = useState<boolean>(false); 
-    const [ isIsPhidgetsModalOpen, updateIsPhidgetsModalOpen ] = useState<boolean>(false); 
+    const [ isIsPhidgetsModalOpen, updateIsPhidgetsModalOpen ] = useState<boolean>(true); 
     
     useEffect(() => {
         // Update and rerender when the Store tree has new values
@@ -88,7 +88,7 @@ var phidgetsModal = () => {
                 letterSpacing: "20px", 
                 fontWeight: "bold",
             }} onClick={phidgetsModal}>
-                 Info Window
+                 Device Informations
             </Button>    
             <Box sx={{
                 display: isIsPhidgetsModalOpen === true ? 'block' : 'none', /* Hidden by default */

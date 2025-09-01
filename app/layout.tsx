@@ -32,9 +32,6 @@ export default function RootLayout({
         <Provider store={ initializeStore }>
           {children} 
         </Provider>
-          {/*  <StoreProvider>
-            {children}
-          </StoreProvider> */}
         </body>
     </html>
   );
