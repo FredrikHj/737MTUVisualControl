@@ -16,7 +16,7 @@ const initialState: State = {
     choosenTabNr: 1,
 }
 
-export const AppStartSlicer = createSlice({
+export const appStartSlicer = createSlice({
     name: "AppStart",
     initialState,
     reducers: {
@@ -31,5 +31,5 @@ export const AppStartSlicer = createSlice({
         },
     },
 });
-export const {setAppUpStarted, setStateName, setChoosenTabNr } = AppStartSlicer.actions;
-export default AppStartSlicer.reducer;
+export const {setAppUpStarted, setStateName, setChoosenTabNr } = appStartSlicer.actions;
+export default appStartSlicer.reducer;

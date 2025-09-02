@@ -25,7 +25,7 @@ const initialState: State = {
     },  
 };
 
-export const FSUIPCSlicer = createSlice({
+export const fsuipcSlicer = createSlice({
     name: "FSUIPCSlicer",
     initialState,
     reducers: {
@@ -47,5 +47,5 @@ export const FSUIPCSlicer = createSlice({
     },
 });
 
-export const { fsuipcConnectionLoading, setIsfsuipcConnected, setFsuipcConnectionMess, setfsuipcConLost, setwWebsocketNotFound, setConnectionInfo } = FSUIPCSlicer.actions;
-export default FSUIPCSlicer.reducer;
+export const { fsuipcConnectionLoading, setIsfsuipcConnected, setFsuipcConnectionMess, setwWebsocketNotFound, setConnectionInfo } = fsuipcSlicer.actions;
+export default fsuipcSlicer.reducer;

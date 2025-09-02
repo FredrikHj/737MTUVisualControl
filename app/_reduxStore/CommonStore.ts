@@ -1,19 +1,19 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { AppStartSlicer } from './reducers/appStartSlicer';
+import { appStartSlicer } from './reducers/appStartSlicer';
 import { mtuServerSlicer } from './reducers/MtuServerSlicer';
-import { FSUIPCSlicer } from './reducers/FSUIPCSlicer';
-import { PhidgetsSlicer } from './reducers/PhidgetsSlicer';
-import { ThrottleUpdatingValues } from './reducers/ThrottleUpdatingValuesSlicer';
+import { fsuipcSlicer } from './reducers/FSUIPCSlicer';
+import { phidgetsSlicer } from './reducers/PhidgetsSlicer';
+import { mtuPartsPositionsSlicer } from './reducers/MTUPartsPositionsSlicer';
 
 export const initializeStore = configureStore({
   reducer: {
-      appStart: AppStartSlicer.reducer,
+      appStart: appStartSlicer.reducer,
       conStatusMTUServer: mtuServerSlicer.reducer,
-      conStatusServiceFSUIPC: FSUIPCSlicer.reducer,    
-      conStatusServicePHIDGETS: PhidgetsSlicer.reducer,
+      conStatusServiceFSUIPC: fsuipcSlicer.reducer,    
+      conStatusServicePHIDGETS: phidgetsSlicer.reducer,
       /* valueSharesServerViwer: */
-      throttleUpdatingValues: ThrottleUpdatingValues.reducer,
-  }
+      mtuPartsPositions: mtuPartsPositionsSlicer.reducer,
+  },
 })
 
 export type RootState = ReturnType<typeof initializeStore.getState>;

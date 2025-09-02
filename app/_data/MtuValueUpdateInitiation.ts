@@ -15,7 +15,7 @@ import {
   setTh2LeverPoss,
   setTh2LRevPoss,
   setFlapsLeverPoss
-} from "../_reduxStore/reducers/ThrottleUpdatingValuesSlicer";
+} from "../_reduxStore/reducers/MTUPartsPositionsSlicer";
 import {updateSpeedBrakeLeverPossValue} from"./RerenderComponentOnStorageChanges";
 
 import serverConfig from "./ServerConfig";

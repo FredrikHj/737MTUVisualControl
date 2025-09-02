@@ -30,7 +30,7 @@ const initialState: State = {
     controllerBoard: {},
 };
 
-export const PhidgetsSlicer = createSlice({
+export const phidgetsSlicer = createSlice({
     name: "PhidgetsSlicer",
     initialState,
     reducers: {
@@ -74,6 +74,6 @@ export const {
     setPhidgetsServerPort,
     setPhidgetsConLostMess,
     setPhidgetsControllerBoardsObj,
-} = PhidgetsSlicer.actions;
+} = phidgetsSlicer.actions;
 
-export default PhidgetsSlicer.reducer;
+export default phidgetsSlicer.reducer;

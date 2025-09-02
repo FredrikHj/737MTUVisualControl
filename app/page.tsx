@@ -7,7 +7,7 @@ import { initializeStore } from"./_reduxStore/CommonStore";
 import { Box, Divider } from '@mui/material';
 import React, { useState, useEffect } from'react';
 import TabsViewsHeadPage from"./_components/LayoutParts/TabsViewsHeadPage";
-import MtuViewerInitiation from"./_data/InitiateConMtuBackend";
+import InitilazingBackendCon from"./_data/HandleConCom/InitilazingBackendCon";
 import MtuValueUpdateInitiation from"./_data/MtuValueUpdateInitiation";
 
 import {componentRerenderStorageChanges$} from"./_data/RerenderComponentOnStorageChanges";
@@ -37,7 +37,7 @@ export default function Home() {
     useEffect(() => {
       // Start client listning to MTU Server but only if the server is not connected
         if(MTUViewerStart === false){
-            MtuViewerInitiation();
+            InitilazingBackendCon();
             setMTUViewerStart(true);
         }
         //isMtuServerConnected === false && isPhidgetsServerConnected === false && MtuValueUpdateInitiation();

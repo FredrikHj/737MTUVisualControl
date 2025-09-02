@@ -4,7 +4,7 @@ import { Box, Divider } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import React, { useState, useEffect } from'react';
 import TabsChoose from"./_components/LayoutParts/TabsViewsHeadPage";
-import MtuViewerInitiation from"./_data/InitiateConMtuBackend";
+import InitilazingBackendCon from"./_data/HandleConCom/InitilazingBackendCon";
 import MtuValueUpdateInitiation from"./_data/MtuValueUpdateInitiation";
 import MTUServerConnectionInfo from"./_components/SubContents/MTUServer/MTUServerConInfo";
 import FsuipcServiceConnectionInfo from"./_components/SubContents/FSUIPC/FsuipcServiceConnection";
@@ -35,7 +35,7 @@ var MTUControlLanding = () => {
 
     useEffect(() => {
         // Start client listning to MTU Server but only if the server is not connected
-        isMtuServerConnected === false && MtuViewerInitiation(); 
+        isMtuServerConnected === false && InitilazingBackendCon(); 
         isMtuServerConnected === false && isPhidgetsServerConnected === false && MtuValueUpdateInitiation(); 
  
         // Update and rerender when the Store tree has new values
@@ -62,9 +62,7 @@ var MTUControlLanding = () => {
             alignItems: "center"
         }}>
             <Box>
-                <MTUServerConnectionInfo
-                    MTUService={MTUServer}
-                />
+                <MTUServerConnectionInfo/>
             </Box>
             <Box sx={{
                 marginTop: "30px",
@@ -73,12 +71,8 @@ var MTUControlLanding = () => {
                 justifyContents: "space-around",
                 padding: "5px",
             }}>
-                <PhidgetsServiceConnectionInfo
-                    MTUService={servicePhidgets}
-                />
-                <FsuipcServiceConnectionInfo
-                    MTUService={serviceFsuipc}
-                />
+                <PhidgetsServiceConnectionInfo/>
+                <FsuipcServiceConnectionInfo/>
             </Box>
             <Root>
                 <Divider textAlign="center"></Divider>

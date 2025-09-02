@@ -141,40 +141,40 @@ var PhidgetsModal = (props: any) =>{
                             </TableHead>
                             <TableBody>
                                 <PhidgetsModalRow
-                                    currentRowObj={currentBoardObj.pBApi["conInfo"]}
+                                    currentRowObj={currentBoardObj["pBApi"]}
                                 />
                                 <PhidgetsModalRow
-                                    currentRowObj={currentBoardObj.sBApi["conInfo"]}
+                                    currentRowObj={currentBoardObj["sBApi"]}
                                 />
                                 <PhidgetsModalRow
-                                    currentRowObj={currentBoardObj.centerLeversApi.tH1Controller["conInfo"]}
+                                    currentRowObj={currentBoardObj.centerLeversApi["tH1Controller"]}
                                 />
                                 <PhidgetsModalRow
-                                    currentRowObj={currentBoardObj.centerLeversApi.rev1Controller["conInfo"]}
+                                    currentRowObj={currentBoardObj.centerLeversApi["rev1Controller"]}
                                 />
                                 <PhidgetsModalRow
-                                    currentRowObj={currentBoardObj.centerLeversApi.eng1Controller["conInfo"]}
+                                    currentRowObj={currentBoardObj.centerLeversApi["eng1Controller"]}
                                 />
                                 <PhidgetsModalRow
-                                    currentRowObj={currentBoardObj.centerLeversApi.tH2Controller["conInfo"]}
+                                    currentRowObj={currentBoardObj.centerLeversApi["tH2Controller"]}
                                 />
                                 <PhidgetsModalRow
-                                    currentRowObj={currentBoardObj.centerLeversApi.rev2Controller["conInfo"]}
+                                    currentRowObj={currentBoardObj.centerLeversApi["rev2Controller"]}
                                 />
                                 <PhidgetsModalRow
-                                    currentRowObj={currentBoardObj.centerLeversApi.eng2Controller["conInfo"]}
+                                    currentRowObj={currentBoardObj.centerLeversApi["eng2Controller"]}
                                 />
                                 <PhidgetsModalRow
-                                    currentRowObj={currentBoardObj.digitalInputsApi.digitalSwLeft["conInfo"]}
+                                    currentRowObj={currentBoardObj.digitalInputsApi["digitalSwLeft"]}
                                 />
                                 <PhidgetsModalRow
-                                    currentRowObj={currentBoardObj.digitalInputsApi.digitalSwRight["conInfo"]}
+                                    currentRowObj={currentBoardObj.digitalInputsApi["digitalSwRight"]}
                                 />
                                 <PhidgetsModalRow
-                                    currentRowObj={currentBoardObj.flapsApi["conInfo"]}
+                                    currentRowObj={currentBoardObj["flapsApi"]}
                                 />
                                 <PhidgetsModalRow
-                                    currentRowObj={currentBoardObj.trimWheelsApi["conInfo"]}
+                                    currentRowObj={currentBoardObj["trimWheelsApi"]}
                                 />
                             </TableBody>
                         </Table>

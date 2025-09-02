@@ -23,7 +23,7 @@ var PhidgetsModalRow = (props: any) =>{
         isBoardConnected === false &&
            updateIsBoardConnected(currentRowObj["isConnected"]);
     }, [isBoardConnected])
-    console.log('currentRowObj["ki"]', currentRowObj);
+    console.log('currentRowObj', currentRowObj);
     
     return(
         <>
